@@ -1,0 +1,350 @@
+writing{variant="document" id="74163" title="style.css — versi bersih untuk GitHub Pages"}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    color: #0f172a;
+    line-height: 1.1;
+}
+
+.logo span {
+    display: block;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo small {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #2563eb;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #334155;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    color: #2563eb;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 520px;
+    padding: 80px 8%;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(
+        120deg,
+        #0f172a 0%,
+        #1e3a8a 55%,
+        #2563eb 100%
+    );
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    right: 8%;
+    top: -100px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    right: 25%;
+    bottom: -120px;
+}
+
+.hero-content {
+    max-width: 700px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero small {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #bfdbfe;
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 1.05;
+    margin: 20px 0;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    max-width: 600px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #e2e8f0;
+}
+
+/* BUTTON */
+
+.button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 28px;
+    background: white;
+    color: #1e3a8a;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* MENU */
+
+.menu {
+    padding: 75px 8%;
+    background: #f5f7fb;
+}
+
+.menu h2 {
+    text-align: center;
+    margin-bottom: 45px;
+    font-size: 36px;
+    color: #0f172a;
+}
+
+/* CARDS */
+
+.cards {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+    border: 1px solid #eef2f7;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card .icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    margin: 12px 0;
+    font-size: 20px;
+    color: #0f172a;
+}
+
+.card p {
+    color: #64748b;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.card a:hover {
+    color: #1d4ed8;
+    transform: translateX(4px);
+}
+
+/* FOOTER */
+
+footer {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+footer h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+footer p {
+    color: #cbd5e1;
+    margin-bottom: 12px;
+}
+
+footer small {
+    color: #94a3b8;
+}
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 55px;
+    }
+}
+
+/* HP */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 500px;
+        padding: 70px 25px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero small {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .menu {
+        padding: 60px 20px;
+    }
+
+    .menu h2 {
+        font-size: 30px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .card {
+        padding: 25px;
+    }
+}
+
+/* HP KECIL */
+
+@media (max-width: 450px) {
+
+    .logo span {
+        font-size: 24px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+}
