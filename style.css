@@ -1138,3 +1138,39 @@ footer small {
         height: 300px;
     }
 }
+<section class="profil">
+  <div class="profil-content">
+
+    <div class="profil-text">
+      <img src="LOGOLPKC.jpeg" alt="Logo LPKC" class="logo-lpkc">
+
+      <small>TENTANG LPKC</small>
+
+      <h2>Learning & Practice Center</h2>
+
+      <p>
+        LPKC SMKN 1 Pakong merupakan pusat pembelajaran dan praktik
+        peserta didik yang dirancang untuk mendukung pengembangan
+        pengetahuan, keterampilan, dan sikap profesional di bidang kesehatan.
+      </p>
+
+      <p>
+        Melalui pembelajaran digital dan kegiatan praktik, peserta didik
+        diarahkan untuk menjadi tenaga kesehatan yang terampil, peduli,
+        disiplin, dan berintegritas.
+      </p>
+    </div>
+
+    <div class="foto-lpkc-pengelola">
+      <img src="NURSRIWULANDARI.jpeg"
+           alt="NUR SRI WULANDARI"
+           class="foto-home-guru">
+
+      <div class="nama-foto">
+        <strong>NUR SRI WULANDARI, S.S.T.Keb., Gr</strong>
+        <span>Guru Produktif LPKC</span>
+      </div>
+    </div>
+
+  </div>
+</section>
