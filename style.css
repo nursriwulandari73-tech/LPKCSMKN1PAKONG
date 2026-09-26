@@ -802,3 +802,303 @@ footer small {
     }
 
 }
+/* =========================
+   PROFIL PENGELOLA
+========================= */
+
+.pengelola-header {
+    padding: 85px 8%;
+    background: linear-gradient(120deg, #0f172a, #1e3a8a, #2563eb);
+    color: white;
+}
+
+.pengelola-header-content {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.pengelola-header small {
+    color: #bfdbfe;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.pengelola-header h1 {
+    font-size: 46px;
+    line-height: 1.2;
+    margin: 15px 0;
+}
+
+.pengelola-header p {
+    color: #e2e8f0;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* PROFIL UTAMA */
+
+.profil-guru {
+    padding: 80px 8%;
+    background: white;
+}
+
+.profil-guru-content {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+
+/* FOTO */
+
+.foto-pengelola {
+    display: flex;
+    justify-content: center;
+}
+
+.foto-placeholder {
+    width: 300px;
+    height: 350px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border: 2px solid #bfdbfe;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto-placeholder span {
+    font-size: 80px;
+}
+
+.foto-placeholder p {
+    margin-top: 15px;
+    color: #64748b;
+    font-weight: bold;
+}
+
+
+/* DATA */
+
+.data-pengelola small {
+    color: #2563eb;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.data-pengelola h2 {
+    font-size: 38px;
+    color: #0f172a;
+    margin: 12px 0 20px;
+}
+
+.data-pengelola p {
+    color: #64748b;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+
+/* INFORMASI */
+
+.info-pengelola {
+    padding: 80px 8%;
+    background: #f5f7fb;
+}
+
+.info-content {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.info-content h2 {
+    text-align: center;
+    font-size: 36px;
+    color: #0f172a;
+    margin-bottom: 40px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.info-card {
+    background: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+}
+
+.info-card span {
+    font-size: 38px;
+}
+
+.info-card h3 {
+    margin: 12px 0 8px;
+    color: #0f172a;
+}
+
+.info-card p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* PENGALAMAN */
+
+.pengalaman {
+    padding: 80px 8%;
+    background: white;
+}
+
+.pengalaman-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.pengalaman-content > small {
+    color: #2563eb;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.pengalaman-content > h2 {
+    font-size: 36px;
+    color: #0f172a;
+    margin: 12px 0 40px;
+}
+
+.pengalaman-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pengalaman-item {
+    display: flex;
+    gap: 25px;
+    padding: 25px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border-left: 5px solid #2563eb;
+}
+
+.pengalaman-item > span {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.pengalaman-item h3 {
+    color: #0f172a;
+    margin-bottom: 5px;
+}
+
+.pengalaman-item p {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+
+/* PENUTUP */
+
+.profil-penutup {
+    padding: 70px 8%;
+    text-align: center;
+    background: linear-gradient(135deg, #eff6ff, #ffffff);
+}
+
+.profil-penutup div {
+    max-width: 750px;
+    margin: auto;
+}
+
+.profil-penutup h2 {
+    font-size: 32px;
+    color: #0f172a;
+    margin-bottom: 15px;
+}
+
+.profil-penutup p {
+    color: #64748b;
+    line-height: 1.8;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+    .profil-guru-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .foto-placeholder {
+        width: 260px;
+        height: 310px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .pengelola-header {
+        padding: 65px 20px;
+    }
+
+    .pengelola-header h1 {
+        font-size: 32px;
+    }
+
+    .pengelola-header p {
+        font-size: 16px;
+    }
+
+    .profil-guru {
+        padding: 60px 20px;
+    }
+
+    .data-pengelola h2 {
+        font-size: 30px;
+    }
+
+    .info-pengelola {
+        padding: 60px 20px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-content h2 {
+        font-size: 30px;
+    }
+
+    .pengalaman {
+        padding: 60px 20px;
+    }
+
+    .pengalaman-content > h2 {
+        font-size: 30px;
+    }
+
+    .profil-penutup {
+        padding: 60px 20px;
+    }
+
+}
