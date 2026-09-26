@@ -1102,3 +1102,18 @@ footer small {
     }
 
 }
+.foto-guru {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 22px;
+    border: 2px solid #bfdbfe;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 600px) {
+    .foto-guru {
+        width: 260px;
+        height: 310px;
+    }
+}
