@@ -334,7 +334,7 @@ footer small {
 
 .profil {
     padding: 80px 8%;
-    background: #ffffff;
+    background: linear-gradient(135deg, #eff6ff, #ffffff);
 }
 
 .profil-content {
@@ -365,7 +365,7 @@ footer small {
 }
 
 .profil-box {
-    background: #f5f7fb;
+    background: #ffffff;
     padding: 30px;
     border-radius: 20px;
     border: 1px solid #e2e8f0;
