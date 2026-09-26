@@ -105,7 +105,15 @@ nav a:hover {
     margin: 20px 0;
     font-weight: 800;
 }
-
+.hero h2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic;
+    color: #bfdbfe;
+    letter-spacing: 1px;
+}
 .hero p {
     max-width: 600px;
     font-size: 18px;
@@ -157,13 +165,27 @@ nav a:hover {
 .card {
     background: white;
     padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
-    border: 1px solid #eef2f7;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e2e8f0;
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: #2563eb;
 }
 
 .card:hover {
     transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
 }
 
 .card .icon {
