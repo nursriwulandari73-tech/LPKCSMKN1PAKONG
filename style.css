@@ -413,3 +413,9 @@ footer small {
     }
 
 }
+.logo-lpkc {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
