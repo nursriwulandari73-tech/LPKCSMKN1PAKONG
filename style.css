@@ -617,3 +617,96 @@ footer small {
     }
 
 }
+/* =========================
+   FASILITAS PRAKTIK
+========================= */
+
+.fasilitas {
+    padding: 80px 8%;
+    background: #ffffff;
+}
+
+.fasilitas-content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.fasilitas-content > small {
+    color: #2563eb;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.fasilitas-content h2 {
+    font-size: 36px;
+    color: #0f172a;
+    margin: 12px 0 15px;
+}
+
+.fasilitas-intro {
+    max-width: 750px;
+    color: #64748b;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.fasilitas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.fasilitas-card {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    transition: 0.3s ease;
+}
+
+.fasilitas-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+}
+
+.fasilitas-card span {
+    font-size: 40px;
+}
+
+.fasilitas-card h3 {
+    margin: 15px 0 8px;
+    color: #0f172a;
+}
+
+.fasilitas-card p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* HP */
+
+@media (max-width: 1000px) {
+
+    .fasilitas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .fasilitas {
+        padding: 60px 20px;
+    }
+
+    .fasilitas-content h2 {
+        font-size: 30px;
+    }
+
+    .fasilitas-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
