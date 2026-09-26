@@ -419,3 +419,201 @@ footer small {
     object-fit: contain;
     margin-bottom: 15px;
 }
+/* =========================
+   PROFIL LPKC
+========================= */
+
+.profil-header {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(120deg, #0f172a, #1e3a8a, #2563eb);
+    color: white;
+}
+
+.profil-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.profil-header small {
+    display: block;
+    color: #bfdbfe;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.profil-header h1 {
+    font-size: 48px;
+    margin: 15px 0;
+}
+
+.profil-header p {
+    color: #e2e8f0;
+    font-size: 17px;
+}
+
+
+/* TENTANG */
+
+.profil-detail {
+    padding: 80px 8%;
+    background: #ffffff;
+}
+
+.profil-detail-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.profil-detail small,
+.tujuan-content > small {
+    color: #2563eb;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.profil-detail h2 {
+    font-size: 36px;
+    margin: 12px 0 20px;
+    color: #0f172a;
+}
+
+.profil-detail p {
+    color: #64748b;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+
+/* VISI MISI */
+
+.visi-misi {
+    padding: 80px 8%;
+    background: #f5f7fb;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.visi-box,
+.misi-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.visi-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.visi-box h2,
+.misi-box h2 {
+    font-size: 30px;
+    color: #0f172a;
+    margin-bottom: 15px;
+}
+
+.visi-box p,
+.misi-box li {
+    color: #64748b;
+    line-height: 1.8;
+}
+
+.misi-box ul {
+    padding-left: 20px;
+}
+
+.misi-box li {
+    margin-bottom: 12px;
+}
+
+
+/* TUJUAN */
+
+.tujuan {
+    padding: 80px 8%;
+    background: linear-gradient(135deg, #eff6ff, #ffffff);
+}
+
+.tujuan-content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.tujuan h2 {
+    font-size: 36px;
+    color: #0f172a;
+    margin: 12px 0 40px;
+}
+
+.tujuan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.tujuan-card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.tujuan-card span {
+    font-size: 40px;
+}
+
+.tujuan-card h3 {
+    margin: 15px 0 8px;
+    color: #0f172a;
+}
+
+.tujuan-card p {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+
+/* HP */
+
+@media (max-width: 800px) {
+
+    .profil-header {
+        padding: 60px 20px;
+    }
+
+    .profil-header h1 {
+        font-size: 35px;
+    }
+
+    .profil-detail {
+        padding: 60px 20px;
+    }
+
+    .visi-misi {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+    }
+
+    .tujuan {
+        padding: 60px 20px;
+    }
+
+    .tujuan-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tujuan h2 {
+        font-size: 30px;
+    }
+
+}
