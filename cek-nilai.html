@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cek Nilai Siswa | LPKC</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <span>LPKC</span>
+
+        <small>SMKN 1 PAKONG</small>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">Beranda</a>
+
+        <a href="media.html">Media</a>
+
+        <a href="bahan.html">Bahan</a>
+
+        <a href="penilaian.html">Penilaian</a>
+
+        <a href="#">Sumber Belajar</a>
+
+    </nav>
+
+</header>
+
+
+
+<section class="menu">
+
+    <h2>📊 Cek Nilai Siswa</h2>
+
+    <p>
+        Masukkan NIS untuk melihat hasil penilaian pembelajaran.
+    </p>
+
+
+    <div class="card">
+
+        <input
+            type="text"
+            id="nis"
+            placeholder="Masukkan NIS"
+            style="padding:12px; width:90%; margin-bottom:15px;"
+        >
+
+        <br>
+
+        <button
+            onclick="cekNilai()"
+            style="padding:12px 20px; cursor:pointer;">
+            🔍 Cek Nilai
+        </button>
+
+
+        <div id="hasil" style="margin-top:20px;"></div>
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <h3>LPKC SMKN 1 PAKONG</h3>
+
+    <p>Learning & Practice Center</p>
+
+    <small>© 2026 LPKC SMKN 1 Pakong</small>
+
+</footer>
+
+
+
+<script>
+
+function cekNilai() {
+
+    var nis = document.getElementById("nis").value.trim();
+
+    var hasil = document.getElementById("hasil");
+
+
+    if (nis === "") {
+
+        hasil.innerHTML =
+            "<p>⚠️ Silakan masukkan NIS terlebih dahulu.</p>";
+
+        return;
+
+    }
+
+
+    hasil.innerHTML =
+        "<p>⏳ Sedang mencari data...</p>";
+
+
+    var url =
+        "https://script.google.com/macros/s/AKfycbzflUnK22qBe3D4r4ASi3L8MDpSKhsIUiiwncl8FNwV9zyDI-fl0Z67temO1hkaQVjn/exec?nis="
+        + encodeURIComponent(nis);
+
+
+    fetch(url)
+
+        .then(response => response.json())
+
+        .then(data => {
+
+
+            if (data.status === "success") {
+
+                hasil.innerHTML = `
+
+                    <h3>📋 Hasil Penilaian</h3>
+
+                    <p><strong>Nama:</strong> ${data.nama}</p>
+
+                    <p><strong>NIS:</strong> ${data.nis}</p>
+
+                    <p><strong>Kelas:</strong> ${data.kelas}</p>
+
+                    <hr>
+
+                    <p><strong>Tugas:</strong> ${data.tugas}</p>
+
+                    <p><strong>Kuis:</strong> ${data.kuis}</p>
+
+                    <p><strong>Praktikum:</strong> ${data.praktikum}</p>
+
+                    <p><strong>UTS:</strong> ${data.uts}</p>
+
+                    <p><strong>PAS:</strong> ${data.pas}</p>
+
+                    <h3>
+                        Nilai Akhir: ${data.nilaiAkhir}
+                    </h3>
+
+                `;
+
+            } else {
+
+                hasil.innerHTML =
+                    "<p>❌ NIS tidak ditemukan.</p>";
+
+            }
+
+        })
+
+        .catch(error => {
+
+            hasil.innerHTML =
+                "<p>⚠️ Terjadi kesalahan saat mengambil data.</p>";
+
+        });
+
+}
+
+</script>
+
+
+</body>
+
+</html>
