@@ -15,7 +15,10 @@ body {
     line-height: 1.6;
 }
 
-/* NAVBAR */
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
     width: 100%;
@@ -31,6 +34,7 @@ body {
     color: #0f172a;
     line-height: 1.1;
 }
+
 .logo img {
     width: 50px;
     height: 50px;
@@ -72,7 +76,10 @@ nav a:hover {
     color: #2563eb;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
     min-height: 520px;
@@ -105,6 +112,7 @@ nav a:hover {
     margin: 20px 0;
     font-weight: 800;
 }
+
 .hero h2 {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -114,6 +122,7 @@ nav a:hover {
     color: #bfdbfe;
     letter-spacing: 1px;
 }
+
 .hero p {
     max-width: 600px;
     font-size: 18px;
@@ -121,7 +130,10 @@ nav a:hover {
     color: #e2e8f0;
 }
 
-/* BUTTON */
+
+/* =========================
+   BUTTON
+========================= */
 
 .button {
     display: inline-block;
@@ -138,7 +150,10 @@ nav a:hover {
     transform: translateY(-3px);
 }
 
-/* MENU */
+
+/* =========================
+   MENU
+========================= */
 
 .menu {
     padding: 75px 8%;
@@ -152,7 +167,10 @@ nav a:hover {
     color: #0f172a;
 }
 
-/* CARDS */
+
+/* =========================
+   CARDS
+========================= */
 
 .cards {
     max-width: 1200px;
@@ -217,7 +235,10 @@ nav a:hover {
     color: #1d4ed8;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     background: #0f172a;
@@ -240,7 +261,10 @@ footer small {
     color: #94a3b8;
 }
 
-/* TABLET */
+
+/* =========================
+   TABLET
+========================= */
 
 @media (max-width: 1000px) {
 
@@ -253,7 +277,10 @@ footer small {
     }
 }
 
-/* HP */
+
+/* =========================
+   HP
+========================= */
 
 @media (max-width: 800px) {
 
@@ -266,7 +293,6 @@ footer small {
     .logo {
         text-align: center;
     }
-    
 
     nav {
         flex-wrap: wrap;
@@ -305,7 +331,10 @@ footer small {
     }
 }
 
-/* HP KECIL */
+
+/* =========================
+   HP KECIL
+========================= */
 
 @media (max-width: 450px) {
 
@@ -330,7 +359,11 @@ footer small {
         text-align: center;
     }
 }
-/* PROFIL LPKC */
+
+
+/* =========================
+   PROFIL LPKC
+========================= */
 
 .profil {
     padding: 80px 8%;
@@ -397,36 +430,21 @@ footer small {
     font-size: 14px;
     color: #64748b;
 }
-@media (max-width: 800px) {
 
-    .profil {
-        padding: 60px 20px;
-    }
 
-    .profil-content {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-
-    .profil-text h2 {
-        font-size: 30px;
-    }
-
-}
-.logo-lpkc {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
 /* =========================
-   PROFIL LPKC
+   PROFIL HEADER
 ========================= */
 
 .profil-header {
     text-align: center;
     padding: 80px 20px;
-    background: linear-gradient(120deg, #0f172a, #1e3a8a, #2563eb);
+    background: linear-gradient(
+        120deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
     color: white;
 }
 
@@ -458,7 +476,9 @@ footer small {
 }
 
 
-/* TENTANG */
+/* =========================
+   TENTANG
+========================= */
 
 .profil-detail {
     padding: 80px 8%;
@@ -490,7 +510,9 @@ footer small {
 }
 
 
-/* VISI MISI */
+/* =========================
+   VISI MISI
+========================= */
 
 .visi-misi {
     padding: 80px 8%;
@@ -536,7 +558,9 @@ footer small {
 }
 
 
-/* TUJUAN */
+/* =========================
+   TUJUAN
+========================= */
 
 .tujuan {
     padding: 80px 8%;
@@ -583,40 +607,6 @@ footer small {
 }
 
 
-/* HP */
-
-@media (max-width: 800px) {
-
-    .profil-header {
-        padding: 60px 20px;
-    }
-
-    .profil-header h1 {
-        font-size: 35px;
-    }
-
-    .profil-detail {
-        padding: 60px 20px;
-    }
-
-    .visi-misi {
-        grid-template-columns: 1fr;
-        padding: 60px 20px;
-    }
-
-    .tujuan {
-        padding: 60px 20px;
-    }
-
-    .tujuan-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tujuan h2 {
-        font-size: 30px;
-    }
-
-}
 /* =========================
    FASILITAS PRAKTIK
 ========================= */
@@ -685,31 +675,6 @@ footer small {
 }
 
 
-/* HP */
-
-@media (max-width: 1000px) {
-
-    .fasilitas-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-@media (max-width: 600px) {
-
-    .fasilitas {
-        padding: 60px 20px;
-    }
-
-    .fasilitas-content h2 {
-        font-size: 30px;
-    }
-
-    .fasilitas-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
 /* =========================
    GALERI KEGIATAN
 ========================= */
@@ -770,45 +735,18 @@ footer small {
 }
 
 
-/* TABLET */
-
-@media (max-width: 1000px) {
-
-    .galeri-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-
-/* HP */
-
-@media (max-width: 600px) {
-
-    .galeri {
-        padding: 60px 20px;
-    }
-
-    .galeri-content h2 {
-        font-size: 30px;
-    }
-
-    .galeri-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .galeri-card {
-        height: 250px;
-    }
-
-}
 /* =========================
    PROFIL PENGELOLA
 ========================= */
 
 .pengelola-header {
     padding: 85px 8%;
-    background: linear-gradient(120deg, #0f172a, #1e3a8a, #2563eb);
+    background: linear-gradient(
+        120deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
     color: white;
 }
 
@@ -836,7 +774,9 @@ footer small {
 }
 
 
-/* PROFIL UTAMA */
+/* =========================
+   PROFIL UTAMA
+========================= */
 
 .profil-guru {
     padding: 80px 8%;
@@ -864,7 +804,11 @@ footer small {
     width: 300px;
     height: 350px;
     border-radius: 22px;
-    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #dbeafe
+    );
     border: 2px solid #bfdbfe;
     display: flex;
     flex-direction: column;
@@ -953,7 +897,9 @@ footer small {
 }
 
 
-/* PENGALAMAN */
+/* =========================
+   PENGALAMAN
+========================= */
 
 .pengalaman {
     padding: 80px 8%;
@@ -1009,12 +955,18 @@ footer small {
 }
 
 
-/* PENUTUP */
+/* =========================
+   PENUTUP
+========================= */
 
 .profil-penutup {
     padding: 70px 8%;
     text-align: center;
-    background: linear-gradient(135deg, #eff6ff, #ffffff);
+    background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #ffffff
+    );
 }
 
 .profil-penutup div {
@@ -1034,9 +986,59 @@ footer small {
 }
 
 
-/* RESPONSIVE */
+/* =========================
+   LOGO & FOTO
+========================= */
+
+.logo-lpkc {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.foto-guru {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 22px;
+    border: 2px solid #bfdbfe;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+.foto-lpkc-pengelola {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto-lpkc-pengelola img {
+    width: 280px;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 22px;
+    border: 2px solid #bfdbfe;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 1000px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .fasilitas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .galeri-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     .profil-guru-content {
         grid-template-columns: 1fr;
@@ -1046,16 +1048,135 @@ footer small {
     .info-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    .foto-placeholder {
-        width: 260px;
-        height: 310px;
-    }
-
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+
+    .foto-lpkc-pengelola img {
+        width: 240px;
+        height: 300px;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+    }
+
+    .hero {
+        min-height: 500px;
+        padding: 70px 25px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .menu {
+        padding: 60px 20px;
+    }
+
+    .menu h2 {
+        font-size: 30px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .card {
+        padding: 25px;
+    }
+
+    .profil {
+        padding: 60px 20px;
+    }
+
+    .profil-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .profil-text h2 {
+        font-size: 30px;
+    }
+
+    .profil-header {
+        padding: 60px 20px;
+    }
+
+    .profil-header h1 {
+        font-size: 35px;
+    }
+
+    .profil-detail {
+        padding: 60px 20px;
+    }
+
+    .visi-misi {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+    }
+
+    .tujuan {
+        padding: 60px 20px;
+    }
+
+    .tujuan-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tujuan h2 {
+        font-size: 30px;
+    }
+
+    .fasilitas {
+        padding: 60px 20px;
+    }
+
+    .fasilitas-content h2 {
+        font-size: 30px;
+    }
+
+    .fasilitas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .galeri {
+        padding: 60px 20px;
+    }
+
+    .galeri-content h2 {
+        font-size: 30px;
+    }
+
+    .galeri-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .galeri-card {
+        height: 250px;
+    }
 
     .pengelola-header {
         padding: 65px 20px;
@@ -1100,77 +1221,38 @@ footer small {
     .profil-penutup {
         padding: 60px 20px;
     }
+}
 
-}
-.foto-guru {
-    width: 300px;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 22px;
-    border: 2px solid #bfdbfe;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-}
 
 @media (max-width: 600px) {
+
     .foto-guru {
         width: 260px;
         height: 310px;
     }
 }
-.foto-lpkc-pengelola {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.foto-lpkc-pengelola img {
-    width: 280px;
-    height: 340px;
-    object-fit: cover;
-    border-radius: 22px;
-    border: 2px solid #bfdbfe;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-}
 
-@media (max-width: 900px) {
-    .foto-lpkc-pengelola img {
-        width: 240px;
-        height: 300px;
+@media (max-width: 450px) {
+
+    .logo span {
+        font-size: 24px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
     }
 }
-<section class="profil">
-  <div class="profil-content">
-
-    <div class="profil-text">
-      <img src="LOGOLPKC.jpeg" alt="Logo LPKC" class="logo-lpkc">
-
-      <small>TENTANG LPKC</small>
-
-      <h2>Learning & Practice Center</h2>
-
-      <p>
-        LPKC SMKN 1 Pakong merupakan pusat pembelajaran dan praktik
-        peserta didik yang dirancang untuk mendukung pengembangan
-        pengetahuan, keterampilan, dan sikap profesional di bidang kesehatan.
-      </p>
-
-      <p>
-        Melalui pembelajaran digital dan kegiatan praktik, peserta didik
-        diarahkan untuk menjadi tenaga kesehatan yang terampil, peduli,
-        disiplin, dan berintegritas.
-      </p>
-    </div>
-
-    <div class="foto-lpkc-pengelola">
-      <img src="NURSRIWULANDARI.jpeg"
-           alt="NUR SRI WULANDARI"
-           class="foto-home-guru">
-
-      <div class="nama-foto">
-        <strong>NUR SRI WULANDARI, S.S.T.Keb., Gr</strong>
-        <span>Guru Produktif LPKC</span>
-      </div>
-    </div>
-
-  </div>
-</section>
