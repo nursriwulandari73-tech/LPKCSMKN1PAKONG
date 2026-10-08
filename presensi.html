@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -12,10 +13,6 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-
-        /* ==============================
-           HALAMAN PRESENSI
-        ============================== */
 
         .presensi-page {
             min-height: 100vh;
@@ -33,7 +30,7 @@
             margin-bottom: 25px;
         }
 
-        .presensi-header .icon-presensi {
+        .icon-presensi {
             font-size: 48px;
             margin-bottom: 8px;
         }
@@ -48,16 +45,12 @@
             opacity: 0.75;
         }
 
-        /* KARTU */
-
         .presensi-card {
             background: #ffffff;
             border-radius: 22px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.10);
         }
-
-        /* TANGGAL DAN JAM */
 
         .waktu-box {
             display: grid;
@@ -79,8 +72,6 @@
             font-weight: bold;
         }
 
-        /* FORM */
-
         .form-group {
             margin-bottom: 18px;
         }
@@ -94,6 +85,7 @@
         .form-group input,
         .form-group select,
         .form-group textarea {
+
             width: 100%;
             padding: 13px 14px;
             box-sizing: border-box;
@@ -105,14 +97,17 @@
             font-family: inherit;
 
             outline: none;
-            transition: 0.2s;
         }
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
+
             border-color: #6b8e7b;
-            box-shadow: 0 0 0 3px rgba(107,142,123,0.12);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(107,142,123,0.12);
         }
 
         .form-group textarea {
@@ -120,9 +115,8 @@
             resize: vertical;
         }
 
-        /* TOMBOL */
-
         .btn-kirim {
+
             width: 100%;
             padding: 15px;
 
@@ -136,13 +130,10 @@
 
             background: #6b8e7b;
             color: white;
-
-            transition: 0.2s;
         }
 
         .btn-kirim:hover {
             opacity: 0.9;
-            transform: translateY(-1px);
         }
 
         .btn-kirim:disabled {
@@ -150,29 +141,31 @@
             cursor: wait;
         }
 
-        /* PESAN */
-
         .pesan {
+
             text-align: center;
+
             margin-top: 18px;
+
             font-weight: bold;
+
             min-height: 24px;
         }
 
-        /* CATATAN */
-
         .catatan-presensi {
+
             margin-top: 20px;
+
             padding: 15px;
 
             background: #f8f9fa;
+
             border-radius: 12px;
 
             font-size: 13px;
+
             line-height: 1.6;
         }
-
-        /* MOBILE */
 
         @media (max-width: 600px) {
 
@@ -203,156 +196,502 @@
 <body>
 
 
-    <!-- ==============================
-         NAVBAR
-    ============================== -->
+<header class="navbar">
 
-    <header class="navbar">
+    <div class="logo">
 
-        <div class="logo">
+        <img
+            src="LOGOSMKN1PAKONG.jpg"
+            alt="Logo SMKN 1 Pakong">
 
-            <img src="LOGOSMKN1PAKONG.jpg"
-                 alt="Logo SMKN 1 Pakong">
+        <div>
 
-            <div>
+            <span>LPKC</span>
 
-                <span>LPKC</span>
+            <small>
+                SMKN 1 PAKONG
+            </small>
 
-                <small>
-                    SMKN 1 PAKONG
-                </small>
+        </div>
 
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Beranda
+        </a>
+
+        <a href="profil-lpkc.html">
+            Profil Pengelola
+        </a>
+
+        <a href="kelas.html">
+            Pembelajaran
+        </a>
+
+        <a href="penilaian.html">
+            Penilaian
+        </a>
+
+        <a href="presensi.html">
+            Presensi
+        </a>
+
+        <a href="sumber.html">
+            Sumber Belajar
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="presensi-page">
+
+    <div class="presensi-wrapper">
+
+
+        <div class="presensi-header">
+
+            <div class="icon-presensi">
+                📝
             </div>
+
+            <h1>
+                Presensi Digital
+            </h1>
+
+            <p>
+                LPKC SMKN 1 Pakong
+            </p>
 
         </div>
 
 
-        <nav>
-
-            <a href="index.html">
-                Beranda
-            </a>
-
-            <a href="profil-lpkc.html">
-                Profil Pengelola
-            </a>
-
-            <a href="kelas.html">
-                Pembelajaran
-            </a>
-
-            <a href="penilaian.html">
-                Penilaian
-            </a>
-
-            <a href="presensi.html">
-                Presensi
-            </a>
-
-            <a href="sumber.html">
-                Sumber Belajar
-            </a>
-
-        </nav>
-
-    </header>
+        <div class="presensi-card">
 
 
+            <!-- TANGGAL DAN JAM -->
 
-    <!-- ==============================
-         PRESENSI
-    ============================== -->
+            <div class="waktu-box">
 
-    <main class="presensi-page">
+                <div class="waktu-item">
 
-        <div class="presensi-wrapper">
+                    📅
 
+                    <span id="tanggal">
+                        -
+                    </span>
 
-            <!-- JUDUL -->
-
-            <div class="presensi-header">
-
-                <div class="icon-presensi">
-                    📝
                 </div>
 
-                <h1>
-                    Presensi Digital
-                </h1>
 
-                <p>
-                    LPKC SMKN 1 Pakong
-                </p>
+                <div class="waktu-item">
+
+                    ⏰
+
+                    <span id="jam">
+                        -
+                    </span>
+
+                </div>
 
             </div>
 
 
-            <!-- KARTU -->
+            <!-- FORM -->
 
-            <div class="presensi-card">
-
-
-                <!-- TANGGAL DAN JAM -->
-
-                <div class="waktu-box">
-
-                    <div class="waktu-item">
-
-                        📅
-
-                        <span id="tanggal">
-                            -
-                        </span>
-
-                    </div>
+            <form id="formPresensi">
 
 
-                    <div class="waktu-item">
+                <!-- NAMA -->
 
-                        ⏰
+                <div class="form-group">
 
-                        <span id="jam">
-                            -
-                        </span>
+                    <label for="nama">
+                        👤 Nama Siswa
+                    </label>
 
-                    </div>
+                    <input
+                        type="text"
+                        id="nama"
+                        placeholder="Masukkan nama lengkap"
+                        required>
 
                 </div>
 
 
+                <!-- NIS -->
 
-                <!-- FORM -->
+                <div class="form-group">
 
-                <form id="formPresensi">
+                    <label for="nis">
+                        🆔 NIS
+                    </label>
 
+                    <input
+                        type="text"
+                        id="nis"
+                        placeholder="Masukkan NIS"
+                        required>
 
-                    <!-- NAMA -->
-
-                    <div class="form-group">
-
-                        <label for="nama">
-                            👤 Nama Siswa
-                        </label>
-
-                        <input
-                            type="text"
-                            id="nama"
-                            placeholder="Masukkan nama lengkap"
-                            required>
-
-                    </div>
+                </div>
 
 
+                <!-- KELAS -->
 
-                    <!-- NIS -->
+                <div class="form-group">
 
-                    <div class="form-group">
+                    <label for="kelas">
+                        🏫 Kelas
+                    </label>
 
-                        <label for="nis">
-                            🆔 NIS
-                        </label>
+                    <select id="kelas" required>
 
-                        <input
-                            type="text"
-                            id="nis"
-                            placeholder="Masukkan N
+                        <option value="">
+                            -- Pilih Kelas --
+                        </option>
+
+                        <option value="X">
+                            X
+                        </option>
+
+                        <option value="XI">
+                            XI
+                        </option>
+
+                        <option value="XII">
+                            XII
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MATA PELAJARAN -->
+
+                <div class="form-group">
+
+                    <label for="mapel">
+                        📚 Mata Pelajaran
+                    </label>
+
+                    <input
+                        type="text"
+                        id="mapel"
+                        placeholder="Masukkan mata pelajaran"
+                        required>
+
+                </div>
+
+
+                <!-- MATERI -->
+
+                <div class="form-group">
+
+                    <label for="materi">
+                        📖 Materi
+                    </label>
+
+                    <input
+                        type="text"
+                        id="materi"
+                        placeholder="Masukkan materi yang dipelajari"
+                        required>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label for="status">
+                        ✅ Status Kehadiran
+                    </label>
+
+                    <select id="status" required>
+
+                        <option value="">
+                            -- Pilih Status --
+                        </option>
+
+                        <option value="Hadir">
+                            Hadir
+                        </option>
+
+                        <option value="Sakit">
+                            Sakit
+                        </option>
+
+                        <option value="Izin">
+                            Izin
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- KETERANGAN -->
+
+                <div class="form-group">
+
+                    <label for="keterangan">
+                        📝 Keterangan
+                    </label>
+
+                    <textarea
+                        id="keterangan"
+                        placeholder="Keterangan tambahan (opsional)">
+                    </textarea>
+
+                </div>
+
+
+                <!-- TOMBOL KIRIM -->
+
+                <button
+                    type="submit"
+                    class="btn-kirim"
+                    id="btnKirim">
+
+                    ✅ KIRIM PRESENSI
+
+                </button>
+
+
+                <!-- PESAN -->
+
+                <div
+                    id="pesan"
+                    class="pesan">
+                </div>
+
+
+            </form>
+
+
+            <div class="catatan-presensi">
+
+                💡 <strong>Catatan:</strong>
+
+                Silakan isi data presensi dengan benar.
+                Setelah menekan tombol
+                <strong>KIRIM PRESENSI</strong>,
+                data akan tersimpan secara otomatis.
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 LPKC SMKN 1 Pakong
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* ==============================
+       TANGGAL DAN JAM
+    ============================== */
+
+    function updateWaktu() {
+
+        const sekarang = new Date();
+
+        const tanggal =
+            sekarang.toLocaleDateString(
+                "id-ID",
+                {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+        const jam =
+            sekarang.toLocaleTimeString(
+                "id-ID"
+            );
+
+        document.getElementById("tanggal")
+            .textContent = tanggal;
+
+        document.getElementById("jam")
+            .textContent = jam;
+
+    }
+
+
+    updateWaktu();
+
+    setInterval(
+        updateWaktu,
+        1000
+    );
+
+
+    /* ==============================
+       KIRIM DATA PRESENSI
+    ============================== */
+
+    const URL_SCRIPT =
+        "https://script.google.com/macros/s/AKfycbzYZSnnqp52UJfoJ3rqFDzdoP8ckadVpRzNcbaXwbU2mYnJX-wnQ2C9qnMXma8wLWNR/exec";
+
+
+    document
+        .getElementById("formPresensi")
+        .addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const tombol =
+                    document.getElementById(
+                        "btnKirim"
+                    );
+
+                const pesan =
+                    document.getElementById(
+                        "pesan"
+                    );
+
+
+                tombol.disabled = true;
+
+                tombol.textContent =
+                    "⏳ Mengirim...";
+
+
+                const sekarang =
+                    new Date();
+
+
+                const data = {
+
+                    tanggal:
+                        sekarang.toLocaleDateString(
+                            "id-ID"
+                        ),
+
+                    jam:
+                        sekarang.toLocaleTimeString(
+                            "id-ID"
+                        ),
+
+                    nama:
+                        document
+                            .getElementById("nama")
+                            .value,
+
+                    nis:
+                        document
+                            .getElementById("nis")
+                            .value,
+
+                    kelas:
+                        document
+                            .getElementById("kelas")
+                            .value,
+
+                    mapel:
+                        document
+                            .getElementById("mapel")
+                            .value,
+
+                    materi:
+                        document
+                            .getElementById("materi")
+                            .value,
+
+                    status:
+                        document
+                            .getElementById("status")
+                            .value,
+
+                    keterangan:
+                        document
+                            .getElementById("keterangan")
+                            .value
+
+                };
+
+
+                try {
+
+                    await fetch(
+                        URL_SCRIPT,
+                        {
+
+                            method: "POST",
+
+                            mode: "no-cors",
+
+                            headers: {
+                                "Content-Type":
+                                    "text/plain;charset=utf-8"
+                            },
+
+                            body:
+                                JSON.stringify(data)
+
+                        }
+                    );
+
+
+                    pesan.textContent =
+                        "✅ Presensi berhasil dikirim.";
+
+                    pesan.style.color =
+                        "#2e7d32";
+
+
+                    document
+                        .getElementById(
+                            "formPresensi"
+                        )
+                        .reset();
+
+
+                } catch (error) {
+
+                    pesan.textContent =
+                        "❌ Presensi gagal dikirim.";
+
+                    pesan.style.color =
+                        "#c62828";
+
+                }
+
+
+                tombol.disabled = false;
+
+                tombol.textContent =
+                    "✅ KIRIM PRESENSI";
+
+            }
+        );
+
+</script>
+
+
+</body>
+
+</html>
