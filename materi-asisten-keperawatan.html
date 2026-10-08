@@ -2,247 +2,514 @@
 <html lang="id">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Materi Asisten Keperawatan | LPKC</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ==============================
+           PENCARIAN MATERI
+        ============================== */
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+            text-align: center;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .search-box input:focus {
+            border-color: #2563eb;
+        }
+
+        .no-result {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
+
+<!-- ==============================
+     NAVBAR
+============================== -->
 
 <header class="navbar">
 
     <div class="logo">
+
         <span>LPKC</span>
+
         <small>SMKN 1 PAKONG</small>
+
     </div>
 
+
     <nav>
+
         <a href="index.html">Beranda</a>
+
         <a href="kelas.html">Kelas</a>
+
         <a href="kelas-xi.html">Kelas XI</a>
-        <a href="asisten-keperawatan.html">Asisten Keperawatan</a>
+
+        <a href="asisten-keperawatan.html">
+            Asisten Keperawatan
+        </a>
+
     </nav>
 
 </header>
 
 
+
+<!-- ==============================
+     JUDUL
+============================== -->
+
 <section class="menu">
 
     <div class="section-title">
-        <p>ASISTEN KEPERAWATAN — KELAS XI</p>
-        <h2>Materi & Keterampilan</h2>
+
+        <p>
+            ASISTEN KEPERAWATAN — KELAS XI
+        </p>
+
+        <h2>
+            Materi & Keterampilan
+        </h2>
+
         <p>
             Materi pembelajaran dan keterampilan praktik
             Asisten Keperawatan.
         </p>
+
     </div>
 
 
-    <div class="cards">
+
+    <!-- ==============================
+         PENCARIAN
+    ============================== -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔎 Cari materi, misalnya Verbedden, Personal Hygiene..."
+            onkeyup="cariMateri()"
+        >
+
+    </div>
+
+
+
+    <!-- ==============================
+         DAFTAR MATERI
+    ============================== -->
+
+    <div class="cards" id="materiContainer">
 
 
         <!-- 1 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🧴</div>
-            <h3>Desinfeksi dan Sterilisasi Alat Kesehatan</h3>
+
+            <h3>
+                Desinfeksi dan Sterilisasi Alat Kesehatan
+            </h3>
+
             <p>
                 Materi mengenai desinfeksi dan sterilisasi
                 alat kesehatan.
             </p>
-            <a href="desinfeksi-sterilisasi.html">Buka Materi →</a>
+
+            <a href="desinfeksi-sterilisasi.html">
+                Buka Materi →
+            </a>
+
         </div>
 
 
+
         <!-- 2 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">📦</div>
-            <h3>Penyimpanan Alat Kesehatan</h3>
+
+            <h3>
+                Penyimpanan Alat Kesehatan
+            </h3>
+
             <p>
                 Materi tentang cara penyimpanan alat kesehatan
                 agar tetap aman dan siap digunakan.
             </p>
-            <a href="pdf-1-pengenalan-alat-kesehatan_compress.pdf">Buka Materi →</a> 
-            <a href="https://youtu.be/oOKOjxEe4JY" target="_blank">
-  🎥 Tonton Video →</a>
-            <a href="https://share.gemini.google/AMMGx4yDwomS" target="_blank">
-  📝 Penilaian →</a>
+
+            <a href="pdf-1-pengenalan-alat-kesehatan_compress.pdf">
+                Buka Materi →
+            </a>
+
+            <a href="https://youtu.be/oOKOjxEe4JY"
+               target="_blank">
+                🎥 Tonton Video →
+            </a>
+
+            <a href="https://share.gemini.google/AMMGx4yDwomS"
+               target="_blank">
+                📝 Penilaian →
+            </a>
+
         </div>
 
 
+
         <!-- 3 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🛏️</div>
-            <h3>Penyiapan Tempat Tidur / Verbedden</h3>
+
+            <h3>
+                Penyiapan Tempat Tidur / Verbedden
+            </h3>
+
             <p>
                 Teknik menyiapkan dan merapikan tempat tidur
                 pasien sesuai prosedur.
             </p>
-            <a href="VERBEDDEN.pdf">Buka Materi →</a>
-            <a href="https://youtu.be/Rc2OFQCBnD0" target="_blank">
-  🎥 Tonton Video →</a>
-            <a href="https://share.gemini.google/Ufzks2r0OURB" target="_blank">
-  📝 Penilaian →</a>     
+
+            <a href="VERBEDDEN.pdf">
+                Buka Materi →
+            </a>
+
+            <a href="https://youtu.be/Rc2OFQCBnD0"
+               target="_blank">
+                🎥 Tonton Video →
+            </a>
+
+            <a href="https://share.gemini.google/Ufzks2r0OURB"
+               target="_blank">
+                📝 Penilaian →
+            </a>
+
         </div>
 
 
-      <!-- 4 -->
-<div class="card">
-    <div class="icon">🧼</div>
 
-    <h3>Personal Higiene</h3>
+        <!-- 4 -->
 
-    <p>
-        Materi dan keterampilan membantu memenuhi
-        kebutuhan kebersihan diri pasien.
-    </p>
+        <div class="card materi">
 
-    <a href="PH.pdf">
-        📖 Buka Materi →
-    </a>
+            <div class="icon">🧼</div>
 
-    <a href="https://youtu.be/C1Wl9xVU0MI" target="_blank">
-        🎥 Tonton Video →
-    </a>
+            <h3>
+                Personal Higiene
+            </h3>
 
-    <a href="https://share.gemini.google/CIdo4JxhiW7f" target="_blank">
-        📝 Penilaian →
-    </a>
-</div>
+            <p>
+                Materi dan keterampilan membantu memenuhi
+                kebutuhan kebersihan diri pasien.
+            </p>
+
+            <a href="PH.pdf">
+                📖 Buka Materi →
+            </a>
+
+            <a href="https://youtu.be/C1Wl9xVU0MI"
+               target="_blank">
+                🎥 Tonton Video →
+            </a>
+
+            <a href="https://share.gemini.google/CIdo4JxhiW7f"
+               target="_blank">
+                📝 Penilaian →
+            </a>
+
+        </div>
+
 
 
         <!-- 5 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🔄</div>
-            <h3>Teknik Pengubahan Posisi Pasien</h3>
+
+            <h3>
+                Teknik Pengubahan Posisi Pasien
+            </h3>
+
             <p>
                 Teknik membantu mengubah posisi pasien
                 dengan memperhatikan keamanan dan kenyamanan.
             </p>
-            <a href="PENGUBAHANPOSISIPASIEN.pdf">Buka Materi →</a>
-            <a href="https://youtu.be/RfhmFbM3Lro?si=J67RneiXzBHzumZI" target="_blank">
-        🎥 Tonton Video →
-    </a>
 
-    <a href="https://share.gemini.google/IZ7MLWXSEKZF" target="_blank">
-        📝 Penilaian →
-    </a>
+            <a href="PENGUBAHANPOSISIPASIEN.pdf">
+                Buka Materi →
+            </a>
+
+            <a href="https://youtu.be/RfhmFbM3Lro?si=J67RneiXzBHzumZI"
+               target="_blank">
+                🎥 Tonton Video →
+            </a>
+
+            <a href="https://share.gemini.google/IZ7MLWXSEKZF"
+               target="_blank">
+                📝 Penilaian →
+            </a>
+
         </div>
 
 
+
         <!-- 6 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🚶</div>
-            <h3>Ambulasi dan Mobilisasi Pasien</h3>
+
+            <h3>
+                Ambulasi dan Mobilisasi Pasien
+            </h3>
+
             <p>
                 Teknik membantu pasien dalam mobilisasi
                 dan ambulasi sesuai kondisi pasien.
             </p>
-            <a href="AMBULASIDANMOBILISASI">Buka Materi →</a>
-             <a href="https://youtu.be/_uWtcozybOo?si=LfIJz3wNmKM0OHXI" target="_blank">
-        🎥 Tonton Video →
-    </a>
 
-    <a href="https://share.gemini.google/Uilh9JYjvVqq" target="_blank">
-        📝 Penilaian →
-    </a>
+            <a href="AMBULASIDANMOBILISASI">
+                Buka Materi →
+            </a>
+
+            <a href="https://youtu.be/_uWtcozybOo?si=LfIJz3wNmKM0OHXI"
+               target="_blank">
+                🎥 Tonton Video →
+            </a>
+
+            <a href="https://share.gemini.google/Uilh9JYjvVqq"
+               target="_blank">
+                📝 Penilaian →
+            </a>
+
         </div>
 
 
+
         <!-- 7 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🥣</div>
-            <h3>Pemberian Makan dan Minum secara Oral dan NGT</h3>
+
+            <h3>
+                Pemberian Makan dan Minum secara Oral dan NGT
+            </h3>
+
             <p>
                 Materi mengenai pemberian makan dan minum
                 melalui oral maupun NGT.
             </p>
-            <a href="#">Buka Materi →</a>
+
+            <a href="#">
+                Buka Materi →
+            </a>
+
         </div>
 
 
+
         <!-- 8 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🚻</div>
-            <h3>Pertolongan Eliminasi</h3>
+
+            <h3>
+                Pertolongan Eliminasi
+            </h3>
+
             <p>
                 Materi mengenai bantuan pemenuhan kebutuhan
                 eliminasi pasien.
             </p>
-            <a href="#">Buka Materi →</a>
+
+            <a href="#">
+                Buka Materi →
+            </a>
+
         </div>
 
 
+
         <!-- 9 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🩺</div>
-            <h3>Pemeliharaan Kateter Urine</h3>
+
+            <h3>
+                Pemeliharaan Kateter Urine
+            </h3>
+
             <p>
                 Materi mengenai pemeliharaan dan perawatan
                 kateter urine.
             </p>
-            <a href="#">Buka Materi →</a>
+
+            <a href="#">
+                Buka Materi →
+            </a>
+
         </div>
 
 
+
         <!-- 10 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🩹</div>
-            <h3>Perawatan Vulva dan Perineum</h3>
+
+            <h3>
+                Perawatan Vulva dan Perineum
+            </h3>
+
             <p>
                 Materi mengenai perawatan vulva dan perineum
                 sesuai prosedur.
             </p>
-            <a href="#">Buka Materi →</a>
+
+            <a href="#">
+                Buka Materi →
+            </a>
+
         </div>
 
 
+
         <!-- 11 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🫁</div>
-            <h3>Latihan Nafas Dalam dan Batuk Efektif</h3>
+
+            <h3>
+                Latihan Nafas Dalam dan Batuk Efektif
+            </h3>
+
             <p>
                 Teknik latihan pernapasan dan batuk efektif
                 untuk membantu pasien.
             </p>
-            <a href="#">Buka Materi →</a>
+
+            <a href="#">
+                Buka Materi →
+            </a>
+
         </div>
 
 
+
         <!-- 12 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">🌡️</div>
-            <h3>Pemasangan Buli-Buli Panas dan Kirbat Es</h3>
+
+            <h3>
+                Pemasangan Buli-Buli Panas dan Kirbat Es
+            </h3>
+
             <p>
                 Materi mengenai penggunaan buli-buli panas
                 dan kirbat es sesuai prosedur.
             </p>
-            <a href="#">Buka Materi →</a>
+
+            <a href="#">
+                Buka Materi →
+            </a>
+
         </div>
 
 
+
         <!-- 13 -->
-        <div class="card">
+
+        <div class="card materi">
+
             <div class="icon">❄️</div>
-            <h3>Kompres Hangat dan Dingin</h3>
+
+            <h3>
+                Kompres Hangat dan Dingin
+            </h3>
+
             <p>
                 Materi mengenai teknik pemberian kompres
                 hangat dan dingin.
             </p>
-            <a href="#">Buka Materi →</a>
+
+            <a href="#">
+                Buka Materi →
+            </a>
+
         </div>
 
 
     </div>
 
+
+
+    <!-- PESAN JIKA TIDAK DITEMUKAN -->
+
+    <div class="no-result" id="noResult">
+
+        🔎 Materi yang dicari belum ditemukan.
+
+    </div>
+
+
 </section>
 
 
+
+<!-- ==============================
+     FOOTER
+============================== -->
+
 <footer>
 
-    <h3>LPKC SMKN 1 PAKONG</h3>
+    <h3>
+        LPKC SMKN 1 PAKONG
+    </h3>
 
     <p>
         Learning & Practice Center
@@ -253,6 +520,67 @@
     </small>
 
 </footer>
+
+
+
+<!-- ==============================
+     SCRIPT PENCARIAN
+============================== -->
+
+<script>
+
+function cariMateri() {
+
+    const input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const materi =
+        document.querySelectorAll(".materi");
+
+    const noResult =
+        document.getElementById("noResult");
+
+    let ditemukan = false;
+
+
+    materi.forEach(function(card) {
+
+        const teks =
+            card.innerText.toLowerCase();
+
+
+        if (teks.includes(input)) {
+
+            card.style.display = "";
+
+            ditemukan = true;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    if (input !== "" && !ditemukan) {
+
+        noResult.style.display = "block";
+
+    } else {
+
+        noResult.style.display = "none";
+
+    }
+
+}
+
+</script>
+
 
 </body>
 
