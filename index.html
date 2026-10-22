@@ -7,29 +7,30 @@
 
     <title>LPKC SMKN 1 Pakong</title>
 
-    <meta name="description" content="LPKC SMKN 1 Pakong sebagai pusat pembelajaran dan praktik peserta didik bidang layanan kesehatan.">
+    <meta name="description" content="LPKC SMKN 1 Pakong, pusat pembelajaran dan praktik peserta didik bidang layanan kesehatan.">
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* EVALUASI SIGAP */
+        /* BAGIAN EVALUASI SIGAP */
+
         .evaluasi-sigap {
             padding: 55px 20px;
             background: #f5f8fc;
-            scroll-margin-top: 30px;
+            scroll-margin-top: 25px;
         }
 
-        .evaluasi-sigap .evaluasi-header {
-            text-align: center;
+        .evaluasi-header {
             max-width: 800px;
             margin: 0 auto 30px;
+            text-align: center;
         }
 
-        .evaluasi-sigap .evaluasi-header h2 {
-            margin-bottom: 12px;
+        .evaluasi-header h2 {
+            margin: 10px 0;
         }
 
-        .evaluasi-sigap .evaluasi-grid {
+        .evaluasi-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 24px;
@@ -37,7 +38,7 @@
             margin: 0 auto;
         }
 
-        .evaluasi-sigap .evaluasi-card {
+        .evaluasi-card {
             min-width: 0;
             padding: 20px;
             background: #ffffff;
@@ -46,24 +47,25 @@
             overflow: hidden;
         }
 
-        .evaluasi-sigap .evaluasi-card h3 {
+        .evaluasi-card h3 {
             text-align: center;
-            margin: 0 0 12px;
+            line-height: 1.5;
+            margin: 0 0 15px;
         }
 
-        .evaluasi-sigap .grafik-frame {
+        .grafik-frame {
             display: block;
             width: 100%;
             height: 380px;
             border: 0;
         }
 
-        .evaluasi-sigap .catatan-evaluasi {
+        .catatan-evaluasi {
             max-width: 900px;
             margin: 25px auto 0;
             text-align: center;
-            font-size: 14px;
             line-height: 1.7;
+            font-size: 14px;
         }
 
         @media (max-width: 768px) {
@@ -71,15 +73,16 @@
                 padding: 35px 12px;
             }
 
-            .evaluasi-sigap .evaluasi-grid {
+            .evaluasi-grid {
                 grid-template-columns: 1fr;
+                gap: 18px;
             }
 
-            .evaluasi-sigap .evaluasi-card {
+            .evaluasi-card {
                 padding: 12px;
             }
 
-            .evaluasi-sigap .grafik-frame {
+            .grafik-frame {
                 height: 350px;
             }
         }
@@ -94,7 +97,8 @@
 
         <div class="logo">
 
-            <img src="LOGOSMKN1PAKONG.jpg" alt="Logo SMKN 1 Pakong">
+            <img src="LOGOSMKN1PAKONG.jpg"
+                 alt="Logo SMKN 1 Pakong">
 
             <div>
                 <span>LPKC</span>
@@ -129,7 +133,9 @@
                 PRACTICE CENTER
             </h1>
 
-            <h2>“Ajhâr, Ngabdi, sareng Ngajhâga”</h2>
+            <h2>
+                “Ajhâr, Ngabdi, sareng Ngajhâga”
+            </h2>
 
             <p>
                 Wadah pembelajaran dan praktik peserta didik
@@ -146,7 +152,7 @@
     </section>
 
 
-    <!-- MENU AKSES PEMBELAJARAN -->
+    <!-- AKSES PEMBELAJARAN -->
 
     <section class="menu">
 
@@ -239,8 +245,13 @@
                      class="foto-home-guru">
 
                 <div class="nama-foto">
-                    <strong>NUR SRI WULANDARI, S.S.T.Keb., Gr</strong>
+
+                    <strong>
+                        NUR SRI WULANDARI, S.S.T.Keb., Gr
+                    </strong>
+
                     <span>Guru Produktif LPKC</span>
+
                 </div>
 
             </div>
@@ -305,11 +316,13 @@
 
         <div class="evaluasi-grid">
 
-            <!-- GRAFIK RATA-RATA NILAI -->
+            <!-- GRAFIK 1: RATA-RATA NILAI -->
 
             <div class="evaluasi-card">
 
-                <h3>Perbandingan Rata-rata Nilai Siswa</h3>
+                <h3>
+                    Perbandingan Rata-rata Nilai Siswa
+                </h3>
 
                 <iframe
                     class="grafik-frame"
@@ -321,31 +334,29 @@
             </div>
 
 
-            <!-- GRAFIK KETUNTASAN BELAJAR -->
+            <!-- GRAFIK 2: KETUNTASAN BELAJAR -->
 
             <div class="evaluasi-card">
 
-                <h3>Perbandingan Ketuntasan Belajar Siswa</h3>
+                <h3>
+                    Perbandingan Ketuntasan Belajar Siswa
+                </h3>
 
-                <p>
-                    Grafik ini akan ditampilkan setelah grafik
-                    ketuntasan belajar dipublikasikan dari Google Sheets.
-                </p>
-
-                <!--
-                Setelah memperoleh kode iframe grafik kedua,
-                ganti bagian keterangan di atas dengan iframe
-                grafik ketuntasan belajar.
-                -->
+                <iframe
+                    class="grafik-frame"
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQGCwDPjqZ-oFmNDSwILTaxh7KcKXlKt6mDILFWYNd-V5ZMi9qKV6rHu4e00BTziLK0mITcSt2b1J0Y/pubchart?oid=164858986&amp;format=interactive"
+                    loading="lazy"
+                    title="Grafik perbandingan ketuntasan belajar siswa">
+                </iframe>
 
             </div>
 
         </div>
 
         <p class="catatan-evaluasi">
-            Data grafik disajikan secara agregat untuk dokumentasi
-            evaluasi pembelajaran. Hasil evaluasi digunakan sebagai
-            bahan refleksi dan perbaikan proses pembelajaran.
+            Grafik menyajikan ringkasan hasil evaluasi pembelajaran
+            sebagai bahan refleksi dan perbaikan proses pembelajaran.
+            Data yang ditampilkan merupakan data agregat.
         </p>
 
     </section>
@@ -364,4 +375,5 @@
     </footer>
 
 </body>
+
 </html>
