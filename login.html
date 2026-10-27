@@ -16,7 +16,9 @@
       box-shadow: 0 4px 18px rgba(0,0,0,.12);
     }
 
-    .login-box h2 { text-align: center; }
+    .login-box h2 {
+      text-align: center;
+    }
 
     .login-box label {
       display: block;
@@ -65,7 +67,9 @@
       margin-top: 15px;
     }
 
-    .tersembunyi { display: none; }
+    .tersembunyi {
+      display: none;
+    }
   </style>
 </head>
 
@@ -118,7 +122,7 @@
     <section id="statusSesi" class="info-sesi tersembunyi">
       <strong>Login berhasil</strong>
       <p id="identitasSiswa"></p>
-      <p>Sesi belajar tersimpan pada browser ini.</p>
+      <p>Sesi belajar tersimpan pada tab browser ini.</p>
       <button id="tombolKeluar" type="button">Keluar</button>
     </section>
   </main>
@@ -129,8 +133,9 @@
   </footer>
 
   <script>
-    // GANTI dengan URL Web App Apps Script yang berakhiran /exec.
-    const URL_APPS_SCRIPT = "TEMPEL_URL_WEB_APP_DI_SINI";
+    // WAJIB: Ganti dengan URL Web App Apps Script milik Ibu.
+    const URL_APPS_SCRIPT =
+      "TEMPEL_URL_WEB_APP_IBU_DI_SINI";
 
     const formLogin = document.getElementById("formLogin");
     const inputNisn = document.getElementById("nisn");
@@ -145,11 +150,12 @@
       pesan.textContent = teks;
     }
 
-    function tampilkanSesi(data) {
+    function tampilkanSesi(nama, kelas) {
       formLogin.classList.add("tersembunyi");
       statusSesi.classList.remove("tersembunyi");
+
       identitasSiswa.textContent =
-        "Nama: " + data.nama + " | Kelas: " + data.kelas;
+        "Nama: " + nama + " | Kelas: " + kelas;
     }
 
     formLogin.addEventListener("submit", async function (e) {
@@ -169,10 +175,14 @@
       }
 
       if (
-        !URL_APPS_SCRIPT.startsWith("https://script.google.com/") ||
+        !URL_APPS_SCRIPT.startsWith(
+          "https://script.google.com/macros/s/"
+        ) ||
         !URL_APPS_SCRIPT.endsWith("/exec")
       ) {
-        tampilkanPesan("URL Apps Script belum dipasang dengan benar.");
+        tampilkanPesan(
+          "URL Apps Script belum benar. Periksa URL deployment."
+        );
         return;
       }
 
@@ -207,23 +217,26 @@
           throw new Error("Respons login tidak lengkap.");
         }
 
-        // Simpan sesi hanya di tab browser ini.
         sessionStorage.setItem("sigap_token", hasil.token);
         sessionStorage.setItem("sigap_nama", hasil.nama);
         sessionStorage.setItem("sigap_kelas", hasil.kelas || "");
 
         inputPin.value = "";
         tampilkanPesan("");
-        tampilkanSesi({
-          nama: hasil.nama,
-          kelas: hasil.kelas || "-"
-        });
+
+        tampilkanSesi(
+          hasil.nama,
+          hasil.kelas || "-"
+        );
+
       } catch (error) {
         console.error("Kesalahan login SIGAP:", error);
+
         tampilkanPesan(
-          "Login belum berhasil. Periksa koneksi dan izin Apps Script. " +
-          "Jika muncul kesalahan CORS, diperlukan metode penghubung yang sesuai."
+          "Login gagal. Periksa URL dan akses Apps Script. " +
+          "Jika muncul masalah CORS, koneksi perlu diperbaiki."
         );
+
       } finally {
         tombolMasuk.disabled = false;
       }
@@ -236,21 +249,29 @@
 
       statusSesi.classList.add("tersembunyi");
       formLogin.classList.remove("tersembunyi");
+
       inputNisn.value = "";
       inputPin.value = "";
-      tampilkanPesan("Anda sudah keluar dari sesi pada browser ini.");
+
+      tampilkanPesan("Anda telah keluar dari sesi.");
     });
 
-    // Pulihkan tampilan sesi yang masih tersimpan di tab ini.
-    // Ini tidak menjamin sesi server masih berlaku.
-    const tokenTersimpan = sessionStorage.getItem("sigap_token");
-    const namaTersimpan = sessionStorage.getItem("sigap_nama");
+    // Pulihkan tampilan sesi dari tab yang sama.
+    // Sesi server tetap harus divalidasi saat mencatat aktivitas.
+    const tokenTersimpan =
+      sessionStorage.getItem("sigap_token");
+
+    const namaTersimpan =
+      sessionStorage.getItem("sigap_nama");
+
+    const kelasTersimpan =
+      sessionStorage.getItem("sigap_kelas");
 
     if (tokenTersimpan && namaTersimpan) {
-      tampilkanSesi({
-        nama: namaTersimpan,
-        kelas: sessionStorage.getItem("sigap_kelas") || "-"
-      });
+      tampilkanSesi(
+        namaTersimpan,
+        kelasTersimpan || "-"
+      );
     }
   </script>
 </body>
