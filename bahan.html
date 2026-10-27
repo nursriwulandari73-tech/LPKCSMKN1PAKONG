@@ -1,118 +1,154 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Bahan Pembelajaran | LPKC</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bahan Pembelajaran | LPKC SIGAP</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="navbar">
+  <div class="logo">
+    <span>LPKC</span>
+    <small>SMKN 1 PAKONG</small>
+  </div>
 
-    <div class="logo">
-        <span>LPKC</span>
-        <small>SMKN 1 PAKONG</small>
-    </div>
-
-    <nav>
-        <a href="index.html">Beranda</a>
-        <a href="media.html">Media</a>
-        <a href="bahan.html">Bahan</a>
-        <a href="#">Penilaian</a>
-        <a href="#">Sumber Belajar</a>
-    </nav>
-
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="media.html">Media</a>
+    <a href="bahan.html">Bahan</a>
+    <a href="penilaian.html">Penilaian</a>
+    <a href="sumber.html">Sumber Belajar</a>
+  </nav>
 </header>
 
-
 <section class="menu">
+  <h2>Bahan Pembelajaran</h2>
+  <p id="statusLogin" role="status"></p>
 
-    <h2>Bahan Pembelajaran</h2>
+  <div class="cards">
 
-    <div class="cards">
-
-        <!-- MODUL PEMBELAJARAN -->
-
-        <div class="card">
-
-            <div class="icon">📕</div>
-
-            <h3>Modul Pembelajaran</h3>
-
-            <p>
-                Modul pembelajaran untuk digunakan
-                peserta didik sebagai bahan belajar.
-            </p>
-
-            <a href="BAHAN%20AJAR%20KDTK.pdf"
-               target="_blank">
-                📖 Buka Modul →
-            </a>
-
-        </div>
-
-
-        <!-- BUKU MATERI KELAS XI -->
-
-        <div class="card">
-
-            <div class="icon">📘</div>
-
-            <h3>Buku Materi Kelas XI</h3>
-
-            <p>
-                Buku materi Layanan Penunjang Keperawatan
-                dan Caregiving untuk pembelajaran kelas XI.
-            </p>
-
-            <a href="assets/PDFBUKUMATERIKELASXI.pdf"
-               target="_blank">
-                📖 Buka Buku Materi →
-            </a>
-
-        </div>
-
-
-        <!-- JOBSHEET PRAKTIK -->
-
-        <div class="card">
-
-            <div class="icon">🔬</div>
-
-            <h3>Jobsheet Praktik</h3>
-
-            <p>
-                Standar Operasional Prosedur (SOP)
-                Laboratorium Asisten Keperawatan
-                SMKN 1 Pakong.
-            </p>
-
-            <a href="assets/JOBSHEETLPKC.pdf"
-               target="_blank">
-                🔬 Buka Jobsheet →
-            </a>
-
-        </div>
-
+    <div class="card">
+      <div class="icon">📕</div>
+      <h3>Modul Pembelajaran</h3>
+      <p>
+        Modul pembelajaran untuk digunakan peserta didik
+        sebagai bahan belajar.
+      </p>
+      <a href="BAHAN%20AJAR%20KDTK.pdf"
+         class="tautan-bahan"
+         data-halaman="Modul Pembelajaran"
+         target="_blank" rel="noopener">
+        📖 Buka Modul →
+      </a>
     </div>
 
+    <div class="card">
+      <div class="icon">📘</div>
+      <h3>Buku Materi Kelas XI</h3>
+      <p>
+        Buku materi Layanan Penunjang Keperawatan dan
+        Caregiving untuk pembelajaran kelas XI.
+      </p>
+      <a href="assets/PDFBUKUMATERIKELASXI.pdf"
+         class="tautan-bahan"
+         data-halaman="Buku Materi Kelas XI"
+         target="_blank" rel="noopener">
+        📖 Buka Buku Materi →
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔬</div>
+      <h3>Jobsheet Praktik</h3>
+      <p>
+        Standar Operasional Prosedur (SOP) Laboratorium
+        Asisten Keperawatan SMKN 1 Pakong.
+      </p>
+      <a href="assets/JOBSHEETLPKC.pdf"
+         class="tautan-bahan"
+         data-halaman="Jobsheet Praktik"
+         target="_blank" rel="noopener">
+        🔬 Buka Jobsheet →
+      </a>
+    </div>
+
+  </div>
+
+  <br>
+  <a href="index.html">← Kembali ke Beranda</a>
 </section>
 
-
 <footer>
-
-    <h3>LPKC SMKN 1 PAKONG</h3>
-
-    <p>Learning & Practice Center</p>
-
-    <small>© 2026 LPKC SMKN 1 Pakong</small>
-
+  <h3>LPKC SMKN 1 PAKONG</h3>
+  <p>Learning &amp; Practice Center</p>
+  <small>© 2026 LPKC SMKN 1 Pakong</small>
 </footer>
+
+<script>
+  const URL_APPS_SCRIPT =
+    "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
+
+  const token = sessionStorage.getItem("sigap_token");
+  const nama = sessionStorage.getItem("sigap_nama");
+  const statusLogin = document.getElementById("statusLogin");
+
+  function catatAktivitas(aktivitas, halaman) {
+    if (!token || !nama) {
+      return;
+    }
+
+    fetch(URL_APPS_SCRIPT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        aksi: "log",
+        token: token,
+        aktivitas: aktivitas,
+        halaman: halaman
+      }),
+      keepalive: true
+    }).catch(function (error) {
+      console.error("Pencatatan aktivitas gagal:", error);
+    });
+  }
+
+  if (token && nama) {
+    statusLogin.textContent = "Sesi belajar: " + nama;
+
+    catatAktivitas("Membuka materi", "Bahan Pembelajaran");
+
+    document.querySelectorAll(".tautan-bahan").forEach(function (tautan) {
+      tautan.addEventListener("click", function () {
+        catatAktivitas(
+          "Membuka materi",
+          tautan.dataset.halaman
+        );
+      });
+    });
+
+  } else {
+    statusLogin.textContent =
+      "Silakan login terlebih dahulu untuk mencatat aktivitas belajar.";
+
+    const pesanLogin = document.createElement("p");
+    const tautanLogin = document.createElement("a");
+
+    tautanLogin.href = "login.html";
+    tautanLogin.textContent = "Login Siswa SIGAP";
+
+    pesanLogin.appendChild(tautanLogin);
+
+    document.querySelector(".cards").parentNode.insertBefore(
+      pesanLogin,
+      document.querySelector(".cards")
+    );
+  }
+</script>
 
 </body>
 </html>
