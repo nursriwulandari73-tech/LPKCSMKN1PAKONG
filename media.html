@@ -1,142 +1,177 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Media Pembelajaran | LPKC</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Pembelajaran | LPKC SIGAP</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="navbar">
+  <div class="logo">
+    <span>LPKC</span>
+    <small>SMKN 1 PAKONG</small>
+  </div>
 
-    <div class="logo">
-        <span>LPKC</span>
-        <small>SMKN 1 PAKONG</small>
-    </div>
-
-    <nav>
-        <a href="index.html">Beranda</a>
-        <a href="media.html">Media</a>
-        <a href="bahan.html">Bahan</a>
-        <a href="penilaian.html">Penilaian</a>
-        <a href="sumber.html">Sumber Belajar</a>
-    </nav>
-
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="media.html">Media</a>
+    <a href="bahan.html">Bahan</a>
+    <a href="penilaian.html">Penilaian</a>
+    <a href="sumber.html">Sumber Belajar</a>
+  </nav>
 </header>
 
-
 <section class="menu">
+  <h2>Media Pembelajaran</h2>
+  <p id="statusLogin" role="status"></p>
 
-    <h2>Media Pembelajaran</h2>
+  <div class="cards">
 
-    <div class="cards">
-
-        <!-- VIDEO -->
-
-        <div class="card">
-
-            <div class="icon">🎥</div>
-
-            <h3>Video Pembelajaran</h3>
-
-            <p>
-                Video pembelajaran untuk membantu
-                peserta didik memahami materi dan
-                keterampilan keperawatan.
-            </p>
-
-            <a href="https://youtu.be/C1Wl9xVU0MI?si=57O_0EZ"
-               target="_blank">
-                ▶ Tonton Video →
-            </a>
-
-        </div>
-
-<!-- PEMBERIAN MAKAN DAN MINUM PER ORAL -->
-
-<div class="card">
-
-    <div class="icon">🥤</div>
-
-    <h3>Pemberian Makan dan Minum Per Oral</h3>
-
-    <p>
-        Video pembelajaran tentang prosedur
-        pemberian makan dan minum secara per oral.
-    </p>
-
-    <a href="https://youtu.be/Oz95Di48fE8?si=vCBQe6WiTSjnop5w"
-       target="_blank">
+    <div class="card">
+      <div class="icon">🎥</div>
+      <h3>Video Pembelajaran</h3>
+      <p>
+        Video pembelajaran untuk membantu peserta didik
+        memahami materi dan keterampilan keperawatan.
+      </p>
+      <a href="https://youtu.be/C1Wl9xVU0MI?si=57O_0EZ"
+         class="tautan-media"
+         data-aktivitas="Membuka video"
+         data-halaman="Video Pembelajaran"
+         target="_blank" rel="noopener">
         ▶ Tonton Video →
-    </a>
-
-</div>
-        <!-- PRESENTASI -->
-
-        <div class="card">
-
-            <div class="icon">🖥️</div>
-
-            <h3>Presentasi</h3>
-
-            <p>
-                Materi pembelajaran dalam bentuk
-                PowerPoint atau presentasi digital.
-            </p>
-
-           <a href="https://drive.google.com/file/d/14T1gdXiRJoCtYu7N5ca7E1s2s1lG0b_J/view?usp=drivesdk"
-   target="_blank">
-    🖥️ Buka Presentasi →
-</a>
-
-        </div>
-
-
-       <!-- SIMULASI PRAKTIK -->
-
-<div class="card">
-
-    <div class="icon">🧪</div>
-
-    <h3>Simulasi Praktik</h3>
-
-    <p>
-        Video simulasi praktik untuk membantu
-        peserta didik memahami keterampilan
-        layanan keperawatan.
-    </p>
-
-    <a href="https://vt.tiktok.com/ZSbV7RyPU/"
-       target="_blank">
-        ▶ Lihat Simulasi →
-    </a>
-
-</div>
-
+      </a>
     </div>
 
+    <div class="card">
+      <div class="icon">🥤</div>
+      <h3>Pemberian Makan dan Minum Per Oral</h3>
+      <p>
+        Video pembelajaran tentang prosedur pemberian
+        makan dan minum secara per oral.
+      </p>
+      <a href="https://youtu.be/Oz95Di48fE8?si=vCBQe6WiTSjnop5w"
+         class="tautan-media"
+         data-aktivitas="Membuka video"
+         data-halaman="Pemberian Makan dan Minum Per Oral"
+         target="_blank" rel="noopener">
+        ▶ Tonton Video →
+      </a>
+    </div>
 
-    <br>
+    <div class="card">
+      <div class="icon">🖥️</div>
+      <h3>Presentasi</h3>
+      <p>
+        Materi pembelajaran dalam bentuk PowerPoint
+        atau presentasi digital.
+      </p>
+      <a href="https://drive.google.com/file/d/14T1gdXiRJoCtYu7N5ca7E1s2s1lG0b_J/view?usp=drivesdk"
+         class="tautan-media"
+         data-aktivitas="Membuka materi"
+         data-halaman="Presentasi"
+         target="_blank" rel="noopener">
+        🖥️ Buka Presentasi →
+      </a>
+    </div>
 
-    <a href="index.html">← Kembali ke Beranda</a>
+    <div class="card">
+      <div class="icon">🧪</div>
+      <h3>Simulasi Praktik</h3>
+      <p>
+        Video simulasi praktik untuk membantu peserta didik
+        memahami keterampilan layanan keperawatan.
+      </p>
+      <a href="https://vt.tiktok.com/ZSbV7RyPU/"
+         class="tautan-media"
+         data-aktivitas="Membuka video"
+         data-halaman="Simulasi Praktik"
+         target="_blank" rel="noopener">
+        ▶ Lihat Simulasi →
+      </a>
+    </div>
 
+  </div>
+
+  <br>
+  <a href="index.html">← Kembali ke Beranda</a>
 </section>
 
-
 <footer>
-
-    <h3>LPKC SMKN 1 PAKONG</h3>
-
-    <p>Learning & Practice Center</p>
-
-    <small>© 2026 LPKC SMKN 1 Pakong</small>
-
+  <h3>LPKC SMKN 1 PAKONG</h3>
+  <p>Learning &amp; Practice Center</p>
+  <small>© 2026 LPKC SMKN 1 Pakong</small>
 </footer>
+
+<script>
+  // URL Web App Apps Script SIGAP
+  const URL_APPS_SCRIPT =
+    "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
+
+  const token = sessionStorage.getItem("sigap_token");
+  const nama = sessionStorage.getItem("sigap_nama");
+  const statusLogin = document.getElementById("statusLogin");
+
+  function catatAktivitas(aktivitas, halaman) {
+    if (!token || !nama) {
+      return;
+    }
+
+    // Apps Script menerima JSON melalui doPost(e).
+    // Pengiriman ini tidak menunggu respons server.
+    fetch(URL_APPS_SCRIPT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        aksi: "log",
+        token: token,
+        aktivitas: aktivitas,
+        halaman: halaman
+      }),
+      keepalive: true
+    }).catch(function (error) {
+      console.error("Pencatatan aktivitas SIGAP gagal:", error);
+    });
+  }
+
+  if (token && nama) {
+    statusLogin.textContent =
+      "Sesi belajar: " + nama;
+
+    // Catat ketika halaman media dibuka.
+    catatAktivitas("Membuka materi", "Media Pembelajaran");
+
+    // Catat ketika siswa memilih salah satu media.
+    document.querySelectorAll(".tautan-media").forEach(function (tautan) {
+      tautan.addEventListener("click", function () {
+        catatAktivitas(
+          tautan.dataset.aktivitas,
+          tautan.dataset.halaman
+        );
+      });
+    });
+  } else {
+    statusLogin.textContent =
+      "Silakan login terlebih dahulu untuk mencatat aktivitas belajar.";
+
+    // Login tetap diperlukan agar aktivitas dapat dikaitkan
+    // dengan akun siswa yang benar.
+    const kartu = document.querySelector(".cards");
+
+    const pesanLogin = document.createElement("p");
+    const tautanLogin = document.createElement("a");
+
+    tautanLogin.href = "login.html";
+    tautanLogin.textContent = "Login Siswa SIGAP";
+    pesanLogin.appendChild(tautanLogin);
+    kartu.parentNode.insertBefore(pesanLogin, kartu);
+  }
+</script>
 
 </body>
 </html>
