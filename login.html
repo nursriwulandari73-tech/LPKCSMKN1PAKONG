@@ -133,9 +133,9 @@
   </footer>
 
   <script>
-    // WAJIB: Ganti dengan URL Web App Apps Script milik Ibu.
+    // URL Web App Apps Script SIGAP
     const URL_APPS_SCRIPT =
-      "TEMPEL_URL_WEB_APP_IBU_DI_SINI";
+      "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
 
     const formLogin = document.getElementById("formLogin");
     const inputNisn = document.getElementById("nisn");
@@ -153,7 +153,6 @@
     function tampilkanSesi(nama, kelas) {
       formLogin.classList.add("tersembunyi");
       statusSesi.classList.remove("tersembunyi");
-
       identitasSiswa.textContent =
         "Nama: " + nama + " | Kelas: " + kelas;
     }
@@ -171,18 +170,6 @@
 
       if (!/^[0-9]{6}$/.test(pin)) {
         tampilkanPesan("PIN harus tepat 6 digit.");
-        return;
-      }
-
-      if (
-        !URL_APPS_SCRIPT.startsWith(
-          "https://script.google.com/macros/s/"
-        ) ||
-        !URL_APPS_SCRIPT.endsWith("/exec")
-      ) {
-        tampilkanPesan(
-          "URL Apps Script belum benar. Periksa URL deployment."
-        );
         return;
       }
 
@@ -231,10 +218,9 @@
 
       } catch (error) {
         console.error("Kesalahan login SIGAP:", error);
-
         tampilkanPesan(
-          "Login gagal. Periksa URL dan akses Apps Script. " +
-          "Jika muncul masalah CORS, koneksi perlu diperbaiki."
+          "Login gagal. Periksa koneksi Apps Script. " +
+          "Jika ada masalah CORS, metode koneksi perlu diperbaiki."
         );
 
       } finally {
@@ -252,18 +238,14 @@
 
       inputNisn.value = "";
       inputPin.value = "";
-
       tampilkanPesan("Anda telah keluar dari sesi.");
     });
 
-    // Pulihkan tampilan sesi dari tab yang sama.
-    // Sesi server tetap harus divalidasi saat mencatat aktivitas.
+    // Memulihkan tampilan sesi pada tab yang sama.
     const tokenTersimpan =
       sessionStorage.getItem("sigap_token");
-
     const namaTersimpan =
       sessionStorage.getItem("sigap_nama");
-
     const kelasTersimpan =
       sessionStorage.getItem("sigap_kelas");
 
