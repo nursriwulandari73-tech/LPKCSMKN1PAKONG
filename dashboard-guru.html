@@ -28,12 +28,8 @@ body {
     color:var(--text);
 }
 
-.layout {
-    display:flex;
-    min-height:100vh;
-}
+.layout {display:flex;min-height:100vh}
 
-/* SIDEBAR */
 .sidebar {
     width:255px;
     background:var(--navy);
@@ -107,7 +103,6 @@ body {
     line-height:1.7;
 }
 
-/* MAIN */
 .main {
     margin-left:255px;
     width:calc(100% - 255px);
@@ -122,16 +117,8 @@ body {
     margin-bottom:30px;
 }
 
-.topbar h1 {
-    font-size:25px;
-    color:var(--navy);
-}
-
-.topbar p {
-    color:var(--muted);
-    font-size:13px;
-    margin-top:6px;
-}
+.topbar h1 {font-size:25px;color:var(--navy)}
+.topbar p {color:var(--muted);font-size:13px;margin-top:6px}
 
 .date-box {
     background:white;
@@ -142,7 +129,6 @@ body {
     color:var(--navy);
 }
 
-/* WELCOME */
 .welcome {
     background:linear-gradient(120deg,#10243e,#176b78);
     border-radius:18px;
@@ -154,23 +140,10 @@ body {
     gap:20px;
 }
 
-.welcome h2 {
-    font-size:24px;
-    margin-bottom:10px;
-}
+.welcome h2 {font-size:24px;margin-bottom:10px}
+.welcome p {color:#d8e8ed;font-size:13px;line-height:1.7;max-width:650px}
+.welcome-icon {font-size:75px}
 
-.welcome p {
-    color:#d8e8ed;
-    font-size:13px;
-    line-height:1.7;
-    max-width:650px;
-}
-
-.welcome-icon {
-    font-size:75px;
-}
-
-/* SECTION */
 .section {margin-top:30px}
 
 .section-heading {
@@ -181,18 +154,9 @@ body {
     margin-bottom:16px;
 }
 
-.section-heading h2 {
-    color:var(--navy);
-    font-size:18px;
-}
+.section-heading h2 {color:var(--navy);font-size:18px}
+.section-heading p {font-size:12px;color:var(--muted);margin-top:5px}
 
-.section-heading p {
-    font-size:12px;
-    color:var(--muted);
-    margin-top:5px;
-}
-
-/* BUTTON */
 .refresh-btn {
     border:0;
     background:var(--teal);
@@ -207,7 +171,6 @@ body {
 .refresh-btn:hover {background:#0d8c84}
 .refresh-btn:disabled {opacity:.6;cursor:wait}
 
-/* STATUS */
 .status {
     background:white;
     border:1px solid #e5eaf0;
@@ -218,19 +181,9 @@ body {
     margin-bottom:16px;
 }
 
-.status.error {
-    color:#b42318;
-    background:#fff5f4;
-    border-color:#f3c7c3;
-}
+.status.error {color:#b42318;background:#fff5f4;border-color:#f3c7c3}
+.status.success {color:#087b55;background:#effaf5;border-color:#bce7d3}
 
-.status.success {
-    color:#087b55;
-    background:#effaf5;
-    border-color:#bce7d3;
-}
-
-/* SUMMARY */
 .summary-grid {
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -256,25 +209,11 @@ body {
     margin-bottom:15px;
 }
 
-.summary-card h3 {
-    font-size:13px;
-    color:#526277;
-    margin-bottom:8px;
-}
+.summary-card h3 {font-size:13px;color:#526277;margin-bottom:8px}
+.summary-card strong {font-size:26px;color:var(--navy)}
+.summary-card p {font-size:11px;color:var(--muted);margin-top:7px}
 
-.summary-card strong {
-    font-size:26px;
-    color:var(--navy);
-}
-
-.summary-card p {
-    font-size:11px;
-    color:var(--muted);
-    margin-top:7px;
-}
-
-/* CHART */
-.chart-card {
+.chart-card,.trend-card {
     background:white;
     padding:24px;
     border-radius:15px;
@@ -291,19 +230,16 @@ body {
     font-size:12px;
 }
 
-.chart-label {
-    color:#526277;
-    font-weight:600;
-}
+.chart-label {color:#526277;font-weight:600}
 
-.bar-bg {
+.bar-bg,.trend-bar-bg {
     height:13px;
     background:#edf1f5;
     border-radius:20px;
     overflow:hidden;
 }
 
-.bar {
+.bar,.trend-bar-fill {
     height:100%;
     width:0%;
     border-radius:20px;
@@ -311,81 +247,32 @@ body {
     transition:width .7s ease;
 }
 
-.chart-value {
-    font-weight:bold;
-    text-align:right;
-    color:var(--navy);
-}
+.chart-value {font-weight:bold;text-align:right;color:var(--navy)}
 
-/* GRAFIK TREN HARIAN DAN BULANAN */
 .trend-grid {
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:18px;
 }
 
-.trend-card {
-    background:white;
-    padding:22px;
-    border-radius:15px;
-    border:1px solid #e8edf3;
-    box-shadow:0 4px 14px #14284609;
-    min-width:0;
-}
-
-.trend-card h3 {
-    color:var(--navy);
-    font-size:15px;
-    margin-bottom:6px;
-}
-
-.trend-card > p {
-    color:var(--muted);
-    font-size:11px;
-    margin-bottom:22px;
-}
-
-.trend-list {
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
+.trend-card h3 {font-size:15px;color:var(--navy)}
+.trend-card > p {font-size:11px;color:var(--muted);margin-top:6px}
 
 .trend-item {
     display:grid;
-    grid-template-columns:75px minmax(0,1fr) 30px;
+    grid-template-columns:75px 1fr 35px;
     align-items:center;
     gap:10px;
+    margin:17px 0;
     font-size:11px;
 }
 
-.trend-label {
-    color:#526277;
-    font-weight:600;
-}
+.trend-label {font-weight:600;color:#526277}
+.trend-number {text-align:right;font-weight:bold;color:var(--navy)}
 
-.trend-bar-bg {
-    height:12px;
-    background:#edf1f5;
-    border-radius:20px;
-    overflow:hidden;
-}
+.trend-bar-bg {height:11px}
+.trend-bar-fill {background:linear-gradient(90deg,#176b78,#13a89e)}
 
-.trend-bar-fill {
-    height:100%;
-    width:0;
-    border-radius:20px;
-    background:linear-gradient(90deg,#13a89e,#39c4b4);
-    transition:width .7s ease;
-}
-
-.trend-number {
-    color:var(--navy);
-    font-weight:bold;
-    text-align:right;
-}
-
-/* INFO */
 .info-box {
     background:white;
     border:1px solid #e8edf3;
@@ -395,17 +282,8 @@ body {
     margin-top:25px;
 }
 
-.info-box h3 {
-    font-size:14px;
-    color:var(--navy);
-    margin-bottom:8px;
-}
-
-.info-box p {
-    font-size:12px;
-    line-height:1.7;
-    color:#64748b;
-}
+.info-box h3 {font-size:14px;color:var(--navy);margin-bottom:8px}
+.info-box p {font-size:12px;line-height:1.7;color:#64748b}
 
 .footer {
     text-align:center;
@@ -414,13 +292,8 @@ body {
     padding:30px 10px 10px;
 }
 
-/* RESPONSIVE */
 @media(max-width:1000px) {
     .summary-grid {grid-template-columns:repeat(2,1fr)}
-}
-
-@media(max-width:900px) {
-    .trend-grid {grid-template-columns:1fr}
 }
 
 @media(max-width:700px) {
@@ -432,9 +305,7 @@ body {
     }
 
     .layout {display:block}
-
     .brand {padding-bottom:15px}
-
     .menu-title,.sidebar-footer {display:none}
 
     .menu {
@@ -469,9 +340,10 @@ body {
     .welcome-icon {font-size:45px}
 
     .summary-grid {grid-template-columns:1fr 1fr}
+    .trend-grid {grid-template-columns:1fr}
 
     .chart-row {
-        grid-template-columns:95px 1fr 30px;
+        grid-template-columns:75px 1fr 30px;
         gap:8px;
     }
 }
@@ -483,11 +355,9 @@ body {
 </head>
 
 <body>
-
 <div class="layout">
 
 <aside class="sidebar">
-
     <div class="brand">
         <div class="brand-icon">📚</div>
         <div>
@@ -513,199 +383,253 @@ body {
         SMKN 1 Pakong<br>
         Ajhâr, Ngabdi, sareng Ngajhâga
     </div>
-
 </aside>
 
 <main class="main">
 
-    <header class="topbar">
-        <div>
-            <h1>Dashboard Guru</h1>
-            <p>Pusat informasi dan pemantauan pembelajaran digital SIGAP</p>
-        </div>
-        <div class="date-box" id="tanggal"></div>
-    </header>
+<header class="topbar">
+    <div>
+        <h1>Dashboard Guru</h1>
+        <p>Pusat informasi dan pemantauan pembelajaran digital SIGAP</p>
+    </div>
+    <div class="date-box" id="tanggal"></div>
+</header>
 
-    <section class="welcome">
-        <div>
-            <h2>Selamat Datang di Dashboard Guru 👋</h2>
-            <p>
-                Dashboard pemantauan aktivitas belajar siswa Web Learning
-                SIGAP SMKN 1 Pakong. Data diperbarui langsung dari sistem
-                pencatatan aktivitas pembelajaran.
-            </p>
-        </div>
-        <div class="welcome-icon">🎓</div>
-    </section>
-
-    <!-- MONITORING AKTIVITAS -->
-    <section class="section">
-
-        <div class="section-heading">
-            <div>
-                <h2>Monitoring Aktivitas Siswa</h2>
-                <p>Ringkasan aktivitas pembelajaran yang tercatat dalam sistem.</p>
-            </div>
-
-            <button class="refresh-btn" id="tombolRefresh" onclick="ambilData()">
-                ↻ Perbarui Data
-            </button>
-        </div>
-
-        <div id="status" class="status">
-            Menghubungkan ke sistem SIGAP...
-        </div>
-
-        <div class="summary-grid">
-
-            <div class="summary-card">
-                <div class="summary-icon">📊</div>
-                <h3>Total Aktivitas Belajar</h3>
-                <strong id="totalAktivitas">-</strong>
-                <p>Seluruh aktivitas yang tercatat</p>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-icon">👩‍🎓</div>
-                <h3>Siswa Aktif</h3>
-                <strong id="jumlahSiswa">-</strong>
-                <p>Siswa unik yang memiliki aktivitas</p>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-icon">📚</div>
-                <h3>Membuka Materi</h3>
-                <strong id="totalMateri">-</strong>
-                <p>Aktivitas akses bahan pembelajaran</p>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-icon">🎬</div>
-                <h3>Membuka Video</h3>
-                <strong id="totalVideo">-</strong>
-                <p>Aktivitas akses media video</p>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-icon">📝</div>
-                <h3>Membuka Kuis</h3>
-                <strong id="totalKuis">-</strong>
-                <p>Aktivitas akses kuis</p>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-icon">📋</div>
-                <h3>Membuka Tugas</h3>
-                <strong id="totalTugas">-</strong>
-                <p>Aktivitas akses tugas</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- GRAFIK JENIS AKTIVITAS -->
-    <section class="section">
-
-        <div class="section-heading">
-            <div>
-                <h2>Grafik Aktivitas Pembelajaran</h2>
-                <p>Perbandingan jumlah aktivitas berdasarkan jenis kegiatan.</p>
-            </div>
-        </div>
-
-        <div class="chart-card">
-
-            <div class="chart-row">
-                <div class="chart-label">Materi</div>
-                <div class="bar-bg">
-                    <div class="bar" id="barMateri"></div>
-                </div>
-                <div class="chart-value" id="angkaMateri">0</div>
-            </div>
-
-            <div class="chart-row">
-                <div class="chart-label">Video</div>
-                <div class="bar-bg">
-                    <div class="bar" id="barVideo"></div>
-                </div>
-                <div class="chart-value" id="angkaVideo">0</div>
-            </div>
-
-            <div class="chart-row">
-                <div class="chart-label">Kuis</div>
-                <div class="bar-bg">
-                    <div class="bar" id="barKuis"></div>
-                </div>
-                <div class="chart-value" id="angkaKuis">0</div>
-            </div>
-
-            <div class="chart-row">
-                <div class="chart-label">Tugas</div>
-                <div class="bar-bg">
-                    <div class="bar" id="barTugas"></div>
-                </div>
-                <div class="chart-value" id="angkaTugas">0</div>
-            </div>
-
-            <p style="font-size:11px;color:#8996a7;margin-top:18px">
-                Grafik menunjukkan jumlah aktivitas yang tercatat,
-                bukan jumlah siswa yang menyelesaikan penilaian.
-            </p>
-
-        </div>
-    </section>
-
-    <!-- GRAFIK TREN HARIAN DAN BULANAN -->
-    <section class="section">
-
-        <div class="section-heading">
-            <div>
-                <h2>Tren Perkembangan Aktivitas</h2>
-                <p>Pemantauan penggunaan Web Learning SIGAP dari waktu ke waktu.</p>
-            </div>
-        </div>
-
-        <div class="trend-grid">
-
-            <div class="trend-card">
-                <h3>Aktivitas 7 Hari Terakhir</h3>
-                <p>Jumlah aktivitas pembelajaran setiap hari.</p>
-                <div class="trend-list" id="grafikHarian">
-                    <p>Menunggu data...</p>
-                </div>
-            </div>
-
-            <div class="trend-card">
-                <h3>Aktivitas 6 Bulan Terakhir</h3>
-                <p>Jumlah aktivitas pembelajaran setiap bulan.</p>
-                <div class="trend-list" id="grafikBulanan">
-                    <p>Menunggu data...</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- INFORMASI -->
-    <div class="info-box">
-        <h3>ℹ️ Informasi Dashboard Guru</h3>
+<section class="welcome">
+    <div>
+        <h2>Selamat Datang di Dashboard Guru 👋</h2>
         <p>
-            Dashboard ini menampilkan rekap aktivitas pembelajaran siswa
-            secara agregat. Identitas pribadi siswa tidak ditampilkan.
-            Data berasal dari pencatatan aktivitas Web Learning SIGAP
-            pada Google Sheets.
-        </p>
-        <p style="margin-top:8px">
-            <strong>Terakhir diperbarui:</strong>
-            <span id="waktuUpdate">Belum tersedia</span>
+            Dashboard pemantauan aktivitas belajar dan presensi siswa
+            Web Learning SIGAP SMKN 1 Pakong.
         </p>
     </div>
+    <div class="welcome-icon">🎓</div>
+</section>
 
-    <footer class="footer">
-        © 2026 Web Learning SIGAP | LPKC SMKN 1 Pakong
-        <br>
-        Ajhâr, Ngabdi, sareng Ngajhâga
-    </footer>
+<!-- AKTIVITAS BELAJAR -->
+<section class="section">
+    <div class="section-heading">
+        <div>
+            <h2>Monitoring Aktivitas Siswa</h2>
+            <p>Ringkasan aktivitas pembelajaran yang tercatat dalam sistem.</p>
+        </div>
+        <button class="refresh-btn" id="tombolRefresh" onclick="ambilData()">
+            ↻ Perbarui Aktivitas
+        </button>
+    </div>
+
+    <div id="status" class="status">
+        Menghubungkan ke sistem SIGAP...
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="summary-icon">📊</div>
+            <h3>Total Aktivitas Belajar</h3>
+            <strong id="totalAktivitas">-</strong>
+            <p>Seluruh aktivitas yang tercatat</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">👩‍🎓</div>
+            <h3>Siswa Aktif</h3>
+            <strong id="jumlahSiswa">-</strong>
+            <p>Siswa unik yang memiliki aktivitas</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">📚</div>
+            <h3>Membuka Materi</h3>
+            <strong id="totalMateri">-</strong>
+            <p>Aktivitas akses bahan pembelajaran</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">🎬</div>
+            <h3>Membuka Video</h3>
+            <strong id="totalVideo">-</strong>
+            <p>Aktivitas akses media video</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">📝</div>
+            <h3>Membuka Kuis</h3>
+            <strong id="totalKuis">-</strong>
+            <p>Aktivitas akses kuis</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">📋</div>
+            <h3>Membuka Tugas</h3>
+            <strong id="totalTugas">-</strong>
+            <p>Aktivitas akses tugas</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <div>
+            <h2>Grafik Aktivitas Pembelajaran</h2>
+            <p>Perbandingan jumlah aktivitas berdasarkan jenis kegiatan.</p>
+        </div>
+    </div>
+
+    <div class="chart-card">
+        <div class="chart-row">
+            <div class="chart-label">Materi</div>
+            <div class="bar-bg"><div class="bar" id="barMateri"></div></div>
+            <div class="chart-value" id="angkaMateri">0</div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-label">Video</div>
+            <div class="bar-bg"><div class="bar" id="barVideo"></div></div>
+            <div class="chart-value" id="angkaVideo">0</div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-label">Kuis</div>
+            <div class="bar-bg"><div class="bar" id="barKuis"></div></div>
+            <div class="chart-value" id="angkaKuis">0</div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-label">Tugas</div>
+            <div class="bar-bg"><div class="bar" id="barTugas"></div></div>
+            <div class="chart-value" id="angkaTugas">0</div>
+        </div>
+
+        <p style="font-size:11px;color:#8996a7;margin-top:18px">
+            Grafik menunjukkan jumlah aktivitas yang tercatat,
+            bukan jumlah siswa yang menyelesaikan penilaian.
+        </p>
+    </div>
+</section>
+
+<!-- TREN AKTIVITAS -->
+<section class="section">
+    <div class="section-heading">
+        <div>
+            <h2>Tren Aktivitas Pembelajaran</h2>
+            <p>Perkembangan aktivitas siswa dari waktu ke waktu.</p>
+        </div>
+    </div>
+
+    <div class="trend-grid">
+        <div class="trend-card">
+            <h3>Aktivitas 7 Hari Terakhir</h3>
+            <p>Jumlah aktivitas belajar per hari.</p>
+            <div id="grafikHarian">Menunggu data...</div>
+        </div>
+
+        <div class="trend-card">
+            <h3>Aktivitas 6 Bulan Terakhir</h3>
+            <p>Jumlah aktivitas belajar per bulan.</p>
+            <div id="grafikBulanan">Menunggu data...</div>
+        </div>
+    </div>
+</section>
+
+<!-- PRESENSI -->
+<section class="section">
+    <div class="section-heading">
+        <div>
+            <h2>Monitoring Presensi Siswa</h2>
+            <p>Rekap kehadiran berdasarkan data presensi digital.</p>
+        </div>
+
+        <button class="refresh-btn" id="tombolPresensi" onclick="ambilPresensi()">
+            ↻ Perbarui Presensi
+        </button>
+    </div>
+
+    <div id="statusPresensi" class="status">
+        Menghubungkan ke data presensi...
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="summary-icon">📅</div>
+            <h3>Total Catatan Presensi</h3>
+            <strong id="presTotal">-</strong>
+            <p>Seluruh catatan presensi</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">👩‍🎓</div>
+            <h3>Siswa Tercatat</h3>
+            <strong id="presSiswa">-</strong>
+            <p>Siswa unik yang pernah mengisi presensi</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">✅</div>
+            <h3>Hadir</h3>
+            <strong id="presHadir">-</strong>
+            <p>Jumlah catatan berstatus hadir</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">📝</div>
+            <h3>Izin</h3>
+            <strong id="presIzin">-</strong>
+            <p>Jumlah catatan berstatus izin</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">🤒</div>
+            <h3>Sakit</h3>
+            <strong id="presSakit">-</strong>
+            <p>Jumlah catatan berstatus sakit</p>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">⚠️</div>
+            <h3>Tidak Hadir</h3>
+            <strong id="presTidakHadir">-</strong>
+            <p>Jumlah catatan tidak hadir</p>
+        </div>
+    </div>
+
+    <div class="trend-grid" style="margin-top:20px">
+        <div class="trend-card">
+            <h3>Rekap Presensi Berdasarkan Kelas</h3>
+            <p>Jumlah siswa dan catatan presensi setiap kelas.</p>
+            <div id="presensiKelas">Menunggu data...</div>
+        </div>
+
+        <div class="trend-card">
+            <h3>Presensi 7 Hari Terakhir</h3>
+            <p>Jumlah catatan presensi setiap hari.</p>
+            <div id="presensiHarian">Menunggu data...</div>
+        </div>
+    </div>
+</section>
+
+<div class="info-box">
+    <h3>ℹ️ Informasi Dashboard Guru</h3>
+    <p>
+        Dashboard ini menampilkan rekap aktivitas pembelajaran dan
+        presensi siswa secara agregat. Identitas pribadi siswa tidak
+        ditampilkan. Data berasal dari Google Sheets yang terhubung
+        dengan Web Learning SIGAP.
+    </p>
+    <p style="margin-top:8px">
+        <strong>Aktivitas terakhir diperbarui:</strong>
+        <span id="waktuUpdate">Belum tersedia</span>
+    </p>
+    <p style="margin-top:5px">
+        <strong>Presensi terakhir diperbarui:</strong>
+        <span id="waktuUpdatePresensi">Belum tersedia</span>
+    </p>
+</div>
+
+<footer class="footer">
+    © 2026 Web Learning SIGAP | LPKC SMKN 1 Pakong
+    <br>
+    Ajhâr, Ngabdi, sareng Ngajhâga
+</footer>
 
 </main>
 </div>
@@ -714,7 +638,9 @@ body {
 const URL_APPS_SCRIPT =
 "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
 
-// TANGGAL DASHBOARD
+const URL_APPS_SCRIPT_PRESENSI =
+"https://script.google.com/macros/s/AKfycbzYZSnnqp52UJfoJ3rqFDzdoP8ckadVpRzNcbaXwbU2mYnJX-wnQ2C9qnMXma8wLWNR/exec";
+
 document.getElementById("tanggal").textContent =
     new Date().toLocaleDateString("id-ID", {
         weekday:"long",
@@ -723,22 +649,18 @@ document.getElementById("tanggal").textContent =
         year:"numeric"
     });
 
-// STATUS
-function tampilStatus(pesan, jenis) {
-    const status = document.getElementById("status");
-    status.textContent = pesan;
-    status.className = "status " + (jenis || "");
+function tampilStatus(pesan, jenis, id="status") {
+    const elemen = document.getElementById(id);
+    elemen.textContent = pesan;
+    elemen.className = "status " + (jenis || "");
 }
 
-// FORMAT ANGKA
 function tampilAngka(id, nilai) {
     document.getElementById(id).textContent =
         Number(nilai || 0).toLocaleString("id-ID");
 }
 
-// GRAFIK JENIS AKTIVITAS
 function aturGrafik(rekap) {
-
     const nilai = {
         materi:Number(rekap.materi || 0),
         video:Number(rekap.video || 0),
@@ -747,37 +669,26 @@ function aturGrafik(rekap) {
     };
 
     const maksimum = Math.max(
-        nilai.materi,
-        nilai.video,
-        nilai.kuis,
-        nilai.tugas,
-        1
+        nilai.materi,nilai.video,nilai.kuis,nilai.tugas,1
     );
 
-    const jenis = ["materi","video","kuis","tugas"];
+    ["materi","video","kuis","tugas"].forEach(function(item) {
+        const kapital = item.charAt(0).toUpperCase() + item.slice(1);
 
-    jenis.forEach(function(item) {
+        document.getElementById("bar" + kapital).style.width =
+            (nilai[item] / maksimum * 100) + "%";
 
-        const persen = nilai[item] / maksimum * 100;
-
-        document.getElementById(
-            "bar" + item.charAt(0).toUpperCase() + item.slice(1)
-        ).style.width = persen + "%";
-
-        document.getElementById(
-            "angka" + item.charAt(0).toUpperCase() + item.slice(1)
-        ).textContent = nilai[item].toLocaleString("id-ID");
-
+        document.getElementById("angka" + kapital).textContent =
+            nilai[item].toLocaleString("id-ID");
     });
 }
 
-// GRAFIK TREN HARIAN DAN BULANAN
-function tampilkanTren(data, elemenId, jenisLabel) {
-
-    const wadah = document.getElementById(elemenId);
+function tampilkanTren(data, id, kolomLabel) {
+    const wadah = document.getElementById(id);
+    wadah.innerHTML = "";
 
     if (!Array.isArray(data) || data.length === 0) {
-        wadah.innerHTML = "<p>Belum ada data aktivitas.</p>";
+        wadah.textContent = "Belum ada data.";
         return;
     }
 
@@ -786,47 +697,48 @@ function tampilkanTren(data, elemenId, jenisLabel) {
         1
     );
 
-    wadah.innerHTML = data.map(function(item) {
-
+    data.forEach(function(item) {
         const jumlah = Number(item.total || 0);
-        const persen = (jumlah / maksimum) * 100;
-        const label = item[jenisLabel] || "-";
 
-        return `
-            <div class="trend-item">
-                <div class="trend-label">${label}</div>
-                <div class="trend-bar-bg">
-                    <div class="trend-bar-fill"
-                         style="width:${persen}%">
-                    </div>
-                </div>
-                <div class="trend-number">${jumlah}</div>
-            </div>
-        `;
+        const baris = document.createElement("div");
+        baris.className = "trend-item";
 
-    }).join("");
+        const label = document.createElement("div");
+        label.className = "trend-label";
+        label.textContent = item[kolomLabel] || "-";
+
+        const latar = document.createElement("div");
+        latar.className = "trend-bar-bg";
+
+        const isi = document.createElement("div");
+        isi.className = "trend-bar-fill";
+        isi.style.width = (jumlah / maksimum * 100) + "%";
+
+        latar.appendChild(isi);
+
+        const angka = document.createElement("div");
+        angka.className = "trend-number";
+        angka.textContent = jumlah.toLocaleString("id-ID");
+
+        baris.append(label,latar,angka);
+        wadah.appendChild(baris);
+    });
 }
 
-// AMBIL DATA DARI GOOGLE APPS SCRIPT
 async function ambilData() {
-
     const tombol = document.getElementById("tombolRefresh");
 
     tombol.disabled = true;
     tombol.textContent = "Memuat...";
-
     tampilStatus("Sedang mengambil data aktivitas dari Google Sheets...");
 
     try {
-
         const respons = await fetch(URL_APPS_SCRIPT, {
             method:"POST",
             headers:{
                 "Content-Type":"text/plain;charset=utf-8"
             },
-            body:JSON.stringify({
-                aksi:"rekapGuru"
-            })
+            body:JSON.stringify({aksi:"rekapGuru"})
         });
 
         if (!respons.ok) {
@@ -841,32 +753,18 @@ async function ambilData() {
 
         const rekap = hasil.rekap || {};
 
-        // ANGKA RINGKASAN
-        tampilAngka("totalAktivitas", hasil.totalAktivitas);
-        tampilAngka("jumlahSiswa", hasil.jumlahSiswaAktif);
-        tampilAngka("totalMateri", rekap.materi);
-        tampilAngka("totalVideo", rekap.video);
-        tampilAngka("totalKuis", rekap.kuis);
-        tampilAngka("totalTugas", rekap.tugas);
+        tampilAngka("totalAktivitas",hasil.totalAktivitas);
+        tampilAngka("jumlahSiswa",hasil.jumlahSiswaAktif);
+        tampilAngka("totalMateri",rekap.materi);
+        tampilAngka("totalVideo",rekap.video);
+        tampilAngka("totalKuis",rekap.kuis);
+        tampilAngka("totalTugas",rekap.tugas);
 
-        // GRAFIK JENIS AKTIVITAS
         aturGrafik(rekap);
 
-        // GRAFIK HARIAN
-        tampilkanTren(
-            hasil.trenHarian,
-            "grafikHarian",
-            "tanggal"
-        );
+        tampilkanTren(hasil.trenHarian,"grafikHarian","tanggal");
+        tampilkanTren(hasil.trenBulanan,"grafikBulanan","bulan");
 
-        // GRAFIK BULANAN
-        tampilkanTren(
-            hasil.trenBulanan,
-            "grafikBulanan",
-            "bulan"
-        );
-
-        // WAKTU PEMBARUAN
         document.getElementById("waktuUpdate").textContent =
             hasil.diperbarui || new Date().toLocaleString("id-ID");
 
@@ -876,24 +774,180 @@ async function ambilData() {
         );
 
     } catch (error) {
-
         tampilStatus(
-            "Data belum berhasil dimuat. " +
-            error.message +
-            " Periksa koneksi internet dan deployment Apps Script.",
+            "Data aktivitas belum berhasil dimuat. " + error.message,
             "error"
         );
-
     } finally {
-
         tombol.disabled = false;
-        tombol.textContent = "↻ Perbarui Data";
-
+        tombol.textContent = "↻ Perbarui Aktivitas";
     }
 }
 
+
+// MENGAMBIL DATA PRESENSI DENGAN JSONP
+function ambilPresensi() {
+    const tombol = document.getElementById("tombolPresensi");
+
+    tombol.disabled = true;
+    tombol.textContent = "Memuat...";
+
+    tampilStatus(
+        "Sedang mengambil data presensi...",
+        "",
+        "statusPresensi"
+    );
+
+    const namaCallback = "callbackPresensi" +
+        Date.now() + Math.floor(Math.random() * 1000);
+
+    const script = document.createElement("script");
+    let selesai = false;
+
+    function bersihkan() {
+        if (script.parentNode) {
+            script.parentNode.removeChild(script);
+        }
+        delete window[namaCallback];
+        tombol.disabled = false;
+        tombol.textContent = "↻ Perbarui Presensi";
+    }
+
+    const batasWaktu = setTimeout(function() {
+        if (selesai) return;
+
+        selesai = true;
+        bersihkan();
+
+        tampilStatus(
+            "Data presensi belum berhasil dimuat. Periksa akses Web App dan deployment.",
+            "error",
+            "statusPresensi"
+        );
+    },15000);
+
+    window[namaCallback] = function(hasil) {
+        if (selesai) return;
+
+        selesai = true;
+        clearTimeout(batasWaktu);
+        bersihkan();
+
+        if (!hasil || hasil.status !== "success") {
+            tampilStatus(
+                "Data presensi gagal dibaca: " +
+                (hasil && hasil.message ? hasil.message : "Respons tidak valid."),
+                "error",
+                "statusPresensi"
+            );
+            return;
+        }
+
+        const status = hasil.rekapStatus || {};
+
+        tampilAngka("presTotal",hasil.totalPresensi);
+        tampilAngka("presSiswa",hasil.jumlahSiswa);
+        tampilAngka("presHadir",status.hadir);
+        tampilAngka("presIzin",status.izin);
+        tampilAngka("presSakit",status.sakit);
+        tampilAngka("presTidakHadir",status.tidakHadir);
+
+        tampilkanTren(
+            hasil.trenHarian,
+            "presensiHarian",
+            "tanggal"
+        );
+
+        tampilkanRekapKelas(hasil.rekapKelas);
+
+        document.getElementById("waktuUpdatePresensi").textContent =
+            hasil.diperbarui || new Date().toLocaleString("id-ID");
+
+        tampilStatus(
+            "✓ Data presensi berhasil diperbarui.",
+            "success",
+            "statusPresensi"
+        );
+    };
+
+    script.onerror = function() {
+        if (selesai) return;
+
+        selesai = true;
+        clearTimeout(batasWaktu);
+        bersihkan();
+
+        tampilStatus(
+            "Koneksi presensi gagal. Periksa URL dan akses Web App.",
+            "error",
+            "statusPresensi"
+        );
+    };
+
+    script.src = URL_APPS_SCRIPT_PRESENSI +
+        "?callback=" + encodeURIComponent(namaCallback) +
+        "&waktu=" + Date.now();
+
+    document.body.appendChild(script);
+}
+
+
+// MENAMPILKAN REKAP PRESENSI BERDASARKAN KELAS
+function tampilkanRekapKelas(data) {
+    const wadah = document.getElementById("presensiKelas");
+    wadah.innerHTML = "";
+
+    if (!Array.isArray(data) || data.length === 0) {
+        wadah.textContent = "Belum ada data presensi.";
+        return;
+    }
+
+    const maksimum = Math.max(
+        ...data.map(item => Number(item.totalPresensi || 0)),
+        1
+    );
+
+    data.forEach(function(item) {
+        const jumlah = Number(item.totalPresensi || 0);
+
+        const baris = document.createElement("div");
+        baris.className = "trend-item";
+
+        const label = document.createElement("div");
+        label.className = "trend-label";
+        label.textContent = item.kelas;
+
+        const latar = document.createElement("div");
+        latar.className = "trend-bar-bg";
+
+        const isi = document.createElement("div");
+        isi.className = "trend-bar-fill";
+        isi.style.width = (jumlah / maksimum * 100) + "%";
+
+        latar.appendChild(isi);
+
+        const angka = document.createElement("div");
+        angka.className = "trend-number";
+        angka.textContent = jumlah.toLocaleString("id-ID");
+
+        baris.append(label,latar,angka);
+        wadah.appendChild(baris);
+
+        const keterangan = document.createElement("p");
+        keterangan.style.cssText =
+            "font-size:10px;color:#8996a7;margin-top:-8px";
+
+        keterangan.textContent =
+            item.jumlahSiswa + " siswa tercatat";
+
+        wadah.appendChild(keterangan);
+    });
+}
+
+
 // MEMUAT DATA SAAT HALAMAN DIBUKA
 ambilData();
+ambilPresensi();
 </script>
 
 </body>
