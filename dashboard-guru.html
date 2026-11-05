@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Guru | Web Learning SIGAP</title>
+
+<style>
+:root {
+    --navy: #10243e;
+    --navy2: #183653;
+    --teal: #13a89e;
+    --bg: #f3f6fa;
+    --text: #243449;
+    --muted: #718096;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 255px;
+    background: var(--navy);
+    color: white;
+    padding: 25px 18px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 8px 28px;
+    border-bottom: 1px solid rgba(255,255,255,.13);
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: var(--teal);
+    display: grid;
+    place-items: center;
+    font-size: 23px;
+}
+
+.brand h2 {
+    font-size: 17px;
+    letter-spacing: .5px;
+}
+
+.brand p {
+    font-size: 11px;
+    color: #b9c8d9;
+    margin-top: 4px;
+}
+
+.menu-title {
+    color: #91a7bd;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin: 28px 10px 12px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #d8e3ee;
+    text-decoration: none;
+    padding: 12px 13px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: var(--teal);
+    color: white;
+}
+
+.menu a span {
+    width: 22px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.sidebar-footer {
+    border-top: 1px solid rgba(255,255,255,.13);
+    margin-top: 30px;
+    padding: 18px 8px;
+    color: #aebfd0;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* MAIN */
+.main {
+    margin-left: 255px;
+    width: calc(100% - 255px);
+    padding: 28px 35px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.topbar h1 {
+    font-size: 25px;
+    color: var(--navy);
+}
+
+.topbar p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.date-box {
+    background: white;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--navy);
+}
+
+/* WELCOME */
+.welcome {
+    background: linear-gradient(120deg, #10243e, #176b78);
+    border-radius: 18px;
+    padding: 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.welcome h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #d8e8ed;
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+.welcome-icon {
+    font-size: 75px;
+    opacity: .85;
+}
+
+/* SECTION */
+.section {
+    margin-top: 30px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.section-heading h2 {
+    color: var(--navy);
+    font-size: 18px;
+}
+
+.section-heading p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+/* SUMMARY */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.summary-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #e8edf3;
+    box-shadow: 0 4px 14px rgba(20,40,70,.035);
+}
+
+.summary-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    margin-bottom: 15px;
+    background: #e7f6f5;
+}
+
+.summary-card h3 {
+    font-size: 13px;
+    color: #526277;
+    margin-bottom: 7px;
+}
+
+.summary-card strong {
+    font-size: 17px;
+    color: var(--navy);
+}
+
+.summary-card p {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 7px;
+}
+
+/* MENU CARDS */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+}
+
+.feature-card {
+    background: white;
+    border: 1px solid #e8edf3;
+    border-radius: 15px;
+    padding: 22px;
+    text-decoration: none;
+    color: var(--text);
+    transition: .2s;
+    box-shadow: 0 4px 14px rgba(20,40,70,.035);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--teal);
+    box-shadow: 0 9px 22px rgba(20,40,70,.09);
+}
+
+.feature-icon {
+    font-size: 29px;
+    margin-bottom: 14px;
+}
+
+.feature-card h3 {
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+    min-height: 38px;
+}
+
+.feature-link {
+    display: inline-block;
+    color: #078f88;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 16px;
+}
+
+/* INFO */
+.info-box {
+    background: white;
+    border: 1px solid #e8edf3;
+    border-left: 4px solid var(--teal);
+    border-radius: 12px;
+    padding: 19px 21px;
+    margin-top: 25px;
+}
+
+.info-box h3 {
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+
+.info-box p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #64748b;
+}
+
+.footer {
+    text-align: center;
+    color: #8996a7;
+    font-size: 11px;
+    padding: 30px 10px 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px;
+    }
+
+    .layout {
+        display: block;
+    }
+
+    .brand {
+        padding-bottom: 15px;
+    }
+
+    .menu-title,
+    .sidebar-footer {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        gap: 5px;
+        overflow-x: auto;
+        padding-top: 12px;
+    }
+
+    .menu a {
+        white-space: nowrap;
+        margin: 0;
+        padding: 9px 11px;
+        font-size: 11px;
+    }
+
+    .menu a span {
+        display: none;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 22px 16px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .topbar h1 {
+        font-size: 21px;
+    }
+
+    .welcome {
+        padding: 23px;
+    }
+
+    .welcome h2 {
+        font-size: 20px;
+    }
+
+    .welcome-icon {
+        font-size: 45px;
+    }
+
+    .summary-grid,
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .summary-card,
+    .feature-card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 390px) {
+    .summary-grid,
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">📚</div>
+            <div>
+                <h2>WEB SIGAP</h2>
+                <p>Learning Management</p>
+            </div>
+        </div>
+
+        <div class="menu-title">MENU UTAMA</div>
+
+        <nav class="menu">
+            <a href="dashboard-guru.html" class="active">
+                <span>▦</span> Dashboard Guru
+            </a>
+            <a href="index.html">
+                <span>⌂</span> Beranda
+            </a>
+            <a href="media.html">
+                <span>▶</span> Media Pembelajaran
+            </a>
+            <a href="bahan.html">
+                <span>📖</span> Bahan Pembelajaran
+            </a>
+            <a href="penilaian.html">
+                <span>✎</span> Penilaian / CBT
+            </a>
+            <a href="sumber-belajar.html">
+                <span>🌐</span> Sumber Belajar
+            </a>
+            <a href="presensi.html">
+                <span>📅</span> Presensi
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <strong>WEB LEARNING SIGAP</strong><br>
+            SMKN 1 Pakong<br>
+            Ajhâr, Ngabdi, sareng Ngajhâga
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <h1>Dashboard Guru</h1>
+                <p>Pusat informasi dan pemantauan pembelajaran digital SIGAP</p>
+            </div>
+
+            <div class="date-box" id="tanggal"></div>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <h2>Selamat Datang di Dashboard Guru 👋</h2>
+                <p>
+                    Melalui dashboard ini, guru dan pengunjung dapat melihat
+                    berbagai fasilitas pembelajaran digital Web Learning SIGAP
+                    SMKN 1 Pakong secara langsung.
+                </p>
+            </div>
+            <div class="welcome-icon">🎓</div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Fasilitas Pembelajaran</h2>
+                    <p>Pilih menu untuk melihat fitur yang tersedia.</p>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+                    <div class="summary-icon">📚</div>
+                    <h3>Bahan Pembelajaran</h3>
+                    <strong>Modul Digital</strong>
+                    <p>Materi pembelajaran dapat diakses secara daring.</p>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon">🎬</div>
+                    <h3>Media Pembelajaran</h3>
+                    <strong>Media Interaktif</strong>
+                    <p>Mendukung proses belajar melalui media digital.</p>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon">📝</div>
+                    <h3>Penilaian</h3>
+                    <strong>CBT Online</strong>
+                    <p>Fasilitas evaluasi pembelajaran berbasis komputer.</p>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon">📅</div>
+                    <h3>Presensi</h3>
+                    <strong>Presensi Digital</strong>
+                    <p>Fasilitas pencatatan kehadiran secara digital.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Akses Fitur SIGAP</h2>
+                    <p>Jelajahi fitur-fitur utama dalam satu halaman.</p>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+
+                <a class="feature-card" href="media.html">
+                    <div class="feature-icon">🎥</div>
+                    <h3>Media Pembelajaran</h3>
+                    <p>Berisi media dan video pendukung kegiatan belajar.</p>
+                    <span class="feature-link">Buka Media →</span>
+                </a>
+
+                <a class="feature-card" href="bahan.html">
+                    <div class="feature-icon">📘</div>
+                    <h3>Bahan Pembelajaran</h3>
+                    <p>Berisi bahan ajar dan materi pembelajaran digital.</p>
+                    <span class="feature-link">Buka Bahan →</span>
+                </a>
+
+                <a class="feature-card" href="penilaian.html">
+                    <div class="feature-icon">🖥️</div>
+                    <h3>Penilaian / CBT</h3>
+                    <p>Fasilitas evaluasi dan latihan soal secara daring.</p>
+                    <span class="feature-link">Buka Penilaian →</span>
+                </a>
+
+                <a class="feature-card" href="sumber-belajar.html">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Sumber Belajar</h3>
+                    <p>Kumpulan referensi dan sumber belajar tambahan.</p>
+                    <span class="feature-link">Buka Sumber →</span>
+                </a>
+
+                <a class="feature-card" href="presensi.html">
+                    <div class="feature-icon">📋</div>
+                    <h3>Presensi Digital</h3>
+                    <p>Menu pencatatan kehadiran peserta didik.</p>
+                    <span class="feature-link">Buka Presensi →</span>
+                </a>
+
+                <a class="feature-card" href="index.html">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Halaman Utama</h3>
+                    <p>Kembali ke halaman utama Web Learning SIGAP.</p>
+                    <span class="feature-link">Kembali ke Beranda →</span>
+                </a>
+
+            </div>
+        </section>
+
+        <div class="info-box">
+            <h3>ℹ️ Informasi Dashboard</h3>
+            <p>
+                Dashboard guru ini merupakan halaman informasi publik untuk
+                memperkenalkan fasilitas Web Learning SIGAP kepada guru,
+                pengunjung, dan tim penilai. Halaman ini bersifat baca-saja
+                dan tidak menyediakan akses untuk mengubah atau menghapus
+                data siswa.
+            </p>
+        </div>
+
+        <footer class="footer">
+            © 2026 Web Learning SIGAP | LPKC SMKN 1 Pakong
+            <br>
+            Ajhâr, Ngabdi, sareng Ngajhâga
+        </footer>
+
+    </main>
+</div>
+
+<script>
+const sekarang = new Date();
+
+document.getElementById("tanggal").textContent =
+    sekarang.toLocaleDateString("id-ID", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+</script>
+
+</body>
+</html>
