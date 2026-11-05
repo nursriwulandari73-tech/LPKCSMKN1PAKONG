@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,46 +8,66 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
+    body {
+      margin: 0;
+      background: #f3f7fb;
+      font-family: Arial, sans-serif;
+    }
+
     .login-box {
       max-width: 420px;
-      margin: 50px auto;
-      padding: 28px;
+      margin: 60px auto;
+      padding: 30px;
       background: white;
-      border-radius: 14px;
-      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0,0,0,.10);
     }
 
     .login-box h2 {
       text-align: center;
+      color: #123b5d;
+      margin-bottom: 10px;
+    }
+
+    .deskripsi {
+      text-align: center;
+      color: #526477;
+      margin-bottom: 25px;
     }
 
     .login-box label {
       display: block;
-      margin-top: 16px;
-      font-weight: 600;
+      margin-top: 18px;
+      font-weight: bold;
+      color: #263445;
     }
 
     .login-box input {
       width: 100%;
-      padding: 12px;
-      margin-top: 6px;
+      padding: 13px;
+      margin-top: 7px;
       box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 7px;
+      border: 1px solid #ccd5df;
+      border-radius: 8px;
       font-size: 16px;
+    }
+
+    .login-box input:focus {
+      outline: none;
+      border-color: #087f8c;
     }
 
     .login-box button {
       width: 100%;
-      padding: 12px;
-      margin-top: 22px;
-      cursor: pointer;
+      padding: 14px;
+      margin-top: 25px;
       border: none;
-      border-radius: 7px;
-      background: #087f5b;
+      border-radius: 8px;
+      background: #087f8c;
       color: white;
       font-size: 16px;
       font-weight: bold;
+      cursor: pointer;
     }
 
     .login-box button:disabled {
@@ -55,25 +76,30 @@
     }
 
     #pesan {
-      margin-top: 14px;
       text-align: center;
+      margin-top: 18px;
+      line-height: 1.5;
       overflow-wrap: anywhere;
     }
 
-    .info-sesi {
-      padding: 12px;
-      border-radius: 8px;
-      background: #e9f7ef;
-      margin-top: 15px;
+    footer {
+      text-align: center;
+      margin-top: 45px;
+      padding: 20px;
+      color: #64748b;
     }
 
-    .tersembunyi {
-      display: none;
+    @media(max-width: 500px) {
+      .login-box {
+        margin: 30px 15px;
+        padding: 24px;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <header class="navbar">
     <div class="logo">
       <span>LPKC</span>
@@ -88,52 +114,61 @@
   </header>
 
   <main class="login-box">
+
     <h2>Login Siswa SIGAP</h2>
-    <p>Masuk untuk memulai kegiatan belajar.</p>
+
+    <p class="deskripsi">
+      Masuk untuk memulai kegiatan belajar.
+    </p>
 
     <form id="formLogin">
+
       <label for="nisn">NISN</label>
+
       <input
+        type="text"
         id="nisn"
         name="nisn"
-        type="text"
         inputmode="numeric"
         autocomplete="username"
         pattern="[0-9]+"
+        placeholder="Masukkan NISN"
         required
       >
 
-      <label for="pin">PIN 6 digit</label>
+      <label for="pin">PIN 6 Digit</label>
+
       <input
+        type="password"
         id="pin"
         name="pin"
-        type="password"
         inputmode="numeric"
         pattern="[0-9]{6}"
         maxlength="6"
         autocomplete="current-password"
+        placeholder="Masukkan PIN"
         required
       >
 
-      <button id="tombolMasuk" type="submit">Masuk</button>
+      <button type="submit" id="tombolMasuk">
+        MASUK
+      </button>
+
       <p id="pesan" role="status" aria-live="polite"></p>
+
     </form>
 
-    <section id="statusSesi" class="info-sesi tersembunyi">
-      <strong>Login berhasil</strong>
-      <p id="identitasSiswa"></p>
-      <p>Sesi belajar tersimpan pada tab browser ini.</p>
-      <button id="tombolKeluar" type="button">Keluar</button>
-    </section>
   </main>
 
   <footer>
     <h3>LPKC SMKN 1 PAKONG</h3>
     <p>Learning &amp; Practice Center</p>
+    <p>Ajhâr, Ngabdi, sareng Ngajhâga.</p>
   </footer>
 
   <script>
-    // URL Web App Apps Script SIGAP
+
+    // Koneksi Apps Script SIGAP
     const URL_APPS_SCRIPT =
       "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
 
@@ -141,42 +176,37 @@
     const inputNisn = document.getElementById("nisn");
     const inputPin = document.getElementById("pin");
     const tombolMasuk = document.getElementById("tombolMasuk");
-    const tombolKeluar = document.getElementById("tombolKeluar");
     const pesan = document.getElementById("pesan");
-    const statusSesi = document.getElementById("statusSesi");
-    const identitasSiswa = document.getElementById("identitasSiswa");
 
-    function tampilkanPesan(teks) {
+    function tampilkanPesan(teks, warna) {
       pesan.textContent = teks;
+      pesan.style.color = warna || "#263445";
     }
 
-    function tampilkanSesi(nama, kelas) {
-      formLogin.classList.add("tersembunyi");
-      statusSesi.classList.remove("tersembunyi");
-      identitasSiswa.textContent =
-        "Nama: " + nama + " | Kelas: " + kelas;
-    }
+    formLogin.addEventListener("submit", async function(e) {
 
-    formLogin.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const nisn = inputNisn.value.trim();
       const pin = inputPin.value.trim();
 
       if (!/^[0-9]+$/.test(nisn)) {
-        tampilkanPesan("NISN harus berisi angka.");
+        tampilkanPesan("NISN harus berupa angka.", "red");
         return;
       }
 
       if (!/^[0-9]{6}$/.test(pin)) {
-        tampilkanPesan("PIN harus tepat 6 digit.");
+        tampilkanPesan("PIN harus tepat 6 digit.", "red");
         return;
       }
 
       tombolMasuk.disabled = true;
-      tampilkanPesan("Sedang memeriksa login...");
+      tombolMasuk.textContent = "MEMERIKSA LOGIN...";
+
+      tampilkanPesan("Sedang memeriksa akun siswa...");
 
       try {
+
         const respons = await fetch(URL_APPS_SCRIPT, {
           method: "POST",
           headers: {
@@ -201,60 +231,44 @@
         }
 
         if (!hasil.token || !hasil.nama) {
-          throw new Error("Respons login tidak lengkap.");
+          throw new Error("Data login tidak lengkap.");
         }
 
+        // Menyimpan identitas dan token siswa
         sessionStorage.setItem("sigap_token", hasil.token);
         sessionStorage.setItem("sigap_nama", hasil.nama);
         sessionStorage.setItem("sigap_kelas", hasil.kelas || "");
 
+        // Mengosongkan PIN
         inputPin.value = "";
-        tampilkanPesan("");
 
-        tampilkanSesi(
-          hasil.nama,
-          hasil.kelas || "-"
+        tampilkanPesan(
+          "Login berhasil! Mengarahkan ke dashboard siswa...",
+          "green"
         );
+
+        tombolMasuk.textContent = "BERHASIL";
+
+        // Mengarahkan siswa ke dashboard
+        window.location.replace("dashboard-siswa.html");
 
       } catch (error) {
-        console.error("Kesalahan login SIGAP:", error);
+
+        console.error("Login SIGAP:", error);
+
         tampilkanPesan(
-          "Login gagal. Periksa koneksi Apps Script. " +
-          "Jika ada masalah CORS, metode koneksi perlu diperbaiki."
+          error.message || "Login gagal. Periksa koneksi internet.",
+          "red"
         );
 
-      } finally {
         tombolMasuk.disabled = false;
+        tombolMasuk.textContent = "MASUK";
+
       }
+
     });
 
-    tombolKeluar.addEventListener("click", function () {
-      sessionStorage.removeItem("sigap_token");
-      sessionStorage.removeItem("sigap_nama");
-      sessionStorage.removeItem("sigap_kelas");
-
-      statusSesi.classList.add("tersembunyi");
-      formLogin.classList.remove("tersembunyi");
-
-      inputNisn.value = "";
-      inputPin.value = "";
-      tampilkanPesan("Anda telah keluar dari sesi.");
-    });
-
-    // Memulihkan tampilan sesi pada tab yang sama.
-    const tokenTersimpan =
-      sessionStorage.getItem("sigap_token");
-    const namaTersimpan =
-      sessionStorage.getItem("sigap_nama");
-    const kelasTersimpan =
-      sessionStorage.getItem("sigap_kelas");
-
-    if (tokenTersimpan && namaTersimpan) {
-      tampilkanSesi(
-        namaTersimpan,
-        kelasTersimpan || "-"
-      );
-    }
   </script>
+
 </body>
 </html>
