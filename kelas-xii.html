@@ -1,66 +1,289 @@
+
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <title>Kelas XII | LPKC</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Siswa | Web Learning SIGAP</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .login-box {
+      max-width: 420px;
+      margin: 50px auto;
+      padding: 28px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .login-box h2 {
+      text-align: center;
+      color: #123b5d;
+    }
+
+    .login-box p {
+      text-align: center;
+    }
+
+    .login-box label {
+      display: block;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 22px;
+      cursor: pointer;
+      border: none;
+      border-radius: 7px;
+      background: #087f8c;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .login-box button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    #pesan {
+      margin-top: 14px;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    @media(max-width:500px) {
+      .login-box {
+        margin: 30px 15px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="navbar">
+  <header class="navbar">
     <div class="logo">
-        <span>LPKC</span>
-        <small>SMKN 1 PAKONG</small>
+      <span>LPKC</span>
+      <small>SMKN 1 PAKONG</small>
     </div>
 
     <nav>
-        <a href="index.html">Beranda</a>
-        <a href="kelas.html">Kelas</a>
-        <a href="media.html">Media</a>
-        <a href="bahan.html">Bahan</a>
-        <a href="penilaian.html">Penilaian</a>
+      <a href="index.html">Beranda</a>
+      <a href="media.html">Media</a>
+      <a href="bahan.html">Bahan</a>
     </nav>
-</header>
+  </header>
 
-<section class="menu">
+  <main class="login-box">
 
-    <h2>📚 Pembelajaran Kelas XII</h2>
+    <h2>Login Siswa SIGAP</h2>
 
-    <p>Buku Materi Layanan Kesehatan</p>
+    <p>Masuk untuk memulai kegiatan belajar.</p>
 
-    <div class="cards">
+    <form id="formLogin">
 
-        <div class="card">
+      <label for="nisn">NISN</label>
 
-            <div class="icon">📘</div>
+      <input
+        id="nisn"
+        name="nisn"
+        type="text"
+        inputmode="numeric"
+        autocomplete="username"
+        pattern="[0-9]+"
+        required
+      >
 
-            <h3>Buku Materi Kelas XII</h3>
+      <label for="pin">PIN 6 digit</label>
 
-            <p>
-                Materi KDTK, KDM, dan Ilmu Penyakit
-                untuk pembelajaran kelas XII.
-            </p>
+      <input
+        id="pin"
+        name="pin"
+        type="password"
+        inputmode="numeric"
+        pattern="[0-9]{6}"
+        maxlength="6"
+        autocomplete="current-password"
+        required
+      >
 
-           <a href="assets/PDFBUKUMATERIKELAS12.pdf" 
-            target="_blank">
-            📖 Baca Buku →
-            </a>
+      <button id="tombolMasuk" type="submit">
+        Masuk
+      </button>
 
-        </div>
+      <p id="pesan" role="status" aria-live="polite"></p>
 
-    </div>
+    </form>
 
-</section>
+  </main>
 
-<footer>
+  <footer>
     <h3>LPKC SMKN 1 PAKONG</h3>
-    <p>Learning & Practice Center</p>
-    <small>© 2026 LPKC SMKN 1 Pakong</small>
-</footer>
+    <p>Learning &amp; Practice Center</p>
+    <p>Ajhâr, Ngabdi, sareng Ngajhâga</p>
+  </footer>
+
+  <script>
+
+    // URL Web App Apps Script SIGAP
+    const URL_APPS_SCRIPT =
+      "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
+
+    const formLogin = document.getElementById("formLogin");
+
+    const inputNisn = document.getElementById("nisn");
+
+    const inputPin = document.getElementById("pin");
+
+    const tombolMasuk = document.getElementById("tombolMasuk");
+
+    const pesan = document.getElementById("pesan");
+
+
+    function tampilkanPesan(teks) {
+      pesan.textContent = teks;
+    }
+
+
+    formLogin.addEventListener("submit", async function(e) {
+
+      e.preventDefault();
+
+      const nisn = inputNisn.value.trim();
+
+      const pin = inputPin.value.trim();
+
+
+      // Validasi NISN
+      if (!/^[0-9]+$/.test(nisn)) {
+
+        tampilkanPesan("NISN harus berisi angka.");
+
+        return;
+
+      }
+
+
+      // Validasi PIN
+      if (!/^[0-9]{6}$/.test(pin)) {
+
+        tampilkanPesan("PIN harus tepat 6 digit.");
+
+        return;
+
+      }
+
+
+      tombolMasuk.disabled = true;
+
+      tampilkanPesan("Sedang memeriksa login...");
+
+
+      try {
+
+        const respons = await fetch(URL_APPS_SCRIPT, {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+
+          body: JSON.stringify({
+
+            aksi: "login",
+
+            nisn: nisn,
+
+            pin: pin
+
+          }),
+
+          redirect: "follow"
+
+        });
+
+
+        if (!respons.ok) {
+
+          throw new Error("Server tidak dapat dihubungi.");
+
+        }
+
+
+        const hasil = await respons.json();
+
+
+        if (!hasil.sukses) {
+
+          throw new Error(hasil.pesan || "Login gagal.");
+
+        }
+
+
+        if (!hasil.token || !hasil.nama) {
+
+          throw new Error("Respons login tidak lengkap.");
+
+        }
+
+
+        // Simpan data sesi siswa
+        sessionStorage.setItem("sigap_token", hasil.token);
+
+        sessionStorage.setItem("sigap_nama", hasil.nama);
+
+        sessionStorage.setItem("sigap_kelas", hasil.kelas || "");
+
+
+        // Bersihkan PIN
+        inputPin.value = "";
+
+
+        tampilkanPesan("Login berhasil. Mengarahkan ke dashboard...");
+
+
+        // Masuk ke dashboard siswa
+        window.location.href = "dashboard-siswa.html";
+
+
+      } catch (error) {
+
+        console.error("Kesalahan login SIGAP:", error);
+
+        tampilkanPesan(
+          error.message || "Login gagal. Periksa koneksi internet."
+        );
+
+      } finally {
+
+        tombolMasuk.disabled = false;
+
+      }
+
+    });
+
+  </script>
 
 </body>
 </html>
