@@ -2,243 +2,285 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Siswa | Web Learning SIGAP</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Siswa | SIGAP</title>
+<link rel="stylesheet" href="style.css">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+/* RESET KHUSUS DASHBOARD */
+.dashboard,
+.dashboard * {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      background: #f3f6fb;
-      font-family: Arial, sans-serif;
-      color: #263445;
-    }
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #f3f6fb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #263445;
+}
 
-    .dashboard {
-      display: flex;
-      min-height: 100vh;
-    }
+/* SIDEBAR */
+.dashboard .sidebar {
+  width: 270px;
+  min-width: 270px;
+  background: #123b5d;
+  color: white;
+  padding: 25px 20px;
+  flex-shrink: 0;
+}
 
-    .sidebar {
-      width: 250px;
-      background: #123b5d;
-      color: white;
-      padding: 25px 18px;
-      flex-shrink: 0;
-    }
+.dashboard .brand {
+  padding: 5px 10px 25px;
+  border-bottom: 1px solid rgba(255,255,255,.2);
+}
 
-    .brand {
-      padding: 5px 10px 25px;
-      border-bottom: 1px solid rgba(255,255,255,.2);
-    }
+.dashboard .brand h2 {
+  margin: 0;
+  font-size: 25px;
+  color: white;
+}
 
-    .brand h2 {
-      margin: 0;
-      font-size: 23px;
-    }
+.dashboard .brand p {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #c7dce9;
+}
 
-    .brand p {
-      margin: 7px 0 0;
-      font-size: 12px;
-      color: #c7dce9;
-    }
+.dashboard .menu-title {
+  margin: 28px 10px 15px;
+  font-size: 12px;
+  color: #b8d2e2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    .menu-title {
-      margin: 28px 10px 12px;
-      font-size: 11px;
-      color: #a9c5d8;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+/* MENU SIDEBAR */
+.dashboard nav.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
 
-    .menu a {
-      display: block;
-      padding: 13px 14px;
-      margin-bottom: 7px;
-      color: #e8f2f8;
-      text-decoration: none;
-      border-radius: 9px;
-      font-size: 14px;
-    }
+.dashboard nav.menu a {
+  display: block;
+  width: 100%;
+  padding: 13px 14px;
+  margin: 0;
+  color: #e8f2f8;
+  text-decoration: none;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  background: transparent;
+}
 
-    .menu a:hover,
-    .menu a.aktif {
-      background: #087f8c;
-      color: white;
-    }
+.dashboard nav.menu a:hover,
+.dashboard nav.menu a.aktif {
+  background: #087f8c;
+  color: white;
+}
 
-    .main {
-      flex: 1;
-      min-width: 0;
-      padding: 28px;
-    }
+/* AREA UTAMA */
+.dashboard .main {
+  flex: 1;
+  min-width: 0;
+  padding: 28px;
+}
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 28px;
-    }
+.dashboard .topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 28px;
+}
 
-    .topbar h2 {
-      margin: 0;
-      color: #123b5d;
-    }
+.dashboard .topbar h2 {
+  margin: 0;
+  color: #123b5d;
+  font-size: 27px;
+}
 
-    .identitas {
-      background: white;
-      padding: 12px 18px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.05);
-      font-size: 14px;
-    }
+.dashboard .identitas {
+  background: white;
+  padding: 12px 18px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.05);
+  font-size: 14px;
+}
 
-    .sambutan {
-      padding: 28px;
-      border-radius: 17px;
-      color: white;
-      background: linear-gradient(120deg,#087f8c,#123b5d);
-      margin-bottom: 25px;
-    }
+/* SAMBUTAN */
+.dashboard .sambutan {
+  padding: 30px;
+  border-radius: 17px;
+  color: white;
+  background: linear-gradient(120deg,#087f8c,#123b5d);
+  margin-bottom: 28px;
+}
 
-    .sambutan h1 {
-      margin: 0 0 10px;
-      font-size: 27px;
-    }
+.dashboard .sambutan h1 {
+  margin: 0 0 10px;
+  font-size: 27px;
+  color: white;
+}
 
-    .sambutan p {
-      margin: 0;
-      line-height: 1.6;
-      color: #e1f3f5;
-    }
+.dashboard .sambutan p {
+  margin: 0;
+  line-height: 1.7;
+  color: #e1f3f5;
+}
 
-    .judul {
-      color: #123b5d;
-      margin: 28px 0 16px;
-    }
+/* JUDUL DAN KARTU */
+.dashboard .judul {
+  color: #123b5d;
+  margin: 28px 0 16px;
+  font-size: 25px;
+}
 
-    .kartu-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 18px;
-    }
+.dashboard .kartu-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 18px;
+}
 
-    .kartu {
-      background: white;
-      padding: 22px;
-      border-radius: 14px;
-      box-shadow: 0 3px 14px rgba(0,0,0,.05);
-    }
+.dashboard .kartu {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.05);
+  transition: .3s ease;
+  min-width: 0;
+}
 
-    .kartu .ikon {
-      font-size: 28px;
-    }
+.dashboard .kartu:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
 
-    .kartu h3 {
-      margin: 12px 0 8px;
-      color: #123b5d;
-    }
+.dashboard .kartu .ikon {
+  font-size: 30px;
+}
 
-    .kartu p {
-      color: #718096;
-      font-size: 13px;
-      line-height: 1.6;
-    }
+.dashboard .kartu h3 {
+  margin: 12px 0 8px;
+  color: #123b5d;
+}
 
-    .kartu a {
-      display: inline-block;
-      margin-top: 10px;
-      color: #087f8c;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 13px;
-    }
+.dashboard .kartu p {
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.6;
+}
 
-    .informasi {
-      background: white;
-      padding: 22px;
-      margin-top: 22px;
-      border-radius: 14px;
-      box-shadow: 0 3px 14px rgba(0,0,0,.05);
-      line-height: 1.7;
-    }
+.dashboard .kartu a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #087f8c;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 14px;
+}
 
-    .keluar {
-      width: 100%;
-      margin-top: 25px;
-      padding: 12px;
-      background: #c94c4c;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+/* INFORMASI */
+.dashboard .informasi {
+  background: white;
+  padding: 22px;
+  margin-top: 22px;
+  border-radius: 14px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.05);
+  line-height: 1.7;
+}
 
-    footer {
-      margin-top: 35px;
-      text-align: center;
-      color: #8593a3;
-      font-size: 12px;
-    }
+.dashboard .informasi h3 {
+  color: #123b5d;
+  margin-bottom: 10px;
+}
 
-    @media(max-width:850px) {
-      .dashboard {
-        flex-direction: column;
-      }
+/* TOMBOL KELUAR */
+.dashboard .keluar {
+  width: 100%;
+  margin-top: 25px;
+  padding: 12px;
+  background: #c94c4c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
 
-      .sidebar {
-        width: 100%;
-      }
+.dashboard .keluar:hover {
+  background: #a83232;
+}
 
-      .menu {
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        gap: 5px;
-      }
+/* FOOTER */
+.dashboard footer {
+  margin-top: 35px;
+  padding: 15px;
+  text-align: center;
+  color: #8593a3;
+  font-size: 12px;
+  background: transparent;
+  border: none;
+}
 
-      .menu-title {
-        margin-top: 18px;
-      }
+/* TABLET */
+@media(max-width: 850px) {
+  .dashboard {
+    flex-direction: column;
+  }
 
-      .keluar {
-        max-width: 200px;
-      }
+  .dashboard .sidebar {
+    width: 100%;
+    min-width: 0;
+  }
 
-      .kartu-grid {
-        grid-template-columns: repeat(2,1fr);
-      }
-    }
+  .dashboard nav.menu {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
 
-    @media(max-width:520px) {
-      .main {
-        padding: 17px;
-      }
+  .dashboard .kartu-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
 
-      .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
+/* HP */
+@media(max-width: 520px) {
+  .dashboard .main {
+    padding: 17px;
+  }
 
-      .sambutan h1 {
-        font-size: 22px;
-      }
+  .dashboard .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
-      .kartu-grid {
-        grid-template-columns: 1fr;
-      }
+  .dashboard .sambutan {
+    padding: 22px;
+  }
 
-      .menu {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
+  .dashboard .sambutan h1 {
+    font-size: 22px;
+  }
+
+  .dashboard .kartu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard nav.menu {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+</style>
 </head>
 
 <body>
@@ -251,7 +293,7 @@
       <p>WEB LEARNING LPKC SMKN 1 PAKONG</p>
     </div>
 
-    <p class="menu-title">Menu Pembelajaran</p>
+    <p class="menu-title">MENU PEMBELAJARAN</p>
 
     <nav class="menu">
       <a href="dashboard-siswa.html" class="aktif">🏠 Beranda</a>
@@ -262,7 +304,7 @@
       <a href="presensi.html">📅 Presensi</a>
     </nav>
 
-    <button class="keluar" id="tombolKeluar">
+    <button class="keluar" id="tombolKeluar" type="button">
       Keluar
     </button>
   </aside>
@@ -359,7 +401,6 @@
   const nama = sessionStorage.getItem("sigap_nama");
   const kelas = sessionStorage.getItem("sigap_kelas");
 
-  // Dashboard hanya dapat dibuka setelah login.
   if (!token || !nama) {
     alert("Silakan login terlebih dahulu.");
     window.location.replace("login.html");
@@ -373,7 +414,6 @@
     sessionStorage.removeItem("sigap_token");
     sessionStorage.removeItem("sigap_nama");
     sessionStorage.removeItem("sigap_kelas");
-
     window.location.replace("login.html");
   });
 </script>
