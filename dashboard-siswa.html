@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-/* RESET KHUSUS DASHBOARD */
 .dashboard,
 .dashboard * {
   box-sizing: border-box;
@@ -22,7 +21,6 @@
   color: #263445;
 }
 
-/* SIDEBAR */
 .dashboard .sidebar {
   width: 270px;
   min-width: 270px;
@@ -57,7 +55,6 @@
   letter-spacing: 1px;
 }
 
-/* MENU SIDEBAR */
 .dashboard nav.menu {
   display: flex;
   flex-direction: column;
@@ -87,7 +84,6 @@
   color: white;
 }
 
-/* AREA UTAMA */
 .dashboard .main {
   flex: 1;
   min-width: 0;
@@ -116,7 +112,6 @@
   font-size: 14px;
 }
 
-/* SAMBUTAN */
 .dashboard .sambutan {
   padding: 30px;
   border-radius: 17px;
@@ -137,7 +132,6 @@
   color: #e1f3f5;
 }
 
-/* JUDUL DAN KARTU */
 .dashboard .judul {
   color: #123b5d;
   margin: 28px 0 16px;
@@ -188,7 +182,6 @@
   font-size: 14px;
 }
 
-/* INFORMASI */
 .dashboard .informasi {
   background: white;
   padding: 22px;
@@ -203,7 +196,6 @@
   margin-bottom: 10px;
 }
 
-/* TOMBOL KELUAR */
 .dashboard .keluar {
   width: 100%;
   margin-top: 25px;
@@ -221,7 +213,134 @@
   background: #a83232;
 }
 
-/* FOOTER */
+/* PROGRES BELAJAR */
+.dashboard .progres {
+  margin-top: 30px;
+}
+
+.dashboard .progres-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.dashboard .progres-header h2 {
+  color: #123b5d;
+  margin: 0;
+  font-size: 25px;
+}
+
+.dashboard .tombol-refresh {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #087f8c;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dashboard .tombol-refresh:hover {
+  background: #066875;
+}
+
+.dashboard .ringkasan-grid {
+  display: grid;
+  grid-template-columns: repeat(5,minmax(0,1fr));
+  gap: 14px;
+}
+
+.dashboard .ringkasan {
+  background: white;
+  border-radius: 13px;
+  padding: 19px 15px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.05);
+  border-bottom: 3px solid #087f8c;
+  min-width: 0;
+}
+
+.dashboard .ringkasan .angka {
+  font-size: 29px;
+  font-weight: 700;
+  color: #123b5d;
+  margin: 8px 0;
+}
+
+.dashboard .ringkasan .keterangan {
+  font-size: 13px;
+  color: #718096;
+  line-height: 1.4;
+}
+
+.dashboard .riwayat-box {
+  background: white;
+  padding: 22px;
+  margin-top: 20px;
+  border-radius: 14px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.05);
+}
+
+.dashboard .riwayat-box h3 {
+  margin: 0 0 15px;
+  color: #123b5d;
+}
+
+.dashboard .daftar-riwayat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dashboard .riwayat-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px;
+  background: #f5f8fb;
+  border-radius: 9px;
+}
+
+.dashboard .riwayat-ikon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e1f3f5;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.dashboard .riwayat-detail {
+  min-width: 0;
+}
+
+.dashboard .riwayat-detail strong {
+  display: block;
+  color: #123b5d;
+  font-size: 14px;
+}
+
+.dashboard .riwayat-detail small {
+  display: block;
+  color: #718096;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.dashboard .status-progres {
+  color: #718096;
+  font-size: 14px;
+  padding: 15px;
+  background: #f5f8fb;
+  border-radius: 9px;
+  line-height: 1.6;
+}
+
 .dashboard footer {
   margin-top: 35px;
   padding: 15px;
@@ -232,7 +351,12 @@
   border: none;
 }
 
-/* TABLET */
+@media(max-width: 1100px) {
+  .dashboard .ringkasan-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+}
+
 @media(max-width: 850px) {
   .dashboard {
     flex-direction: column;
@@ -253,7 +377,6 @@
   }
 }
 
-/* HP */
 @media(max-width: 520px) {
   .dashboard .main {
     padding: 17px;
@@ -277,6 +400,10 @@
   }
 
   .dashboard nav.menu {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .dashboard .ringkasan-grid {
     grid-template-columns: repeat(2,minmax(0,1fr));
   }
 }
@@ -377,6 +504,59 @@
 
     </section>
 
+    <!-- PROGRES BELAJAR -->
+    <section class="progres">
+
+      <div class="progres-header">
+        <h2>📊 Progres Belajar Saya</h2>
+        <button class="tombol-refresh" id="tombolRefresh" type="button">
+          ↻ Perbarui Progres
+        </button>
+      </div>
+
+      <div class="ringkasan-grid">
+
+        <div class="ringkasan">
+          <div>📚</div>
+          <div class="angka" id="totalAktivitas">0</div>
+          <div class="keterangan">Total Aktivitas Belajar</div>
+        </div>
+
+        <div class="ringkasan">
+          <div>📖</div>
+          <div class="angka" id="jumlahMateri">0</div>
+          <div class="keterangan">Membuka Materi</div>
+        </div>
+
+        <div class="ringkasan">
+          <div>🎬</div>
+          <div class="angka" id="jumlahVideo">0</div>
+          <div class="keterangan">Membuka Video</div>
+        </div>
+
+        <div class="ringkasan">
+          <div>📝</div>
+          <div class="angka" id="jumlahKuis">0</div>
+          <div class="keterangan">Membuka Kuis</div>
+        </div>
+
+        <div class="ringkasan">
+          <div>📋</div>
+          <div class="angka" id="jumlahTugas">0</div>
+          <div class="keterangan">Membuka Tugas</div>
+        </div>
+
+      </div>
+
+      <div class="riwayat-box">
+        <h3>🕒 Riwayat Aktivitas Terakhir</h3>
+        <div id="daftarRiwayat" class="daftar-riwayat">
+          <div class="status-progres">Memuat progres belajar...</div>
+        </div>
+      </div>
+
+    </section>
+
     <section class="informasi">
       <h3>📢 Informasi Pembelajaran</h3>
       <p>
@@ -397,25 +577,178 @@
 </div>
 
 <script>
-  const token = sessionStorage.getItem("sigap_token");
-  const nama = sessionStorage.getItem("sigap_nama");
-  const kelas = sessionStorage.getItem("sigap_kelas");
+const URL_APPS_SCRIPT =
+  "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
 
-  if (!token || !nama) {
-    alert("Silakan login terlebih dahulu.");
-    window.location.replace("login.html");
-  } else {
-    document.getElementById("namaSiswa").textContent = nama;
-    document.getElementById("namaSambutan").textContent = nama;
-    document.getElementById("kelasSiswa").textContent = kelas || "-";
+const token = sessionStorage.getItem("sigap_token");
+const nama = sessionStorage.getItem("sigap_nama");
+const kelas = sessionStorage.getItem("sigap_kelas");
+
+if (!token || !nama) {
+  alert("Silakan login terlebih dahulu.");
+  window.location.replace("login.html");
+} else {
+  document.getElementById("namaSiswa").textContent = nama;
+  document.getElementById("namaSambutan").textContent = nama;
+  document.getElementById("kelasSiswa").textContent = kelas || "-";
+}
+
+// KELUAR
+document.getElementById("tombolKeluar").addEventListener("click", function() {
+  sessionStorage.removeItem("sigap_token");
+  sessionStorage.removeItem("sigap_nama");
+  sessionStorage.removeItem("sigap_kelas");
+  window.location.replace("login.html");
+});
+
+// IKON AKTIVITAS
+function ikonAktivitas(aktivitas) {
+  const ikon = {
+    "Membuka materi": "📖",
+    "Membuka video": "🎬",
+    "Membuka kuis": "📝",
+    "Membuka tugas": "📋"
+  };
+
+  return ikon[aktivitas] || "📚";
+}
+
+// MEMUAT PROGRES BELAJAR
+async function muatProgres() {
+  const daftar = document.getElementById("daftarRiwayat");
+  const tombol = document.getElementById("tombolRefresh");
+
+  daftar.replaceChildren();
+
+  const pesan = document.createElement("div");
+  pesan.className = "status-progres";
+  pesan.textContent = "Sedang memuat data progres belajar...";
+  daftar.appendChild(pesan);
+
+  tombol.disabled = true;
+  tombol.textContent = "Memuat...";
+
+  try {
+    const respons = await fetch(URL_APPS_SCRIPT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        aksi: "riwayat",
+        token: token
+      }),
+      redirect: "follow"
+    });
+
+    const hasil = await respons.json();
+
+    if (!hasil.sukses) {
+      throw new Error(hasil.pesan || "Gagal mengambil data.");
+    }
+
+    const riwayat = Array.isArray(hasil.riwayat)
+      ? hasil.riwayat
+      : [];
+
+    document.getElementById("totalAktivitas").textContent =
+      hasil.totalAktivitas || 0;
+
+    const hitung = {
+      "Membuka materi": 0,
+      "Membuka video": 0,
+      "Membuka kuis": 0,
+      "Membuka tugas": 0
+    };
+
+    riwayat.forEach(function(item) {
+      if (Object.prototype.hasOwnProperty.call(hitung, item.aktivitas)) {
+        hitung[item.aktivitas]++;
+      }
+    });
+
+    // Jumlah kategori dihitung dari seluruh riwayat yang dikirim server.
+    // Riwayat pada versi ini dibatasi 10 aktivitas terakhir.
+    document.getElementById("jumlahMateri").textContent =
+      hitung["Membuka materi"];
+
+    document.getElementById("jumlahVideo").textContent =
+      hitung["Membuka video"];
+
+    document.getElementById("jumlahKuis").textContent =
+      hitung["Membuka kuis"];
+
+    document.getElementById("jumlahTugas").textContent =
+      hitung["Membuka tugas"];
+
+    daftar.replaceChildren();
+
+    if (riwayat.length === 0) {
+      const kosong = document.createElement("div");
+      kosong.className = "status-progres";
+      kosong.textContent =
+        "Belum ada aktivitas belajar yang tercatat. Silakan mulai belajar melalui menu pembelajaran.";
+      daftar.appendChild(kosong);
+      return;
+    }
+
+    riwayat.forEach(function(item) {
+      const baris = document.createElement("div");
+      baris.className = "riwayat-item";
+
+      const ikon = document.createElement("div");
+      ikon.className = "riwayat-ikon";
+      ikon.textContent = ikonAktivitas(item.aktivitas);
+
+      const detail = document.createElement("div");
+      detail.className = "riwayat-detail";
+
+      const judul = document.createElement("strong");
+      judul.textContent = item.aktivitas || "Aktivitas belajar";
+
+      const waktu = document.createElement("small");
+      waktu.textContent =
+        (item.halaman || "Halaman pembelajaran") +
+        " • " +
+        (item.waktu || "-");
+
+      detail.appendChild(judul);
+      detail.appendChild(waktu);
+
+      baris.appendChild(ikon);
+      baris.appendChild(detail);
+
+      daftar.appendChild(baris);
+    });
+
+  } catch (error) {
+    console.error("Kesalahan progres:", error);
+
+    daftar.replaceChildren();
+
+    const gagal = document.createElement("div");
+    gagal.className = "status-progres";
+    gagal.textContent =
+      "Progres belum dapat dimuat. Periksa koneksi internet atau silakan login kembali jika sesi telah berakhir.";
+
+    daftar.appendChild(gagal);
+
+  } finally {
+    tombol.disabled = false;
+    tombol.textContent = "↻ Perbarui Progres";
   }
+}
 
-  document.getElementById("tombolKeluar").addEventListener("click", function() {
-    sessionStorage.removeItem("sigap_token");
-    sessionStorage.removeItem("sigap_nama");
-    sessionStorage.removeItem("sigap_kelas");
-    window.location.replace("login.html");
-  });
+// TOMBOL PERBARUI
+document.getElementById("tombolRefresh").addEventListener(
+  "click",
+  muatProgres
+);
+
+// MUAT PROGRES SAAT DASHBOARD DIBUKA
+if (token && nama) {
+  muatProgres();
+}
 </script>
 
 </body>
