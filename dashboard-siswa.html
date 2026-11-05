@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Siswa | Web Learning SIGAP</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f3f6fb;
+      font-family: Arial, sans-serif;
+      color: #263445;
+    }
+
+    .dashboard {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #123b5d;
+      color: white;
+      padding: 25px 18px;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      padding: 5px 10px 25px;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+
+    .brand h2 {
+      margin: 0;
+      font-size: 23px;
+    }
+
+    .brand p {
+      margin: 7px 0 0;
+      font-size: 12px;
+      color: #c7dce9;
+    }
+
+    .menu-title {
+      margin: 28px 10px 12px;
+      font-size: 11px;
+      color: #a9c5d8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .menu a {
+      display: block;
+      padding: 13px 14px;
+      margin-bottom: 7px;
+      color: #e8f2f8;
+      text-decoration: none;
+      border-radius: 9px;
+      font-size: 14px;
+    }
+
+    .menu a:hover,
+    .menu a.aktif {
+      background: #087f8c;
+      color: white;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 28px;
+    }
+
+    .topbar h2 {
+      margin: 0;
+      color: #123b5d;
+    }
+
+    .identitas {
+      background: white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.05);
+      font-size: 14px;
+    }
+
+    .sambutan {
+      padding: 28px;
+      border-radius: 17px;
+      color: white;
+      background: linear-gradient(120deg,#087f8c,#123b5d);
+      margin-bottom: 25px;
+    }
+
+    .sambutan h1 {
+      margin: 0 0 10px;
+      font-size: 27px;
+    }
+
+    .sambutan p {
+      margin: 0;
+      line-height: 1.6;
+      color: #e1f3f5;
+    }
+
+    .judul {
+      color: #123b5d;
+      margin: 28px 0 16px;
+    }
+
+    .kartu-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .kartu {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(0,0,0,.05);
+    }
+
+    .kartu .ikon {
+      font-size: 28px;
+    }
+
+    .kartu h3 {
+      margin: 12px 0 8px;
+      color: #123b5d;
+    }
+
+    .kartu p {
+      color: #718096;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .kartu a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #087f8c;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .informasi {
+      background: white;
+      padding: 22px;
+      margin-top: 22px;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(0,0,0,.05);
+      line-height: 1.7;
+    }
+
+    .keluar {
+      width: 100%;
+      margin-top: 25px;
+      padding: 12px;
+      background: #c94c4c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 35px;
+      text-align: center;
+      color: #8593a3;
+      font-size: 12px;
+    }
+
+    @media(max-width:850px) {
+      .dashboard {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .menu {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 5px;
+      }
+
+      .menu-title {
+        margin-top: 18px;
+      }
+
+      .keluar {
+        max-width: 200px;
+      }
+
+      .kartu-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:520px) {
+      .main {
+        padding: 17px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .sambutan h1 {
+        font-size: 22px;
+      }
+
+      .kartu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <h2>🎓 SIGAP</h2>
+      <p>WEB LEARNING LPKC SMKN 1 PAKONG</p>
+    </div>
+
+    <p class="menu-title">Menu Pembelajaran</p>
+
+    <nav class="menu">
+      <a href="dashboard-siswa.html" class="aktif">🏠 Beranda</a>
+      <a href="media.html">📚 Media Pembelajaran</a>
+      <a href="bahan.html">📖 Bahan Pembelajaran</a>
+      <a href="penilaian.html">📝 Penilaian</a>
+      <a href="sumber-belajar.html">🌐 Sumber Belajar</a>
+      <a href="presensi.html">📅 Presensi</a>
+    </nav>
+
+    <button class="keluar" id="tombolKeluar">
+      Keluar
+    </button>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <h2>Dashboard Siswa</h2>
+
+      <div class="identitas">
+        👤 <strong id="namaSiswa">Siswa</strong>
+        <br>
+        Kelas: <span id="kelasSiswa">-</span>
+      </div>
+    </div>
+
+    <section class="sambutan">
+      <h1>Selamat Datang, <span id="namaSambutan">Siswa</span>! 👋</h1>
+      <p>
+        Selamat belajar di Web Learning SIGAP.
+        Mari tingkatkan pengetahuan, keterampilan,
+        dan kompetensi layanan kesehatan.
+      </p>
+    </section>
+
+    <h2 class="judul">Menu Pembelajaran</h2>
+
+    <section class="kartu-grid">
+
+      <div class="kartu">
+        <div class="ikon">📚</div>
+        <h3>Media Pembelajaran</h3>
+        <p>Akses media dan materi pembelajaran interaktif.</p>
+        <a href="media.html">Buka Media →</a>
+      </div>
+
+      <div class="kartu">
+        <div class="ikon">📖</div>
+        <h3>Bahan Pembelajaran</h3>
+        <p>Pelajari bahan ajar untuk meningkatkan kompetensi.</p>
+        <a href="bahan.html">Buka Bahan →</a>
+      </div>
+
+      <div class="kartu">
+        <div class="ikon">📝</div>
+        <h3>Penilaian</h3>
+        <p>Kerjakan evaluasi dan lihat kegiatan penilaian.</p>
+        <a href="penilaian.html">Buka Penilaian →</a>
+      </div>
+
+      <div class="kartu">
+        <div class="ikon">🌐</div>
+        <h3>Sumber Belajar</h3>
+        <p>Temukan referensi belajar tambahan.</p>
+        <a href="sumber-belajar.html">Buka Sumber →</a>
+      </div>
+
+      <div class="kartu">
+        <div class="ikon">📅</div>
+        <h3>Presensi</h3>
+        <p>Akses halaman presensi kegiatan pembelajaran.</p>
+        <a href="presensi.html">Buka Presensi →</a>
+      </div>
+
+      <div class="kartu">
+        <div class="ikon">🎯</div>
+        <h3>Semangat Belajar</h3>
+        <p>Terus belajar dan kembangkan kemampuan terbaikmu.</p>
+      </div>
+
+    </section>
+
+    <section class="informasi">
+      <h3>📢 Informasi Pembelajaran</h3>
+      <p>
+        Selalu ikuti kegiatan pembelajaran, pelajari bahan ajar,
+        dan kerjakan penilaian sesuai arahan guru.
+      </p>
+      <p>
+        <strong>LPKC SMKN 1 Pakong</strong><br>
+        Ajhâr, Ngabdi, sareng Ngajhâga.
+      </p>
+    </section>
+
+    <footer>
+      © 2026 Web Learning SIGAP | LPKC SMKN 1 Pakong
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  const token = sessionStorage.getItem("sigap_token");
+  const nama = sessionStorage.getItem("sigap_nama");
+  const kelas = sessionStorage.getItem("sigap_kelas");
+
+  // Dashboard hanya dapat dibuka setelah login.
+  if (!token || !nama) {
+    alert("Silakan login terlebih dahulu.");
+    window.location.replace("login.html");
+  } else {
+    document.getElementById("namaSiswa").textContent = nama;
+    document.getElementById("namaSambutan").textContent = nama;
+    document.getElementById("kelasSiswa").textContent = kelas || "-";
+  }
+
+  document.getElementById("tombolKeluar").addEventListener("click", function() {
+    sessionStorage.removeItem("sigap_token");
+    sessionStorage.removeItem("sigap_nama");
+    sessionStorage.removeItem("sigap_kelas");
+
+    window.location.replace("login.html");
+  });
+</script>
+
+</body>
+</html>
