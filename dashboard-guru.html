@@ -317,6 +317,74 @@ body {
     color:var(--navy);
 }
 
+/* GRAFIK TREN HARIAN DAN BULANAN */
+.trend-grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+}
+
+.trend-card {
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    border:1px solid #e8edf3;
+    box-shadow:0 4px 14px #14284609;
+    min-width:0;
+}
+
+.trend-card h3 {
+    color:var(--navy);
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.trend-card > p {
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:22px;
+}
+
+.trend-list {
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.trend-item {
+    display:grid;
+    grid-template-columns:75px minmax(0,1fr) 30px;
+    align-items:center;
+    gap:10px;
+    font-size:11px;
+}
+
+.trend-label {
+    color:#526277;
+    font-weight:600;
+}
+
+.trend-bar-bg {
+    height:12px;
+    background:#edf1f5;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.trend-bar-fill {
+    height:100%;
+    width:0;
+    border-radius:20px;
+    background:linear-gradient(90deg,#13a89e,#39c4b4);
+    transition:width .7s ease;
+}
+
+.trend-number {
+    color:var(--navy);
+    font-weight:bold;
+    text-align:right;
+}
+
 /* INFO */
 .info-box {
     background:white;
@@ -346,13 +414,13 @@ body {
     padding:30px 10px 10px;
 }
 
-.loading {
-    opacity:.55;
-}
-
 /* RESPONSIVE */
 @media(max-width:1000px) {
     .summary-grid {grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:900px) {
+    .trend-grid {grid-template-columns:1fr}
 }
 
 @media(max-width:700px) {
@@ -470,6 +538,7 @@ body {
         <div class="welcome-icon">🎓</div>
     </section>
 
+    <!-- MONITORING AKTIVITAS -->
     <section class="section">
 
         <div class="section-heading">
@@ -534,6 +603,7 @@ body {
         </div>
     </section>
 
+    <!-- GRAFIK JENIS AKTIVITAS -->
     <section class="section">
 
         <div class="section-heading">
@@ -585,6 +655,38 @@ body {
         </div>
     </section>
 
+    <!-- GRAFIK TREN HARIAN DAN BULANAN -->
+    <section class="section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Tren Perkembangan Aktivitas</h2>
+                <p>Pemantauan penggunaan Web Learning SIGAP dari waktu ke waktu.</p>
+            </div>
+        </div>
+
+        <div class="trend-grid">
+
+            <div class="trend-card">
+                <h3>Aktivitas 7 Hari Terakhir</h3>
+                <p>Jumlah aktivitas pembelajaran setiap hari.</p>
+                <div class="trend-list" id="grafikHarian">
+                    <p>Menunggu data...</p>
+                </div>
+            </div>
+
+            <div class="trend-card">
+                <h3>Aktivitas 6 Bulan Terakhir</h3>
+                <p>Jumlah aktivitas pembelajaran setiap bulan.</p>
+                <div class="trend-list" id="grafikBulanan">
+                    <p>Menunggu data...</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INFORMASI -->
     <div class="info-box">
         <h3>ℹ️ Informasi Dashboard Guru</h3>
         <p>
@@ -612,6 +714,7 @@ body {
 const URL_APPS_SCRIPT =
 "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
 
+// TANGGAL DASHBOARD
 document.getElementById("tanggal").textContent =
     new Date().toLocaleDateString("id-ID", {
         weekday:"long",
@@ -620,18 +723,22 @@ document.getElementById("tanggal").textContent =
         year:"numeric"
     });
 
+// STATUS
 function tampilStatus(pesan, jenis) {
     const status = document.getElementById("status");
     status.textContent = pesan;
     status.className = "status " + (jenis || "");
 }
 
+// FORMAT ANGKA
 function tampilAngka(id, nilai) {
     document.getElementById(id).textContent =
         Number(nilai || 0).toLocaleString("id-ID");
 }
 
+// GRAFIK JENIS AKTIVITAS
 function aturGrafik(rekap) {
+
     const nilai = {
         materi:Number(rekap.materi || 0),
         video:Number(rekap.video || 0),
@@ -650,24 +757,64 @@ function aturGrafik(rekap) {
     const jenis = ["materi","video","kuis","tugas"];
 
     jenis.forEach(function(item) {
+
         const persen = nilai[item] / maksimum * 100;
 
-        document.getElementById("bar" +
-            item.charAt(0).toUpperCase() + item.slice(1)
+        document.getElementById(
+            "bar" + item.charAt(0).toUpperCase() + item.slice(1)
         ).style.width = persen + "%";
 
-        document.getElementById("angka" +
-            item.charAt(0).toUpperCase() + item.slice(1)
+        document.getElementById(
+            "angka" + item.charAt(0).toUpperCase() + item.slice(1)
         ).textContent = nilai[item].toLocaleString("id-ID");
+
     });
 }
 
+// GRAFIK TREN HARIAN DAN BULANAN
+function tampilkanTren(data, elemenId, jenisLabel) {
+
+    const wadah = document.getElementById(elemenId);
+
+    if (!Array.isArray(data) || data.length === 0) {
+        wadah.innerHTML = "<p>Belum ada data aktivitas.</p>";
+        return;
+    }
+
+    const maksimum = Math.max(
+        ...data.map(item => Number(item.total || 0)),
+        1
+    );
+
+    wadah.innerHTML = data.map(function(item) {
+
+        const jumlah = Number(item.total || 0);
+        const persen = (jumlah / maksimum) * 100;
+        const label = item[jenisLabel] || "-";
+
+        return `
+            <div class="trend-item">
+                <div class="trend-label">${label}</div>
+                <div class="trend-bar-bg">
+                    <div class="trend-bar-fill"
+                         style="width:${persen}%">
+                    </div>
+                </div>
+                <div class="trend-number">${jumlah}</div>
+            </div>
+        `;
+
+    }).join("");
+}
+
+// AMBIL DATA DARI GOOGLE APPS SCRIPT
 async function ambilData() {
 
     const tombol = document.getElementById("tombolRefresh");
 
     tombol.disabled = true;
     tombol.textContent = "Memuat...";
+
     tampilStatus("Sedang mengambil data aktivitas dari Google Sheets...");
 
     try {
@@ -694,6 +841,7 @@ async function ambilData() {
 
         const rekap = hasil.rekap || {};
 
+        // ANGKA RINGKASAN
         tampilAngka("totalAktivitas", hasil.totalAktivitas);
         tampilAngka("jumlahSiswa", hasil.jumlahSiswaAktif);
         tampilAngka("totalMateri", rekap.materi);
@@ -701,8 +849,24 @@ async function ambilData() {
         tampilAngka("totalKuis", rekap.kuis);
         tampilAngka("totalTugas", rekap.tugas);
 
+        // GRAFIK JENIS AKTIVITAS
         aturGrafik(rekap);
 
+        // GRAFIK HARIAN
+        tampilkanTren(
+            hasil.trenHarian,
+            "grafikHarian",
+            "tanggal"
+        );
+
+        // GRAFIK BULANAN
+        tampilkanTren(
+            hasil.trenBulanan,
+            "grafikBulanan",
+            "bulan"
+        );
+
+        // WAKTU PEMBARUAN
         document.getElementById("waktuUpdate").textContent =
             hasil.diperbarui || new Date().toLocaleString("id-ID");
 
@@ -724,10 +888,11 @@ async function ambilData() {
 
         tombol.disabled = false;
         tombol.textContent = "↻ Perbarui Data";
+
     }
 }
 
-// Memuat data saat halaman dibuka
+// MEMUAT DATA SAAT HALAMAN DIBUKA
 ambilData();
 </script>
 
