@@ -247,6 +247,11 @@
   background: #066875;
 }
 
+.dashboard .tombol-refresh:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
 .dashboard .ringkasan-grid {
   display: grid;
   grid-template-columns: repeat(5,minmax(0,1fr));
@@ -584,6 +589,7 @@ const token = sessionStorage.getItem("sigap_token");
 const nama = sessionStorage.getItem("sigap_nama");
 const kelas = sessionStorage.getItem("sigap_kelas");
 
+// CEK LOGIN
 if (!token || !nama) {
   alert("Silakan login terlebih dahulu.");
   window.location.replace("login.html");
@@ -651,36 +657,26 @@ async function muatProgres() {
       ? hasil.riwayat
       : [];
 
+    // TOTAL SELURUH AKTIVITAS
     document.getElementById("totalAktivitas").textContent =
       hasil.totalAktivitas || 0;
 
-    const hitung = {
-      "Membuka materi": 0,
-      "Membuka video": 0,
-      "Membuka kuis": 0,
-      "Membuka tugas": 0
-    };
+    // REKAP SELURUH AKTIVITAS DARI SPREADSHEET
+    const rekap = hasil.rekap || {};
 
-    riwayat.forEach(function(item) {
-      if (Object.prototype.hasOwnProperty.call(hitung, item.aktivitas)) {
-        hitung[item.aktivitas]++;
-      }
-    });
-
-    // Jumlah kategori dihitung dari seluruh riwayat yang dikirim server.
-    // Riwayat pada versi ini dibatasi 10 aktivitas terakhir.
     document.getElementById("jumlahMateri").textContent =
-      hitung["Membuka materi"];
+      rekap.materi || 0;
 
     document.getElementById("jumlahVideo").textContent =
-      hitung["Membuka video"];
+      rekap.video || 0;
 
     document.getElementById("jumlahKuis").textContent =
-      hitung["Membuka kuis"];
+      rekap.kuis || 0;
 
     document.getElementById("jumlahTugas").textContent =
-      hitung["Membuka tugas"];
+      rekap.tugas || 0;
 
+    // TAMPILKAN 10 RIWAYAT TERAKHIR
     daftar.replaceChildren();
 
     if (riwayat.length === 0) {
