@@ -1,3 +1,29 @@
+
+/* ============================================
+   WEB LEARNING SIGAP
+   LPKC SMKN 1 PAKONG
+   MODERN PROFESSIONAL DESIGN
+   NAVY - TEAL - WHITE
+============================================ */
+
+/* 1. GLOBAL */
+
+:root {
+    --navy: #102a43;
+    --navy-dark: #0b1f33;
+    --blue: #164e73;
+    --teal: #0d9488;
+    --teal-dark: #0f766e;
+    --teal-light: #ccfbf1;
+    --bg: #f4f8fb;
+    --white: #ffffff;
+    --text: #243b53;
+    --muted: #627d98;
+    --border: #e1eaf0;
+    --shadow: 0 10px 30px rgba(16,42,67,.08);
+    --radius: 18px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,29 +35,41 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
-    color: #1e293b;
-    line-height: 1.6;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    transition: .3s ease;
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+/* 2. NAVBAR */
 
 .navbar {
     width: 100%;
-    background: #ffffff;
-    padding: 18px 7%;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(12px);
+    padding: 15px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(16,42,67,.07);
+    border-bottom: 1px solid var(--border);
 }
 
 .logo {
-    color: #0f172a;
+    color: var(--navy);
     line-height: 1.1;
 }
 
@@ -45,132 +83,155 @@ body {
 
 .logo span {
     display: block;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: .5px;
 }
 
 .logo small {
     display: block;
-    margin-top: 5px;
+    margin-top: 6px;
     font-size: 10px;
     font-weight: bold;
     letter-spacing: 2px;
-    color: #2563eb;
+    color: var(--teal);
 }
 
 nav {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 24px;
 }
 
 nav a {
     text-decoration: none;
-    color: #334155;
-    font-size: 15px;
+    color: var(--navy);
+    font-size: 14px;
     font-weight: 600;
 }
 
 nav a:hover {
-    color: #2563eb;
+    color: var(--teal);
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* 3. HERO */
 
 .hero {
-    min-height: 520px;
-    padding: 80px 8%;
+    min-height: 570px;
+    padding: 85px 8%;
     display: flex;
     align-items: center;
-    background: linear-gradient(
-        120deg,
-        #0f172a,
-        #1e3a8a,
-        #2563eb
-    );
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 85% 20%,
+        rgba(45,212,191,.22), transparent 30%),
+        linear-gradient(125deg,
+        var(--navy-dark),
+        var(--blue),
+        var(--teal));
     color: white;
 }
 
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 50%;
+    right: -100px;
+    bottom: -150px;
+}
+
 .hero-content {
-    max-width: 700px;
+    max-width: 750px;
+    position: relative;
+    z-index: 2;
 }
 
 .hero small {
     font-size: 13px;
     font-weight: bold;
     letter-spacing: 4px;
-    color: #bfdbfe;
+    color: #99f6e4;
 }
 
 .hero h1 {
-    font-size: 64px;
-    line-height: 1.05;
+    font-size: clamp(40px, 5vw, 65px);
+    line-height: 1.12;
     margin: 20px 0;
     font-weight: 800;
+    letter-spacing: -1px;
 }
 
 .hero h2 {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px 0;
     font-size: 22px;
     font-weight: 600;
     font-style: italic;
-    color: #bfdbfe;
-    letter-spacing: 1px;
+    color: #99f6e4;
 }
 
 .hero p {
-    max-width: 600px;
-    font-size: 18px;
-    line-height: 1.8;
-    color: #e2e8f0;
+    max-width: 620px;
+    font-size: 17px;
+    line-height: 1.9;
+    color: #e0f2fe;
 }
 
 
-/* =========================
-   BUTTON
-========================= */
+/* 4. BUTTON */
 
 .button {
     display: inline-block;
     margin-top: 30px;
-    padding: 14px 28px;
-    background: white;
-    color: #1e3a8a;
+    padding: 15px 32px;
+    background: var(--teal);
+    color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 50px;
     font-weight: bold;
+    box-shadow: 0 8px 22px rgba(13,148,136,.25);
+    transition: .3s ease;
 }
 
 .button:hover {
-    transform: translateY(-3px);
+    background: var(--teal-dark);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(13,148,136,.3);
 }
 
 
-/* =========================
-   MENU
-========================= */
+/* 5. MENU */
 
 .menu {
-    padding: 75px 8%;
-    background: #f5f7fb;
+    padding: 85px 8%;
+    background: var(--bg);
 }
 
 .menu h2 {
     text-align: center;
-    margin-bottom: 45px;
+    margin-bottom: 50px;
     font-size: 36px;
-    color: #0f172a;
+    color: var(--navy);
+    font-weight: 800;
+}
+
+.menu h2::after {
+    content: "";
+    display: block;
+    width: 65px;
+    height: 4px;
+    background: var(--teal);
+    border-radius: 10px;
+    margin: 15px auto 0;
 }
 
 
-/* =========================
-   CARDS
-========================= */
+/* 6. CARDS */
 
 .cards {
     max-width: 1200px;
@@ -183,10 +244,10 @@ nav a:hover {
 .card {
     background: white;
     padding: 30px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
-    border: 1px solid #e2e8f0;
-    transition: 0.3s ease;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: .3s ease;
     position: relative;
     overflow: hidden;
 }
@@ -196,30 +257,30 @@ nav a:hover {
     position: absolute;
     left: 0;
     top: 0;
-    width: 5px;
+    width: 4px;
     height: 100%;
-    background: #2563eb;
+    background: var(--teal);
 }
 
 .card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(16,42,67,.13);
 }
 
 .card .icon {
     font-size: 42px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .card h3 {
     margin: 12px 0;
     font-size: 20px;
-    color: #0f172a;
+    color: var(--navy);
 }
 
 .card p {
-    color: #64748b;
-    line-height: 1.7;
+    color: var(--muted);
+    line-height: 1.8;
     font-size: 14px;
 }
 
@@ -227,147 +288,47 @@ nav a:hover {
     display: inline-block;
     margin-top: 20px;
     text-decoration: none;
-    color: #2563eb;
+    color: var(--teal);
     font-weight: bold;
 }
 
 .card a:hover {
-    color: #1d4ed8;
+    color: var(--teal-dark);
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* 7. FOOTER */
 
 footer {
-    background: #0f172a;
+    background: linear-gradient(120deg,
+        var(--navy-dark),
+        var(--blue));
     color: white;
     text-align: center;
-    padding: 45px 20px;
+    padding: 50px 20px;
+    border-top: 4px solid var(--teal);
 }
 
 footer h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 21px;
+    margin-bottom: 10px;
 }
 
 footer p {
-    color: #cbd5e1;
+    color: #d8e9f0;
     margin-bottom: 12px;
 }
 
 footer small {
-    color: #94a3b8;
+    color: #a9c1d1;
 }
 
 
-/* =========================
-   TABLET
-========================= */
-
-@media (max-width: 1000px) {
-
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .hero h1 {
-        font-size: 55px;
-    }
-}
-
-
-/* =========================
-   HP
-========================= */
-
-@media (max-width: 800px) {
-
-    .navbar {
-        flex-direction: column;
-        gap: 18px;
-        padding: 20px;
-    }
-
-    .logo {
-        text-align: center;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px 18px;
-    }
-
-    .hero {
-        min-height: 500px;
-        padding: 70px 25px;
-    }
-
-    .hero h1 {
-        font-size: 45px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .menu {
-        padding: 60px 20px;
-    }
-
-    .menu h2 {
-        font-size: 30px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .card {
-        padding: 25px;
-    }
-}
-
-
-/* =========================
-   HP KECIL
-========================= */
-
-@media (max-width: 450px) {
-
-    .logo span {
-        font-size: 24px;
-    }
-
-    .hero {
-        padding: 60px 20px;
-    }
-
-    .hero h1 {
-        font-size: 38px;
-    }
-
-    .hero p {
-        font-size: 15px;
-    }
-
-    .button {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-
-/* =========================
-   PROFIL LPKC
-========================= */
+/* 8. PROFIL LPKC */
 
 .profil {
-    padding: 80px 8%;
-    background: linear-gradient(135deg, #eff6ff, #ffffff);
+    padding: 85px 8%;
+    background: linear-gradient(135deg,#e8f7f5,#ffffff);
 }
 
 .profil-content {
@@ -380,7 +341,7 @@ footer small {
 }
 
 .profil-text small {
-    color: #2563eb;
+    color: var(--teal);
     font-weight: bold;
     letter-spacing: 3px;
 }
@@ -388,20 +349,21 @@ footer small {
 .profil-text h2 {
     margin: 12px 0 20px;
     font-size: 38px;
-    color: #0f172a;
+    color: var(--navy);
 }
 
 .profil-text p {
     margin-bottom: 15px;
-    color: #64748b;
-    line-height: 1.8;
+    color: var(--muted);
+    line-height: 1.9;
 }
 
 .profil-box {
-    background: #ffffff;
+    background: white;
     padding: 30px;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .profil-item {
@@ -409,7 +371,7 @@ footer small {
     gap: 18px;
     align-items: center;
     padding: 18px 0;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
 }
 
 .profil-item:last-child {
@@ -418,33 +380,30 @@ footer small {
 
 .profil-item span {
     font-size: 32px;
+    color: var(--teal);
 }
 
 .profil-item h3 {
     margin-bottom: 4px;
-    color: #0f172a;
+    color: var(--navy);
 }
 
 .profil-item p {
     margin: 0;
     font-size: 14px;
-    color: #64748b;
+    color: var(--muted);
 }
 
 
-/* =========================
-   PROFIL HEADER
-========================= */
+/* 9. PROFIL HEADER */
 
 .profil-header {
     text-align: center;
-    padding: 80px 20px;
-    background: linear-gradient(
-        120deg,
-        #0f172a,
-        #1e3a8a,
-        #2563eb
-    );
+    padding: 85px 20px;
+    background: linear-gradient(125deg,
+        var(--navy-dark),
+        var(--blue),
+        var(--teal));
     color: white;
 }
 
@@ -454,13 +413,13 @@ footer small {
     object-fit: contain;
     background: white;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 22px;
     margin-bottom: 20px;
 }
 
 .profil-header small {
     display: block;
-    color: #bfdbfe;
+    color: #99f6e4;
     font-weight: bold;
     letter-spacing: 3px;
 }
@@ -471,18 +430,16 @@ footer small {
 }
 
 .profil-header p {
-    color: #e2e8f0;
+    color: #e0f2fe;
     font-size: 17px;
 }
 
 
-/* =========================
-   TENTANG
-========================= */
+/* 10. TENTANG */
 
 .profil-detail {
-    padding: 80px 8%;
-    background: #ffffff;
+    padding: 85px 8%;
+    background: white;
 }
 
 .profil-detail-content {
@@ -492,7 +449,7 @@ footer small {
 
 .profil-detail small,
 .tujuan-content > small {
-    color: #2563eb;
+    color: var(--teal);
     font-weight: bold;
     letter-spacing: 3px;
 }
@@ -500,23 +457,21 @@ footer small {
 .profil-detail h2 {
     font-size: 36px;
     margin: 12px 0 20px;
-    color: #0f172a;
+    color: var(--navy);
 }
 
 .profil-detail p {
-    color: #64748b;
-    line-height: 1.8;
+    color: var(--muted);
+    line-height: 1.9;
     margin-bottom: 15px;
 }
 
 
-/* =========================
-   VISI MISI
-========================= */
+/* 11. VISI MISI */
 
 .visi-misi {
-    padding: 80px 8%;
-    background: #f5f7fb;
+    padding: 85px 8%;
+    background: var(--bg);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -526,27 +481,28 @@ footer small {
 .misi-box {
     background: white;
     padding: 40px;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .visi-icon {
     font-size: 40px;
     margin-bottom: 10px;
+    color: var(--teal);
 }
 
 .visi-box h2,
 .misi-box h2 {
     font-size: 30px;
-    color: #0f172a;
+    color: var(--navy);
     margin-bottom: 15px;
 }
 
 .visi-box p,
 .misi-box li {
-    color: #64748b;
-    line-height: 1.8;
+    color: var(--muted);
+    line-height: 1.9;
 }
 
 .misi-box ul {
@@ -558,13 +514,11 @@ footer small {
 }
 
 
-/* =========================
-   TUJUAN
-========================= */
+/* 12. TUJUAN */
 
 .tujuan {
-    padding: 80px 8%;
-    background: linear-gradient(135deg, #eff6ff, #ffffff);
+    padding: 85px 8%;
+    background: linear-gradient(135deg,#e8f7f5,#ffffff);
 }
 
 .tujuan-content {
@@ -574,46 +528,50 @@ footer small {
 
 .tujuan h2 {
     font-size: 36px;
-    color: #0f172a;
+    color: var(--navy);
     margin: 12px 0 40px;
 }
 
 .tujuan-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 25px;
 }
 
 .tujuan-card {
     background: white;
     padding: 30px;
-    border-radius: 18px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: .3s ease;
+}
+
+.tujuan-card:hover {
+    transform: translateY(-7px);
 }
 
 .tujuan-card span {
     font-size: 40px;
+    color: var(--teal);
 }
 
 .tujuan-card h3 {
     margin: 15px 0 8px;
-    color: #0f172a;
+    color: var(--navy);
 }
 
 .tujuan-card p {
-    color: #64748b;
-    line-height: 1.7;
+    color: var(--muted);
+    line-height: 1.8;
 }
 
 
-/* =========================
-   FASILITAS PRAKTIK
-========================= */
+/* 13. FASILITAS */
 
 .fasilitas {
-    padding: 80px 8%;
-    background: #ffffff;
+    padding: 85px 8%;
+    background: white;
 }
 
 .fasilitas-content {
@@ -622,66 +580,66 @@ footer small {
 }
 
 .fasilitas-content > small {
-    color: #2563eb;
+    color: var(--teal);
     font-weight: bold;
     letter-spacing: 3px;
 }
 
 .fasilitas-content h2 {
     font-size: 36px;
-    color: #0f172a;
+    color: var(--navy);
     margin: 12px 0 15px;
 }
 
 .fasilitas-intro {
     max-width: 750px;
-    color: #64748b;
-    line-height: 1.8;
+    color: var(--muted);
+    line-height: 1.9;
     margin-bottom: 40px;
 }
 
 .fasilitas-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4,1fr);
     gap: 22px;
 }
 
 .fasilitas-card {
-    background: #f8fafc;
+    background: var(--bg);
     padding: 30px;
-    border-radius: 18px;
-    border: 1px solid #e2e8f0;
-    transition: 0.3s ease;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: .3s ease;
 }
 
 .fasilitas-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+    box-shadow: var(--shadow);
+    background: white;
 }
 
 .fasilitas-card span {
     font-size: 40px;
+    color: var(--teal);
 }
 
 .fasilitas-card h3 {
     margin: 15px 0 8px;
-    color: #0f172a;
+    color: var(--navy);
 }
 
 .fasilitas-card p {
-    color: #64748b;
+    color: var(--muted);
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 
-/* =========================
-   GALERI KEGIATAN
-========================= */
+/* 14. GALERI */
 
 .galeri {
-    padding: 80px 8%;
-    background: #f5f7fb;
+    padding: 85px 8%;
+    background: var(--bg);
 }
 
 .galeri-content {
@@ -690,36 +648,36 @@ footer small {
 }
 
 .galeri-content > small {
-    color: #2563eb;
+    color: var(--teal);
     font-weight: bold;
     letter-spacing: 3px;
 }
 
 .galeri-content h2 {
     font-size: 36px;
-    color: #0f172a;
+    color: var(--navy);
     margin: 12px 0 15px;
 }
 
 .galeri-intro {
-    color: #64748b;
-    line-height: 1.8;
+    color: var(--muted);
+    line-height: 1.9;
     margin-bottom: 40px;
 }
 
 .galeri-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4,1fr);
     gap: 20px;
 }
 
 .galeri-card {
     height: 230px;
     background: white;
-    border-radius: 18px;
+    border-radius: 20px;
     overflow: hidden;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .galeri-card img {
@@ -727,26 +685,22 @@ footer small {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: 0.4s ease;
+    transition: .5s ease;
 }
 
 .galeri-card:hover img {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
 
-/* =========================
-   PROFIL PENGELOLA
-========================= */
+/* 15. PROFIL PENGELOLA */
 
 .pengelola-header {
     padding: 85px 8%;
-    background: linear-gradient(
-        120deg,
-        #0f172a,
-        #1e3a8a,
-        #2563eb
-    );
+    background: linear-gradient(125deg,
+        var(--navy-dark),
+        var(--blue),
+        var(--teal));
     color: white;
 }
 
@@ -756,7 +710,7 @@ footer small {
 }
 
 .pengelola-header small {
-    color: #bfdbfe;
+    color: #99f6e4;
     font-weight: bold;
     letter-spacing: 3px;
 }
@@ -768,18 +722,16 @@ footer small {
 }
 
 .pengelola-header p {
-    color: #e2e8f0;
+    color: #e0f2fe;
     font-size: 18px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 
-/* =========================
-   PROFIL UTAMA
-========================= */
+/* 16. PROFIL GURU */
 
 .profil-guru {
-    padding: 80px 8%;
+    padding: 85px 8%;
     background: white;
 }
 
@@ -792,9 +744,6 @@ footer small {
     align-items: center;
 }
 
-
-/* FOTO */
-
 .foto-pengelola {
     display: flex;
     justify-content: center;
@@ -804,12 +753,9 @@ footer small {
     width: 300px;
     height: 350px;
     border-radius: 22px;
-    background: linear-gradient(
-        135deg,
-        #eff6ff,
-        #dbeafe
-    );
-    border: 2px solid #bfdbfe;
+    background: linear-gradient(135deg,
+        var(--teal-light),#e0f2fe);
+    border: 2px solid #99f6e4;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -822,37 +768,34 @@ footer small {
 
 .foto-placeholder p {
     margin-top: 15px;
-    color: #64748b;
+    color: var(--muted);
     font-weight: bold;
 }
 
-
-/* DATA */
-
 .data-pengelola small {
-    color: #2563eb;
+    color: var(--teal);
     font-weight: bold;
     letter-spacing: 3px;
 }
 
 .data-pengelola h2 {
     font-size: 38px;
-    color: #0f172a;
+    color: var(--navy);
     margin: 12px 0 20px;
 }
 
 .data-pengelola p {
-    color: #64748b;
-    line-height: 1.8;
+    color: var(--muted);
+    line-height: 1.9;
     margin-bottom: 15px;
 }
 
 
-/* INFORMASI */
+/* 17. INFORMASI PENGELOLA */
 
 .info-pengelola {
-    padding: 80px 8%;
-    background: #f5f7fb;
+    padding: 85px 8%;
+    background: var(--bg);
 }
 
 .info-content {
@@ -863,13 +806,13 @@ footer small {
 .info-content h2 {
     text-align: center;
     font-size: 36px;
-    color: #0f172a;
+    color: var(--navy);
     margin-bottom: 40px;
 }
 
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4,1fr);
     gap: 20px;
 }
 
@@ -877,32 +820,36 @@ footer small {
     background: white;
     padding: 30px 20px;
     text-align: center;
-    border-radius: 18px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: .3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
 }
 
 .info-card span {
     font-size: 38px;
+    color: var(--teal);
 }
 
 .info-card h3 {
     margin: 12px 0 8px;
-    color: #0f172a;
+    color: var(--navy);
 }
 
 .info-card p {
-    color: #64748b;
+    color: var(--muted);
     font-size: 14px;
 }
 
 
-/* =========================
-   PENGALAMAN
-========================= */
+/* 18. PENGALAMAN */
 
 .pengalaman {
-    padding: 80px 8%;
+    padding: 85px 8%;
     background: white;
 }
 
@@ -912,14 +859,14 @@ footer small {
 }
 
 .pengalaman-content > small {
-    color: #2563eb;
+    color: var(--teal);
     font-weight: bold;
     letter-spacing: 3px;
 }
 
 .pengalaman-content > h2 {
     font-size: 36px;
-    color: #0f172a;
+    color: var(--navy);
     margin: 12px 0 40px;
 }
 
@@ -933,40 +880,36 @@ footer small {
     display: flex;
     gap: 25px;
     padding: 25px;
-    background: #f8fafc;
-    border-radius: 16px;
-    border-left: 5px solid #2563eb;
+    background: var(--bg);
+    border-radius: 17px;
+    border-left: 5px solid var(--teal);
+    box-shadow: 0 5px 18px rgba(16,42,67,.05);
 }
 
 .pengalaman-item > span {
     font-size: 22px;
     font-weight: bold;
-    color: #2563eb;
+    color: var(--teal);
 }
 
 .pengalaman-item h3 {
-    color: #0f172a;
+    color: var(--navy);
     margin-bottom: 5px;
 }
 
 .pengalaman-item p {
-    color: #64748b;
-    line-height: 1.7;
+    color: var(--muted);
+    line-height: 1.8;
 }
 
 
-/* =========================
-   PENUTUP
-========================= */
+/* 19. PENUTUP */
 
 .profil-penutup {
-    padding: 70px 8%;
+    padding: 75px 8%;
     text-align: center;
-    background: linear-gradient(
-        135deg,
-        #eff6ff,
-        #ffffff
-    );
+    background: linear-gradient(135deg,
+        var(--teal-light),#ffffff);
 }
 
 .profil-penutup div {
@@ -976,19 +919,17 @@ footer small {
 
 .profil-penutup h2 {
     font-size: 32px;
-    color: #0f172a;
+    color: var(--navy);
     margin-bottom: 15px;
 }
 
 .profil-penutup p {
-    color: #64748b;
-    line-height: 1.8;
+    color: var(--muted);
+    line-height: 1.9;
 }
 
 
-/* =========================
-   LOGO & FOTO
-========================= */
+/* 20. LOGO DAN FOTO */
 
 .logo-lpkc {
     width: 100px;
@@ -1002,8 +943,8 @@ footer small {
     height: 350px;
     object-fit: cover;
     border-radius: 22px;
-    border: 2px solid #bfdbfe;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    border: 4px solid white;
+    box-shadow: var(--shadow);
 }
 
 .foto-lpkc-pengelola {
@@ -1017,27 +958,22 @@ footer small {
     height: 340px;
     object-fit: cover;
     border-radius: 22px;
-    border: 2px solid #bfdbfe;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    border: 4px solid white;
+    box-shadow: var(--shadow);
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* 21. RESPONSIVE TABLET */
 
 @media (max-width: 1000px) {
 
     .cards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
-    .fasilitas-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+    .fasilitas-grid,
     .galeri-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .profil-guru-content {
@@ -1046,26 +982,21 @@ footer small {
     }
 
     .info-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
     }
+
 }
 
 
-@media (max-width: 900px) {
-
-    .foto-lpkc-pengelola img {
-        width: 240px;
-        height: 300px;
-    }
-}
-
+/* 22. RESPONSIVE HP */
 
 @media (max-width: 800px) {
 
     .navbar {
         flex-direction: column;
         gap: 18px;
-        padding: 20px;
+        padding: 18px 15px;
+        position: relative;
     }
 
     .logo {
@@ -1075,41 +1006,64 @@ footer small {
     nav {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 12px 18px;
+        gap: 12px 16px;
+    }
+
+    nav a {
+        font-size: 13px;
     }
 
     .hero {
-        min-height: 500px;
+        min-height: 480px;
         padding: 70px 25px;
     }
 
     .hero h1 {
-        font-size: 45px;
+        font-size: 40px;
+    }
+
+    .hero h2 {
+        font-size: 19px;
     }
 
     .hero p {
-        font-size: 16px;
+        font-size: 15px;
     }
 
-    .menu {
+    .menu,
+    .profil,
+    .profil-detail,
+    .tujuan,
+    .fasilitas,
+    .galeri,
+    .profil-guru,
+    .info-pengelola,
+    .pengalaman {
         padding: 60px 20px;
     }
 
-    .menu h2 {
+    .menu h2,
+    .profil-detail h2,
+    .tujuan h2,
+    .fasilitas-content h2,
+    .galeri-content h2,
+    .info-content h2,
+    .pengalaman-content > h2 {
         font-size: 30px;
     }
 
-    .cards {
+    .cards,
+    .tujuan-grid,
+    .fasilitas-grid,
+    .galeri-grid {
         grid-template-columns: 1fr;
         gap: 18px;
     }
 
-    .card {
+    .card,
+    .tujuan-card,
+    .fasilitas-card {
         padding: 25px;
-    }
-
-    .profil {
-        padding: 60px 20px;
     }
 
     .profil-content {
@@ -1129,49 +1083,14 @@ footer small {
         font-size: 35px;
     }
 
-    .profil-detail {
-        padding: 60px 20px;
-    }
-
     .visi-misi {
         grid-template-columns: 1fr;
         padding: 60px 20px;
     }
 
-    .tujuan {
-        padding: 60px 20px;
-    }
-
-    .tujuan-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tujuan h2 {
-        font-size: 30px;
-    }
-
-    .fasilitas {
-        padding: 60px 20px;
-    }
-
-    .fasilitas-content h2 {
-        font-size: 30px;
-    }
-
-    .fasilitas-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .galeri {
-        padding: 60px 20px;
-    }
-
-    .galeri-content h2 {
-        font-size: 30px;
-    }
-
-    .galeri-grid {
-        grid-template-columns: 1fr;
+    .visi-box,
+    .misi-box {
+        padding: 28px;
     }
 
     .galeri-card {
@@ -1190,53 +1109,46 @@ footer small {
         font-size: 16px;
     }
 
-    .profil-guru {
-        padding: 60px 20px;
-    }
-
     .data-pengelola h2 {
         font-size: 30px;
-    }
-
-    .info-pengelola {
-        padding: 60px 20px;
     }
 
     .info-grid {
         grid-template-columns: 1fr;
     }
 
-    .info-content h2 {
-        font-size: 30px;
+    .foto-guru {
+        width: 260px;
+        height: 310px;
     }
 
-    .pengalaman {
-        padding: 60px 20px;
+    .foto-lpkc-pengelola img {
+        width: 240px;
+        height: 300px;
     }
 
-    .pengalaman-content > h2 {
-        font-size: 30px;
+    .pengalaman-item {
+        gap: 15px;
+        padding: 20px;
     }
 
     .profil-penutup {
         padding: 60px 20px;
     }
+
 }
 
 
-@media (max-width: 600px) {
-
-    .foto-guru {
-        width: 260px;
-        height: 310px;
-    }
-}
-
+/* 23. RESPONSIVE HP KECIL */
 
 @media (max-width: 450px) {
 
     .logo span {
-        font-size: 24px;
+        font-size: 21px;
+    }
+
+    .logo small {
+        font-size: 9px;
     }
 
     .hero {
@@ -1244,15 +1156,29 @@ footer small {
     }
 
     .hero h1 {
-        font-size: 38px;
+        font-size: 35px;
     }
 
     .hero p {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .button {
         width: 100%;
         text-align: center;
     }
+
+    .profil-header h1 {
+        font-size: 30px;
+    }
+
+    .galeri-card {
+        height: 220px;
+    }
+
 }
+
+
+/* ============================================
+   AKHIR STYLE WEB LEARNING SIGAP
+============================================ */
