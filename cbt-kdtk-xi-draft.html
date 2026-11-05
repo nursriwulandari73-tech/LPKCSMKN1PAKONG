@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBT KDTK Kelas XI | LPKC SMKN 1 Pakong</title>
+<style>
+:root{--navy:#12345a;--blue:#1d65a6;--teal:#148477;--bg:#f3f7fb;--ink:#1d2939;--muted:#667085;--line:#dce5ef}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--ink);line-height:1.55}
+header{background:linear-gradient(115deg,var(--navy),var(--blue));color:white;padding:22px 16px}
+.wrap{max-width:1000px;margin:auto;padding:0 16px}
+header h1{margin:0;font-size:clamp(21px,4vw,30px)}header p{margin:5px 0 0;color:#e2edf8}
+main{padding:22px 0 40px}.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 5px 18px #183b5b0b}
+h2{font-size:19px;margin:0 0 14px;color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+label{display:block;font-weight:600;font-size:14px;margin-bottom:5px}
+input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+.topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.timer{font-weight:700;color:#a12d2d;background:#fff1f0;border:1px solid #ffd5d1;padding:8px 13px;border-radius:9px}
+.progress{height:8px;background:#e8eef5;border-radius:20px;overflow:hidden;margin-top:12px}.progress>div{height:100%;width:0;background:var(--teal)}
+.qcard{border:1px solid var(--line);border-radius:12px;padding:17px;margin:14px 0}
+.qhead{font-size:13px;color:var(--muted);font-weight:700;margin-bottom:8px}
+.qtext{font-weight:600;margin-bottom:12px}
+.option{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid #e4eaf1;border-radius:9px;margin:7px 0;cursor:pointer;font-weight:400}
+.option:hover{background:#f6faff}.option input{width:auto;margin-top:4px}
+button{border:0;border-radius:9px;padding:12px 18px;background:var(--blue);color:white;font-weight:700;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#eaf1f8;color:var(--navy)}.danger{background:#a12d2d}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.result{font-size:18px;font-weight:700;color:var(--teal)}
+.hidden{display:none!important}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(max-width:600px){.panel{padding:15px}.qcard{padding:13px}.actions button{flex:1}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>CBT KDTK — Kelas XI</h1>
+<p>LPKC SMKN 1 Pakong · Learning &amp; Practice Center</p>
+</div></header>
+<main class="wrap">
+<section class="panel" id="identity">
+<h2>Identitas Peserta</h2>
+<div class="grid">
+<div><label for="nis">NIS</label><input id="nis" inputmode="numeric" autocomplete="off" placeholder="Masukkan NIS"></div>
+<div><label for="nama">Nama lengkap</label><input id="nama" autocomplete="name" placeholder="Nama siswa"></div>
+<div><label for="kelas">Kelas</label><input id="kelas" value="XI" placeholder="Contoh: XI"></div>
+</div>
+<p class="note">Pastikan NIS dan nama benar sebelum memulai ujian. Waktu ujian 60 menit.</p>
+<div class="actions"><button id="startBtn" type="button">Mulai Ujian</button></div>
+</section>
+
+<section class="panel hidden" id="exam">
+<div class="topbar"><div><h2 style="margin:0">Ujian KDTK</h2><span class="note" id="progressText">0 dari 9 soal terjawab</span></div><div class="timer" id="timer">60:00</div></div>
+<div class="progress"><div id="progressBar"></div></div>
+<div id="questions"></div>
+<div class="actions"><button class="secondary" id="saveDraft" type="button">Simpan jawaban sementara</button><button class="danger" id="submitBtn" type="button">Kumpulkan ujian</button></div>
+<p class="note">Jawaban dapat diubah sebelum ujian dikumpulkan. Setelah dikumpulkan, jawaban tidak dapat diubah.</p>
+</section>
+
+<section class="panel hidden" id="result">
+<h2>Hasil Ujian</h2>
+<p id="resultName"></p>
+<p class="result" id="scoreText"></p>
+<p id="detailText"></p>
+<p class="note" id="saveStatus">Hasil ini merupakan pratinjau lokal. Integrasi penyimpanan ke Google Sheets belum diaktifkan.</p>
+<button type="button" onclick="location.reload()">Selesai</button>
+</section>
+</main>
+<footer>© 2026 LPKC SMKN 1 Pakong</footer>
+<script>
+/*
+  DRAF CBT: soal dan kunci diambil dari file HTML sumber yang diunggah.
+  Tinjau validitas materi klinis sebelum digunakan untuk penilaian resmi.
+  Integrasi Google Sheets sengaja belum diaktifkan sampai endpoint diverifikasi.
+*/
+const questions = [
+ {q:"Proses pemusnahan seluruh bentuk mikroorganisme termasuk spora bakteri pada peralatan bedah logam menggunakan suhu 121°C dalam autoklaf disebut...",o:["Dekontaminasi","Disinfeksi Tingkat Rendah","Sterilisasi","Antiseptik","Sanitisasi"],a:2},
+ {q:"Jenis penyiapan tempat tidur tempat seprai bagian atas dilipat ke arah kaki dan disiapkan bagi pasien baru yang akan segera masuk ruangan dinamakan...",o:["Closed Bed","Open Bed","Occupied Bed","Surgical Bed","Examination Bed"],a:1},
+ {q:"Arah usapan yang benar saat melakukan perawatan vulva dan perineum pada pasien wanita adalah...",o:["Dari arah anus menuju ke daerah klitoris (bawah ke atas)","Dari arah anterior (simfisis/vulva) ke posterior (anus)","Melingkar acak dari luar ke dalam","Bebas searah jarum jam","Dari anus ke uretra secara berulang dengan kapas yang sama"],a:1},
+ {q:"Posisi tempat tidur dengan menaikkan bagian kepala pasien sebesar 30–45 derajat yang bertujuan untuk mengurangi sesak napas ringan disebut posisi...",o:["Trendelenburg","Fowler tinggi (90°)","Semi-Fowler","Litotomi","Genu Pectoral"],a:2},
+ {q:"Untuk mencegah aliran balik urin ke kandung kemih, kantong urin (urine bag) pada pasien dengan kateter menetap diletakkan...",o:["Lebih tinggi dari posisi dada pasien","Sejajar dengan pinggang pasien","Lebih rendah dari posisi kandung kemih pasien","Di atas tempat tidur di samping kepala pasien","Bebas di mana saja"],a:2},
+ {q:"Tujuan utama pengajaran latihan batuk efektif pada pasien dengan masalah bersihan jalan napas adalah...",o:["Membantu mengeluarkan dahak/sekret yang menyumbat jalan napas","Menurunkan tekanan darah secara instan","Mempercepat proses penyembuhan patah tulang","Mengurangi frekuensi buang air kecil","Menghilangkan rasa mual akibat makanan"],a:0},
+ {q:"Tindakan kompres yang tepat untuk membantu meredakan pembengkakan dan memar akut akibat terkilir (sprain) pada 24 jam pertama adalah...",o:["Buli-buli hangat berisi air panas 80°C","Kirbat es / kompres dingin","Salep pemanas otot berlebihan","Rendam air panas mendidih","Pembungkusan plastik rapat tanpa celah"],a:1},
+ {q:"Sebelum menyerahkan obat minum kepada pasien, petugas memeriksa ulang identitas gelang pasien serta mencocokkan rekam medis. Hal ini merupakan penerapan prinsip...",o:["Benar Obat","Benar Dosis","Benar Pasien","Benar Rute","Benar Dokumentasi"],a:2},
+ {q:"Pemeriksaan awal kegawatdaruratan dasar untuk menilai ada tidaknya sumbatan napas, keadekuatan bernapas, dan denyut nadi pasien dikenal dengan akronim...",o:["ABC (Airway, Breathing, Circulation)","RICE (Rest, Ice, Compression, Elevation)","FIFO (First In, First Out)","BMI (Body Mass Index)","APD (Alat Pelindung Diri)"],a:0}
+];
+let answers = {};
+let remaining = 3600;
+let interval = null;
+let started = false;
+const $ = id => document.getElementById(id);
+function renderQuestions(){
+ $('questions').innerHTML = questions.map((item,i)=>`
+ <article class="qcard"><div class="qhead">SOAL ${i+1} DARI ${questions.length}</div><div class="qtext">${item.q}</div>
+ ${item.o.map((opt,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}" ${answers[i]===j?'checked':''}><span><b>${String.fromCharCode(65+j)}.</b> ${opt}</span></label>`).join('')}
+ </article>`).join('');
+ $('questions').querySelectorAll('input[type=radio]').forEach(el=>el.addEventListener('change',e=>{answers[Number(e.target.name.slice(1))]=Number(e.target.value);updateProgress();}));
+ updateProgress();
+}
+function updateProgress(){
+ const count=Object.keys(answers).length;
+ $('progressText').textContent=`${count} dari ${questions.length} soal terjawab`;
+ $('progressBar').style.width=`${count/questions.length*100}%`;
+}
+function start(){
+ const nis=$('nis').value.trim(), nama=$('nama').value.trim(), kelas=$('kelas').value.trim();
+ if(!nis||!nama||!kelas){alert('Lengkapi NIS, nama, dan kelas terlebih dahulu.');return;}
+ started=true;$('identity').classList.add('hidden');$('exam').classList.remove('hidden');
+ renderQuestions();interval=setInterval(tick,1000);
+}
+function tick(){
+ remaining--;
+ const m=Math.floor(remaining/60),s=remaining%60;
+ $('timer').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+ if(remaining<=0){clearInterval(interval);finish(true);}
+}
+function finish(auto=false){
+ if(!started)return;
+ if(!auto&&!confirm('Yakin ingin mengumpulkan ujian? Jawaban tidak dapat diubah setelah dikumpulkan.'))return;
+ clearInterval(interval);started=false;
+ let benar=0,kosong=0;
+ questions.forEach((q,i)=>{if(answers[i]===undefined)kosong++;else if(answers[i]===q.a)benar++;});
+ const salah=questions.length-benar-kosong;
+ const nilai=Math.round(benar/questions.length*100);
+ $('exam').classList.add('hidden');$('result').classList.remove('hidden');
+ $('resultName').textContent=`${$('nama').value.trim()} · NIS ${$('nis').value.trim()} · Kelas ${$('kelas').value.trim()}`;
+ $('scoreText').textContent=`Nilai: ${nilai}`;
+ $('detailText').textContent=`Benar: ${benar} | Salah: ${salah} | Kosong: ${kosong}`;
+ $('saveStatus').textContent='Pratinjau hasil lokal saja. Belum tersimpan ke Google Sheets. Jangan gunakan untuk ujian resmi sebelum integrasi dan pengamanan server selesai.';
+}
+$('startBtn').addEventListener('click',start);
+$('submitBtn').addEventListener('click',()=>finish(false));
+$('saveDraft').addEventListener('click',()=>alert('Jawaban sementara tersimpan pada halaman ini selama halaman tidak ditutup. Fitur penyimpanan server belum diaktifkan.'));
+</script>
+</body>
+</html>
