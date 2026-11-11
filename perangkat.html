@@ -1,202 +1,463 @@
+
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Perangkat Pembelajaran | LPKC SMKN 1 Pakong</title>
+<link rel="stylesheet" href="style.css">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Perangkat Pembelajaran | LPKC</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-
-        /* ==============================
-           HALAMAN PERANGKAT PEMBELAJARAN
-        ============================== */
-
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        .container h1 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .container > p {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            background: #ffffff;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-
-        .icon {
-            font-size: 45px;
-            margin-bottom: 10px;
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            margin-bottom: 18px;
-        }
-
-        .card a {
-            display: inline-block;
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            background: #2563eb;
-            color: white;
-            font-weight: bold;
-        }
-
-        .card a:hover {
-            opacity: 0.85;
-        }
-
-        .drive-card {
-            border: 2px solid #2563eb;
-        }
-
-    </style>
-
+<style>
+.pp-container {
+    max-width: 1150px;
+    margin: 35px auto;
+    padding: 20px;
+}
+.pp-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.pp-heading h1 { color: #123b63; }
+.pp-identitas, .pp-panel, .pp-drive-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.07);
+    margin-bottom: 22px;
+}
+.pp-identitas h2, .pp-panel h2 {
+    color: #123b63;
+}
+.pp-identitas table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.pp-identitas td {
+    padding: 8px;
+    border-bottom: 1px solid #e8edf3;
+}
+.pp-identitas td:first-child {
+    font-weight: bold;
+    width: 190px;
+}
+.pp-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0;
+}
+.pp-tab {
+    border: 0;
+    border-radius: 9px;
+    padding: 13px 28px;
+    background: #e4edf6;
+    color: #123b63;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+.pp-tab.active {
+    background: #123b63;
+    color: white;
+}
+.pp-panel { display: none; }
+.pp-panel.active { display: block; }
+.pp-elemen {
+    background: #edf5fc;
+    border-left: 5px solid #2477a8;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 18px 0;
+}
+.pp-cp-text { text-align: justify; }
+.pp-tp-list { padding-left: 25px; }
+.pp-tp-list li {
+    padding: 8px 4px;
+    border-bottom: 1px solid #edf0f4;
+}
+.pp-table-wrap { overflow-x: auto; }
+.pp-atp-table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.pp-atp-table th {
+    background: #123b63;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+.pp-atp-table td {
+    padding: 10px;
+    border: 1px solid #dce4ed;
+    vertical-align: top;
+}
+.pp-atp-table tr:nth-child(even) {
+    background: #f3f7fb;
+}
+.pp-note {
+    background: #fff8e8;
+    border-left: 5px solid #e2a52d;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.pp-actions {
+    margin-top: 20px;
+}
+.pp-actions button {
+    background: #2477a8;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.pp-actions button:hover { background: #123b63; }
+.pp-drive-heading {
+    text-align: center;
+    color: #123b63;
+    margin: 40px 0 20px;
+}
+.pp-drive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 18px;
+}
+.pp-drive-card {
+    text-align: center;
+    margin: 0;
+}
+.pp-drive-icon { font-size: 42px; }
+.pp-drive-card h3 { color: #123b63; }
+.pp-drive-card a {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+}
+.pp-dimensi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+    gap: 10px;
+}
+.pp-dimensi div {
+    padding: 12px;
+    background: #edf5fc;
+    border-radius: 8px;
+}
+@media(max-width:800px) {
+    .pp-drive-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:600px) {
+    .pp-container { padding: 12px; }
+    .pp-identitas, .pp-panel, .pp-drive-card { padding: 16px; }
+    .pp-identitas td:first-child { width: 125px; }
+    .pp-tab { padding: 11px 18px; }
+}
+@media print {
+    body * { visibility: hidden; }
+    .pp-panel.active, .pp-panel.active * {
+        visibility: visible;
+    }
+    .pp-panel.active {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+    }
+    .pp-tabs, .pp-actions, .navbar, footer {
+        display: none !important;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
-
 <header class="navbar">
-
     <h2>LPKC</h2>
-
+    <nav>
+        <a href="index.html">Beranda</a>
+        <a href="kelas.html">Pembelajaran</a>
+        <a href="penilaian.html">Penilaian</a>
+        <a href="perangkat.html">Perangkat Pembelajaran</a>
+    </nav>
 </header>
 
+<main class="pp-container">
 
-
-<main class="container">
-
-
-    <h1>📚 Perangkat Pembelajaran</h1>
-
-
-    <p>
-
-        Kumpulan perangkat pembelajaran,
-        berkas pendukung, bahan ajar,
-        media, LKPD, dan assessment
-        LPKC SMKN 1 Pakong.
-
-    </p>
-
-
-
-    <!-- ==============================
-         FOLDER PERANGKAT PEMBELAJARAN
-    ============================== -->
-
-    <div class="card drive-card">
-
-        <div class="icon">📚</div>
-
-        <h3>FOLDER PERANGKAT PEMBELAJARAN</h3>
-
+    <div class="pp-heading">
+        <h1>📚 PERANGKAT PEMBELAJARAN</h1>
         <p>
-
-            Kumpulan RPP, modul, PROTA,
-            PROSEM, CP, dan perangkat
-            pembelajaran lainnya.
-
+            Akses Capaian Pembelajaran, Tujuan Pembelajaran,
+            Alur Tujuan Pembelajaran, dan berkas pendukung
+            LPKC SMKN 1 Pakong.
         </p>
-
-        <a href="https://drive.google.com/drive/folders/1VDd1cogf61LsrBvF3CjNeEdtcYpaJsot?usp=sharing"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            📂 Buka Folder →
-
-        </a>
-
     </div>
 
+    <section class="pp-identitas">
+        <h2>Identitas Mata Pelajaran</h2>
+        <table>
+            <tr><td>Satuan Pendidikan</td><td>SMKN 1 Pakong</td></tr>
+            <tr><td>Bidang Keahlian</td><td>Kesehatan dan Pekerjaan Sosial</td></tr>
+            <tr><td>Program Keahlian</td><td>Layanan Kesehatan</td></tr>
+            <tr><td>Mata Pelajaran</td><td>Layanan Penunjang Keperawatan dan Caregiving</td></tr>
+            <tr><td>Fase</td><td>F</td></tr>
+            <tr><td>Kelas</td><td>XI</td></tr>
+            <tr><td>Tahun Pelajaran</td><td>2026/2027</td></tr>
+            <tr><td>Guru Pengampu</td><td>Nur Sri Wulandari, S.S.T.Keb., Gr.</td></tr>
+        </table>
+    </section>
 
-
-    <!-- ==============================
-         BERKAS PENDUKUNG
-    ============================== -->
-
-    <div class="card drive-card">
-
-        <div class="icon">📂</div>
-
-        <h3>BERKAS PENDUKUNG</h3>
-
-        <p>
-
-            Kumpulan berkas pendukung
-            pembelajaran LPKC SMKN 1 Pakong.
-
-        </p>
-
-        <a href="https://drive.google.com/drive/folders/1g5qKv1xTux_MlZ0qtLoAE2siS5GHNeSy?usp=sharing"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            📂 Buka Folder →
-
-        </a>
-
+    <div class="pp-tabs">
+        <button class="pp-tab active" onclick="bukaPerangkat('pp-cp',this)">📘 CP</button>
+        <button class="pp-tab" onclick="bukaPerangkat('pp-tp',this)">📋 TP</button>
+        <button class="pp-tab" onclick="bukaPerangkat('pp-atp',this)">🗂️ ATP</button>
     </div>
 
+    <!-- CAPAIAN PEMBELAJARAN -->
 
+    <section id="pp-cp" class="pp-panel active">
+        <h2>A. Capaian Pembelajaran (CP)</h2>
 
-    <!-- ==============================
-         BAHAN AJAR, MEDIA, LKPD, ASSESMENT
-    ============================== -->
+        <div class="pp-elemen">
+            <strong>Elemen:</strong><br>
+            Keterampilan Dasar Layanan Penunjang Keperawatan dan
+            Caregiving sesuai tahapan usia.
+        </div>
 
-    <div class="card drive-card">
+        <h3>Capaian Pembelajaran Fase F</h3>
 
-        <div class="icon">📖</div>
-
-        <h3>BAHAN AJAR,MEDIA, LKPD,ASSESMENT</h3>
-
-        <p>
-
-            Kumpulan bahan ajar, media pembelajaran,
-            LKPD, dan assessment.
-
+        <p class="pp-cp-text">
+            Pada akhir Fase F, peserta didik memahami disinfeksi dan
+            sterilisasi peralatan kesehatan, penyiapan tempat tidur,
+            pertolongan personal hygiene, pertolongan mobilisasi dan
+            ambulasi klien, pemberian makan dan minum per oral,
+            pemberian makan melalui NGT, pertolongan eliminasi,
+            perawatan kateter, perawatan vulva dan perineum,
+            latihan napas dalam dan batuk efektif, pemasangan
+            buli-buli hangat dan kirbat es, kompres hangat dan dingin,
+            pemberian obat, pertolongan pertama kegawatdaruratan,
+            serta perawatan disabilitas dengan memperhatikan
+            keselamatan, kenyamanan, dan kebutuhan klien.
         </p>
 
-        <a href="https://drive.google.com/drive/folders/1g6wFSQkBb4Wwh09G7JGPFGZ7iJ08YjpY?usp=sharing"
-           target="_blank"
-           rel="noopener noreferrer">
+        <div class="pp-note">
+            <strong>Catatan penyusunan:</strong>
+            Rumusan ini merupakan rumusan penyelarasan dokumen kerja.
+            Perawatan kateter dan pemberian obat telah dimasukkan
+            untuk menyelaraskan CP dengan daftar TP. Sebelum ditetapkan,
+            cocokkan kembali dengan dokumen CP resmi yang berlaku.
+        </div>
 
-            📂 Buka Folder →
+        <div class="pp-actions">
+            <button onclick="window.print()">🖨️ Cetak CP</button>
+        </div>
+    </section>
 
-        </a>
+    <!-- TUJUAN PEMBELAJARAN -->
+
+    <section id="pp-tp" class="pp-panel">
+        <h2>B. Tujuan Pembelajaran (TP)</h2>
+        <p>
+            Tujuan pembelajaran mata pelajaran Layanan Penunjang
+            Keperawatan dan Caregiving Fase F:
+        </p>
+
+        <ol class="pp-tp-list">
+            <li>Mempraktikkan cara sterilisasi dan penyimpanan peralatan kesehatan.</li>
+            <li>Mempraktikkan cara penyiapan tempat tidur pasien.</li>
+            <li>Menerapkan prosedur Personal Hygiene.</li>
+            <li>Mempraktikkan pertolongan eliminasi BAK dan BAB.</li>
+            <li>Mempraktikkan cara perawatan kateter.</li>
+            <li>Mempraktikkan cara perawatan vulva dan perineum.</li>
+            <li>Mempraktikkan cara mengubah posisi klien.</li>
+            <li>Mempraktikkan cara ambulasi dan mobilisasi klien.</li>
+            <li>Mempraktikkan cara membantu pemberian makan dan minum secara per oral.</li>
+            <li>Mempraktikkan cara pemberian makan melalui NGT.</li>
+            <li>Mempraktikkan pertolongan latihan napas dalam dan batuk efektif.</li>
+            <li>Mempraktikkan pemasangan buli-buli panas.</li>
+            <li>Mempraktikkan pemasangan kirbat es.</li>
+            <li>Mempraktikkan kompres hangat.</li>
+            <li>Mempraktikkan kompres dingin.</li>
+            <li>Mempraktikkan pemberian obat oral.</li>
+            <li>Mempraktikkan pemberian obat tetes mata.</li>
+            <li>Mempraktikkan pemberian obat tetes telinga.</li>
+            <li>Mempraktikkan pemberian obat suppositoria.</li>
+            <li>Mempraktikkan pertolongan pertama kegawatdaruratan.</li>
+            <li>Mempraktikkan perawatan disabilitas.</li>
+        </ol>
+
+        <div class="pp-note">
+            <strong>Keterangan:</strong>
+            TP 9 ditambahkan untuk menjabarkan materi pemberian makan
+            dan minum per oral yang tercantum dalam CP sumber.
+        </div>
+
+        <div class="pp-actions">
+            <button onclick="window.print()">🖨️ Cetak TP</button>
+        </div>
+    </section>
+
+    <!-- ALUR TUJUAN PEMBELAJARAN -->
+
+    <section id="pp-atp" class="pp-panel">
+        <h2>C. Alur Tujuan Pembelajaran (ATP)</h2>
+
+        <p>
+            ATP disusun berdasarkan urutan tujuan pembelajaran
+            keterampilan dasar layanan penunjang keperawatan
+            dan caregiving.
+        </p>
+
+        <div class="pp-table-wrap">
+        <table class="pp-atp-table">
+            <thead>
+                <tr>
+                    <th>Kode</th>
+                    <th>Tujuan Pembelajaran</th>
+                    <th>Materi Inti</th>
+                    <th>Kompetensi / Keterampilan</th>
+                    <th>Alokasi pada Dokumen Sumber</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>TP 1</td><td>Sterilisasi dan penyimpanan peralatan kesehatan</td><td>Disinfeksi dan sterilisasi</td><td>Mempraktikkan disinfeksi, sterilisasi, dan penyimpanan alat kesehatan.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 2</td><td>Penyiapan tempat tidur pasien</td><td>Tempat tidur pasien</td><td>Mempraktikkan penyiapan tempat tidur pasien.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 3</td><td>Personal Hygiene</td><td>Kebersihan diri klien</td><td>Menerapkan prosedur personal hygiene.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 4</td><td>Eliminasi BAK dan BAB</td><td>Pertolongan eliminasi</td><td>Mempraktikkan bantuan eliminasi BAK dan BAB.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 5</td><td>Perawatan kateter</td><td>Perawatan kateter</td><td>Mempraktikkan perawatan kateter sesuai SOP dan batas kewenangan.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 6</td><td>Perawatan vulva dan perineum</td><td>Vulva dan perineum</td><td>Mempraktikkan perawatan vulva dan perineum.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 7</td><td>Mengubah posisi klien</td><td>Posisi klien</td><td>Mempraktikkan perubahan posisi klien dengan aman.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 8</td><td>Ambulasi dan mobilisasi klien</td><td>Ambulasi dan mobilisasi</td><td>Mempraktikkan bantuan ambulasi dan mobilisasi.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 9*</td><td>Pemberian makan dan minum per oral</td><td>Pemberian makan dan minum per oral</td><td>Mempraktikkan bantuan pemberian makan dan minum secara per oral.</td><td>Belum ditetapkan</td></tr>
+                <tr><td>TP 10</td><td>Pemberian makan melalui NGT</td><td>Pemberian makan melalui NGT</td><td>Mempraktikkan pemberian makan melalui NGT dalam pembelajaran sesuai SOP dan kewenangan.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 11</td><td>Latihan napas dalam dan batuk efektif</td><td>Latihan pernapasan</td><td>Mempraktikkan latihan napas dalam dan batuk efektif.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 12</td><td>Pemasangan buli-buli panas</td><td>Buli-buli panas</td><td>Mempraktikkan pemasangan buli-buli panas.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 13</td><td>Pemasangan kirbat es</td><td>Kirbat es</td><td>Mempraktikkan pemasangan kirbat es.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 14</td><td>Kompres hangat</td><td>Kompres hangat</td><td>Mempraktikkan prosedur kompres hangat.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 15</td><td>Kompres dingin</td><td>Kompres dingin</td><td>Mempraktikkan prosedur kompres dingin.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 16</td><td>Pemberian obat oral</td><td>Obat oral</td><td>Mempraktikkan prosedur pemberian obat dalam batas kewenangan.</td><td>18 JP / 1 TM</td></tr>
+                <tr><td>TP 17</td><td>Pemberian obat tetes mata</td><td>Obat tetes mata</td><td>Mempraktikkan prosedur pemberian obat tetes mata.</td><td>18 JP / 1 TM</td></tr>
+                <tr><td>TP 18</td><td>Pemberian obat tetes telinga</td><td>Obat tetes telinga</td><td>Mempraktikkan prosedur pemberian obat tetes telinga.</td><td>18 JP / 1 TM</td></tr>
+                <tr><td>TP 19</td><td>Pemberian obat suppositoria</td><td>Obat suppositoria</td><td>Mempraktikkan prosedur pemberian obat suppositoria.</td><td>18 JP / 1 TM</td></tr>
+                <tr><td>TP 20</td><td>Pertolongan pertama kegawatdaruratan</td><td>Kegawatdaruratan</td><td>Mempraktikkan pertolongan pertama sesuai kompetensi.</td><td>18 JP / 2 TM</td></tr>
+                <tr><td>TP 21</td><td>Perawatan disabilitas</td><td>Perawatan disabilitas</td><td>Mempraktikkan bantuan perawatan klien disabilitas.</td><td>18 JP / 2 TM</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h3>Dimensi Profil Pelajar Pancasila</h3>
+        <div class="pp-dimensi">
+            <div>Beriman, bertakwa kepada Tuhan Yang Maha Esa, dan berakhlak mulia.</div>
+            <div>Berkebinekaan global.</div>
+            <div>Mandiri.</div>
+            <div>Bergotong royong.</div>
+            <div>Bernalar kritis.</div>
+            <div>Kreatif.</div>
+        </div>
+
+        <h3>Karakteristik / Potensi Sekolah</h3>
+        <p>
+            Sekolah memiliki peralatan praktikum yang dapat dimanfaatkan
+            untuk mendukung pembelajaran keterampilan dasar layanan
+            penunjang keperawatan dan caregiving.
+        </p>
+
+        <div class="pp-note">
+            <strong>Catatan alokasi waktu:</strong>
+            Dokumen sumber mencantumkan 20 TP dengan alokasi 18 JP
+            per TP, sehingga jika dijumlahkan menjadi 360 JP.
+            Namun, jumlah pada dokumen sumber tertulis 648 JP / 36 TM.
+            Kedua angka tersebut belum konsisten dan perlu diverifikasi.
+            TP 9 merupakan tambahan dan belum memiliki alokasi JP.
+        </div>
+
+        <div class="pp-actions">
+            <button onclick="window.print()">🖨️ Cetak ATP</button>
+        </div>
+    </section>
+
+    <!-- FOLDER GOOGLE DRIVE LAMA TETAP DIPERTAHANKAN -->
+
+    <h2 class="pp-drive-heading">📂 Folder dan Berkas Pendukung</h2>
+
+    <div class="pp-drive-grid">
+
+        <div class="pp-drive-card">
+            <div class="pp-drive-icon">📚</div>
+            <h3>FOLDER PERANGKAT PEMBELAJARAN</h3>
+            <p>
+                Kumpulan RPP, modul, PROTA, PROSEM, CP,
+                dan perangkat pembelajaran lainnya.
+            </p>
+            <a href="https://drive.google.com/drive/folders/1VDd1cogf61LsrBvF3CjNeEdtcYpaJsot?usp=sharing"
+               target="_blank" rel="noopener noreferrer">
+                📂 Buka Folder →
+            </a>
+        </div>
+
+        <div class="pp-drive-card">
+            <div class="pp-drive-icon">📂</div>
+            <h3>BERKAS PENDUKUNG</h3>
+            <p>
+                Kumpulan berkas pendukung pembelajaran
+                LPKC SMKN 1 Pakong.
+            </p>
+            <a href="https://drive.google.com/drive/folders/1g5qKv1xTux_MlZ0qtLoAE2siS5GHNeSy?usp=sharing"
+               target="_blank" rel="noopener noreferrer">
+                📂 Buka Folder →
+            </a>
+        </div>
+
+        <div class="pp-drive-card">
+            <div class="pp-drive-icon">📖</div>
+            <h3>BAHAN AJAR, MEDIA, LKPD, ASSESSMENT</h3>
+            <p>
+                Kumpulan bahan ajar, media pembelajaran,
+                LKPD, dan assessment.
+            </p>
+            <a href="https://drive.google.com/drive/folders/1g6wFSQkBb4Wwh09G7JGPFGZ7iJ08YjpY?usp=sharing"
+               target="_blank" rel="noopener noreferrer">
+                📂 Buka Folder →
+            </a>
+        </div>
 
     </div>
-
 
 </main>
 
+<footer>
+    <h3>LPKC SMKN 1 PAKONG</h3>
+    <p>Learning & Practice Center</p>
+    <small>© 2026 LPKC SMKN 1 Pakong</small>
+</footer>
+
+<script>
+function bukaPerangkat(id, tombol) {
+    document.querySelectorAll('.pp-panel').forEach(function(panel) {
+        panel.classList.remove('active');
+    });
+
+    document.querySelectorAll('.pp-tab').forEach(function(tab) {
+        tab.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+    tombol.classList.add('active');
+}
+</script>
 
 </body>
-
 </html>
