@@ -5,50 +5,146 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jurnal Digital Guru | Web Learning SIGAP</title>
+
 <style>
-:root{--navy:#142b4a;--teal:#0d9488;--bg:#f1f5f9;--text:#26364a;--muted:#718096}
+:root{
+--navy:#142b4a;
+--teal:#0d9488;
+--bg:#f1f5f9;
+--text:#26364a;
+--muted:#718096;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-header{background:linear-gradient(110deg,#142b4a,#176b78,#0d9488);color:white;padding:26px 20px}
+body{
+margin:0;
+font-family:"Segoe UI",Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+header{
+background:linear-gradient(110deg,#142b4a,#176b78,#0d9488);
+color:white;
+padding:26px 20px;
+}
 .head,main{max-width:1150px;margin:auto}
 .head a{color:#d9f5f1;text-decoration:none;font-size:13px}
 .head h1{margin:10px 0 3px;font-size:26px}
 .head p{margin:0;color:#e0f2f1;font-size:13px}
 main{padding:22px 16px 35px}
-.identity,.card{background:#fff;border:1px solid #e5eaf0;border-radius:15px;padding:20px;margin-bottom:18px;box-shadow:0 5px 18px #14284608}
-.identity{background:#e9f7f5;border-left:4px solid var(--teal);font-size:13px}
+.identity,.card{
+background:white;
+border:1px solid #e5eaf0;
+border-radius:15px;
+padding:20px;
+margin-bottom:18px;
+box-shadow:0 5px 18px #14284608;
+}
+.identity{
+background:#e9f7f5;
+border-left:4px solid var(--teal);
+font-size:13px;
+}
 .tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
-.tabs button,.actions button,.filter button{border:0;border-radius:9px;padding:11px 16px;font-weight:700;cursor:pointer}
+button{
+border:0;
+border-radius:9px;
+padding:10px 15px;
+font-weight:700;
+cursor:pointer;
+font-size:13px;
+}
+button:disabled{opacity:.6;cursor:wait}
 .tabs button{background:#e2e8f0;color:#334155}
-.tabs button.active,.primary{background:var(--teal)!important;color:white!important}
+.tabs button.active,.primary{background:var(--teal);color:white}
 .secondary{background:#e2e8f0;color:#334155}
+.danger{background:#fee2e2;color:#b91c1c}
+.edit-btn{background:#dbeafe;color:#1d4ed8}
 .panel[hidden]{display:none}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:14px;
+}
 .field{display:flex;flex-direction:column;gap:5px}
 .field.full{grid-column:1/-1}
 label{font-weight:650;font-size:13px}
-input,textarea{width:100%;border:1px solid #cbd5e1;border-radius:9px;padding:10px 12px;font:inherit;font-size:14px;background:#fff}
+input,textarea{
+width:100%;
+border:1px solid #cbd5e1;
+border-radius:9px;
+padding:10px 12px;
+font:inherit;
+font-size:14px;
+background:white;
+color:#26364a;
+}
 textarea{min-height:85px;resize:vertical}
+input:focus,textarea:focus{
+outline:2px solid #99e6dc;
+border-color:var(--teal);
+}
 .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
-.actions button{font-size:14px}
-#status{display:none;margin-top:15px;padding:12px;border-radius:9px;font-size:13px}
+#status{
+display:none;
+margin-top:15px;
+padding:12px;
+border-radius:9px;
+font-size:13px;
+}
 #status.show{display:block}
 #status.ok{background:#effaf5;color:#087b55}
 #status.err{background:#fff5f4;color:#b42318}
 .note{font-size:12px;color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}
-.stat{background:#f0fdfa;border:1px solid #ccfbf1;border-radius:12px;padding:14px}
+.stats{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:12px;
+margin:15px 0;
+}
+.stat{
+background:#f0fdfa;
+border:1px solid #ccfbf1;
+border-radius:12px;
+padding:14px;
+}
 .stat small{display:block;color:#64748b;font-size:12px}
 .stat strong{font-size:24px;color:#0f766e}
-.filter{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:14px 0}
+.filter{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+align-items:end;
+margin:14px 0;
+}
 .filter .field{min-width:145px}
 .filter button{height:42px}
 .table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:850px;font-size:13px}
-th,td{padding:10px;border-bottom:1px solid #e5eaf0;text-align:left;vertical-align:top}
+table{
+width:100%;
+border-collapse:collapse;
+min-width:1050px;
+font-size:13px;
+}
+th,td{
+padding:10px;
+border-bottom:1px solid #e5eaf0;
+text-align:left;
+vertical-align:top;
+}
 th{background:#f8fafc;color:#334155;white-space:nowrap}
 .empty{padding:25px;text-align:center;color:#64748b}
 .loading{color:#64748b;font-size:13px}
+.row-actions{display:flex;gap:6px}
+.row-actions button{white-space:nowrap;padding:8px 10px}
+.edit-banner{
+background:#eff6ff;
+border-left:4px solid #3b82f6;
+padding:12px;
+border-radius:8px;
+margin-bottom:16px;
+font-size:13px;
+}
 footer{text-align:center;color:#8996a7;font-size:11px;padding:20px}
 @media(max-width:700px){
 .grid{grid-template-columns:1fr}
@@ -68,6 +164,7 @@ main{max-width:none;padding:0}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -79,8 +176,10 @@ main{max-width:none;padding:0}
 </header>
 
 <main>
+
 <div class="identity">
-<strong>Guru Pengajar:</strong> NUR SRI WULANDARI, S.S.T.Keb., Gr.
+<strong>Guru Pengajar:</strong>
+NUR SRI WULANDARI, S.S.T.Keb., Gr.
 </div>
 
 <div class="tabs no-print">
@@ -88,9 +187,21 @@ main{max-width:none;padding:0}
 <button data-tab="historyPanel">📚 Riwayat & Rekap</button>
 </div>
 
+<!-- FORM JURNAL -->
+
 <section class="card panel" id="formPanel">
-<h2>Isi Jurnal Pembelajaran</h2>
+
+<h2 id="judulForm">Isi Jurnal Pembelajaran</h2>
+
+<div id="editBanner" class="edit-banner" hidden>
+<strong>Mode Edit Jurnal</strong><br>
+Ibu sedang memperbaiki jurnal yang sudah tersimpan.
+</div>
+
 <form id="formJurnal">
+
+<input type="hidden" id="rowNumber" name="rowNumber">
+
 <div class="grid">
 
 <div class="field">
@@ -105,12 +216,14 @@ main{max-width:none;padding:0}
 
 <div class="field">
 <label for="kelas">Kelas *</label>
-<input id="kelas" name="kelas" placeholder="Contoh: XI Asisten Keperawatan" required>
+<input id="kelas" name="kelas"
+placeholder="Contoh: XI Asisten Keperawatan" required>
 </div>
 
 <div class="field">
 <label for="mapel">Mata Pelajaran *</label>
-<input id="mapel" name="mataPelajaran" placeholder="Contoh: KDTK" required>
+<input id="mapel" name="mataPelajaran"
+placeholder="Contoh: KDTK" required>
 </div>
 
 <div class="field">
@@ -120,37 +233,41 @@ main{max-width:none;padding:0}
 
 <div class="field">
 <label for="jumlahJP">Jumlah JP</label>
-<input id="jumlahJP" name="jumlahJP" type="number" min="0" step="1" placeholder="Contoh: 4">
+<input id="jumlahJP" name="jumlahJP"
+type="number" min="0" step="1" placeholder="Contoh: 4">
 </div>
 
 <div class="field full">
 <label for="materi">Materi yang Diajarkan *</label>
-<textarea id="materi" name="materi" required placeholder="Tuliskan materi pembelajaran..."></textarea>
+<textarea id="materi" name="materi"
+placeholder="Tuliskan materi pembelajaran..." required></textarea>
 </div>
 
 <div class="field full">
 <label for="tujuan">Tujuan Pembelajaran</label>
-<textarea id="tujuan" name="tujuan"></textarea>
+<textarea id="tujuan" name="tujuan"
+placeholder="Tuliskan tujuan pembelajaran..."></textarea>
 </div>
 
 <div class="field full">
 <label for="kegiatan">Kegiatan Pembelajaran</label>
-<textarea id="kegiatan" name="kegiatan" placeholder="Pendahuluan, kegiatan inti, dan penutup..."></textarea>
+<textarea id="kegiatan" name="kegiatan"
+placeholder="Pendahuluan, kegiatan inti, dan penutup..."></textarea>
 </div>
 
 <div class="field">
 <label for="jumlahSiswa">Jumlah Siswa</label>
-<input id="jumlahSiswa" name="jumlahSiswa" type="number" min="0" step="1">
+<input id="jumlahSiswa" name="jumlahSiswa" type="number" min="0">
 </div>
 
 <div class="field">
 <label for="hadir">Hadir</label>
-<input id="hadir" name="hadir" type="number" min="0" step="1">
+<input id="hadir" name="hadir" type="number" min="0">
 </div>
 
 <div class="field">
 <label for="tidakHadir">Tidak Hadir</label>
-<input id="tidakHadir" name="tidakHadir" type="number" min="0" step="1">
+<input id="tidakHadir" name="tidakHadir" type="number" min="0">
 </div>
 
 <div class="field full">
@@ -166,63 +283,112 @@ main{max-width:none;padding:0}
 </div>
 
 <div class="actions">
-<button class="primary" id="btnSimpan" type="submit">💾 Simpan Jurnal</button>
-<button class="secondary" type="reset">Kosongkan Form</button>
+<button class="primary" id="btnSimpan" type="submit">
+💾 Simpan Jurnal
+</button>
+<button class="secondary" id="btnBatalEdit" type="button" hidden>
+Batal Edit
+</button>
+<button class="secondary" type="reset">
+Kosongkan Form
+</button>
 </div>
 
 <div id="status" role="status" aria-live="polite"></div>
-<p class="note">Setelah menyimpan, buka tab Riwayat & Rekap untuk memuat catatan terbaru.</p>
+
+<p class="note">
+Kolom bertanda * wajib diisi.
+Pastikan data jurnal sudah masuk ke Google Spreadsheet.
+</p>
+
 </form>
 </section>
 
+<!-- RIWAYAT DAN REKAP -->
+
 <section class="card panel" id="historyPanel" hidden>
+
 <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+
 <div>
 <h2 style="margin:0">Riwayat & Rekap Jurnal</h2>
-<p class="note">Data diambil langsung dari tab JURNAL GURU.</p>
+<p class="note">Data diambil dari tab JURNAL GURU.</p>
 </div>
+
 <div class="actions no-print" style="margin:0">
 <button class="secondary" id="btnMuat">↻ Muat Ulang</button>
-<button class="primary" onclick="window.print()">🖨️ Cetak Rekap</button>
+<button class="primary" id="btnCetak">🖨️ Cetak Rekap</button>
 </div>
+
 </div>
 
 <div class="filter no-print">
+
 <div class="field">
 <label for="bulan">Bulan</label>
 <input id="bulan" type="month">
 </div>
+
 <div class="field">
-<label for="filterKelas">Kelas (opsional)</label>
+<label for="filterKelas">Kelas</label>
 <input id="filterKelas" placeholder="Semua kelas">
 </div>
+
 <button class="secondary" id="btnFilter">Terapkan Filter</button>
 <button class="secondary" id="btnReset">Reset</button>
+
 </div>
 
 <div class="stats">
-<div class="stat"><small>Jumlah Pertemuan</small><strong id="totalPertemuan">0</strong></div>
-<div class="stat"><small>Total JP</small><strong id="totalJP">0</strong></div>
-<div class="stat"><small>Total Hadir</small><strong id="totalHadir">0</strong></div>
-<div class="stat"><small>Total Tidak Hadir</small><strong id="totalTidak">0</strong></div>
+<div class="stat">
+<small>Jumlah Pertemuan</small>
+<strong id="totalPertemuan">0</strong>
+</div>
+<div class="stat">
+<small>Total JP</small>
+<strong id="totalJP">0</strong>
+</div>
+<div class="stat">
+<small>Total Hadir</small>
+<strong id="totalHadir">0</strong>
+</div>
+<div class="stat">
+<small>Total Tidak Hadir</small>
+<strong id="totalTidak">0</strong>
+</div>
 </div>
 
-<div id="loadInfo" class="loading">Klik “Muat Ulang” untuk mengambil data jurnal.</div>
+<div id="loadInfo" class="loading">
+Klik Muat Ulang untuk mengambil data jurnal.
+</div>
 
 <div class="table-wrap">
 <table>
 <thead>
 <tr>
-<th>Tanggal</th><th>Hari</th><th>Kelas</th><th>Mata Pelajaran</th>
-<th>Materi</th><th>Jam ke-</th><th>JP</th><th>Hadir</th><th>Tidak Hadir</th>
+<th>Tanggal</th>
+<th>Hari</th>
+<th>Kelas</th>
+<th>Mata Pelajaran</th>
+<th>Materi</th>
+<th>Jam ke-</th>
+<th>JP</th>
+<th>Hadir</th>
+<th>Tidak Hadir</th>
+<th class="no-print">Aksi</th>
 </tr>
 </thead>
+
 <tbody id="tabelRiwayat">
-<tr><td colspan="9" class="empty">Belum ada data ditampilkan.</td></tr>
+<tr>
+<td colspan="10" class="empty">Belum ada data ditampilkan.</td>
+</tr>
 </tbody>
 </table>
 </div>
+
 </section>
+
 </main>
 
 <footer>
@@ -231,39 +397,100 @@ Ajhâr, Ngabdi, sareng Ngajhâga
 </footer>
 
 <script>
-const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzflUnK22qBe3D4r4ASi3L8MDpSKhsIUiiwncl8FNwV9zyDI-fl0Z67temO1hkaQVjn/exec';
 
-const form=document.getElementById('formJurnal');
-const tanggal=document.getElementById('tanggal');
-const hari=document.getElementById('hari');
-const statusBox=document.getElementById('status');
-const btn=document.getElementById('btnSimpan');
+const SCRIPT_URL =
+'https://script.google.com/macros/s/AKfycbzflUnK22qBe3D4r4ASi3L8MDpSKhsIUiiwncl8FNwV9zyDI-fl0Z67temO1hkaQVjn/exec';
 
-let semuaJurnal=[];
+const form = document.getElementById('formJurnal');
+const tanggal = document.getElementById('tanggal');
+const hari = document.getElementById('hari');
+const statusBox = document.getElementById('status');
+const btnSimpan = document.getElementById('btnSimpan');
 
-function setTanggalHari(v){
-if(!v){hari.value='';return}
-hari.value=new Intl.DateTimeFormat('id-ID',{weekday:'long'}).format(new Date(v+'T00:00:00'));
+let semuaJurnal = [];
+let sedangEdit = false;
+
+function setTanggalHari(value){
+if(!value){
+hari.value='';
+return;
+}
+hari.value = new Intl.DateTimeFormat('id-ID',{
+weekday:'long'
+}).format(new Date(value+'T00:00:00'));
 }
 
-tanggal.value=new Date().toLocaleDateString('en-CA');
+function tanggalHariIni(){
+const d = new Date();
+const offset = d.getTimezoneOffset();
+return new Date(d.getTime()-offset*60000)
+.toISOString().slice(0,10);
+}
+
+tanggal.value = tanggalHariIni();
 setTanggalHari(tanggal.value);
-tanggal.addEventListener('change',()=>setTanggalHari(tanggal.value));
 
-document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{
-document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));
-document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==b.dataset.tab);
-if(b.dataset.tab==='historyPanel')muatJurnal();
-}));
+tanggal.addEventListener('change',()=>{
+setTanggalHari(tanggal.value);
+});
 
-form.addEventListener('submit',async ev=>{
+/* PINDAH TAB */
+
+document.querySelectorAll('[data-tab]').forEach(button=>{
+button.addEventListener('click',()=>{
+document.querySelectorAll('[data-tab]').forEach(b=>{
+b.classList.toggle('active',b===button);
+});
+
+document.querySelectorAll('.panel').forEach(panel=>{
+panel.hidden = panel.id !== button.dataset.tab;
+});
+
+if(button.dataset.tab==='historyPanel'){
+muatJurnal();
+}
+});
+});
+
+/* STATUS */
+
+function tampilStatus(pesan,jenis){
+statusBox.textContent=pesan;
+statusBox.className='show '+jenis;
+}
+
+function bersihkanStatus(){
+statusBox.textContent='';
+statusBox.className='';
+}
+
+/* KIRIM DATA KE APPS SCRIPT */
+
+async function kirimData(payload){
+const response = await fetch(SCRIPT_URL,{
+method:'POST',
+mode:'no-cors',
+headers:{
+'Content-Type':'text/plain;charset=utf-8'
+},
+body:JSON.stringify(payload)
+});
+return response;
+}
+
+/* SIMPAN ATAU EDIT JURNAL */
+
+form.addEventListener('submit',async function(ev){
+
 ev.preventDefault();
+
 if(!form.reportValidity())return;
 
-const f=new FormData(form);
+const f = new FormData(form);
 
-const payload={
-jenisData:'JURNAL_GURU',
+const payload = {
+jenisData:sedangEdit?'EDIT_JURNAL':'JURNAL_GURU',
+rowNumber:Number(f.get('rowNumber'))||0,
 tanggal:String(f.get('tanggal')||''),
 hari:String(f.get('hari')||''),
 namaGuru:'NUR SRI WULANDARI, S.S.T.Keb., Gr.',
@@ -281,130 +508,340 @@ kendala:String(f.get('kendala')||'').trim(),
 tindakLanjut:String(f.get('tindakLanjut')||'').trim()
 };
 
-btn.disabled=true;
-btn.textContent='Mengirim...';
-statusBox.className='';
-statusBox.style.display='none';
+btnSimpan.disabled=true;
+btnSimpan.textContent=sedangEdit?'Memperbarui...':'Mengirim...';
+bersihkanStatus();
 
 try{
-await fetch(SCRIPT_URL,{
-method:'POST',
-mode:'no-cors',
-headers:{'Content-Type':'text/plain;charset=utf-8'},
-body:JSON.stringify(payload)
-});
 
-statusBox.textContent='Pengiriman jurnal sudah dilakukan. Periksa tab JURNAL GURU di Spreadsheet untuk memastikan data masuk.';
-statusBox.className='show ok';
+await kirimData(payload);
+
+tampilStatus(
+sedangEdit
+?'Permintaan perubahan sudah dikirim. Silakan periksa kembali riwayat jurnal.'
+:'Pengiriman jurnal sudah dilakukan. Periksa Spreadsheet untuk memastikan data masuk.',
+'ok'
+);
+
 form.reset();
-tanggal.value=new Date().toLocaleDateString('en-CA');
+akhiriEdit();
+tanggal.value=tanggalHariIni();
 setTanggalHari(tanggal.value);
 
-}catch(err){
-statusBox.textContent='Pengiriman gagal: '+err.message;
-statusBox.className='show err';
+}catch(error){
+
+tampilStatus('Pengiriman gagal: '+error.message,'err');
 
 }finally{
-btn.disabled=false;
-btn.textContent='💾 Simpan Jurnal';
+
+btnSimpan.disabled=false;
+btnSimpan.textContent='💾 Simpan Jurnal';
+
 }
+
 });
 
+/* MODE EDIT */
+
+function mulaiEdit(rowNumber){
+
+const data = semuaJurnal.find(x=>
+Number(x.rowNumber)===Number(rowNumber)
+);
+
+if(!data){
+alert('Data jurnal tidak ditemukan. Silakan muat ulang.');
+return;
+}
+
+sedangEdit=true;
+
+document.getElementById('rowNumber').value=data.rowNumber;
+document.getElementById('tanggal').value=ubahTanggalInput(data.tanggal);
+document.getElementById('hari').value=data.hari||'';
+document.getElementById('kelas').value=data.kelas||'';
+document.getElementById('mapel').value=data.mataPelajaran||'';
+document.getElementById('jamKe').value=data.jamKe||'';
+document.getElementById('jumlahJP').value=data.jumlahJP||0;
+document.getElementById('materi').value=data.materi||'';
+document.getElementById('tujuan').value=data.tujuan||'';
+document.getElementById('kegiatan').value=data.kegiatan||'';
+document.getElementById('jumlahSiswa').value=data.jumlahSiswa||0;
+document.getElementById('hadir').value=data.hadir||0;
+document.getElementById('tidakHadir').value=data.tidakHadir||0;
+document.getElementById('kendala').value=data.kendala||'';
+document.getElementById('tindakLanjut').value=data.tindakLanjut||'';
+
+document.getElementById('judulForm').textContent='Edit Jurnal Pembelajaran';
+document.getElementById('editBanner').hidden=false;
+document.getElementById('btnBatalEdit').hidden=false;
+btnSimpan.textContent='💾 Simpan Perubahan';
+
+document.querySelector('[data-tab="formPanel"]').click();
+
+window.scrollTo({top:0,behavior:'smooth'});
+
+}
+
+function ubahTanggalInput(value){
+
+if(!value)return '';
+
+const s=String(value).trim();
+
+if(/^\d{4}-\d{2}-\d{2}$/.test(s))return s;
+
+let m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+if(m){
+return m[3]+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0');
+}
+
+m=s.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+if(m){
+return m[3]+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0');
+}
+
+return s;
+}
+
+function akhiriEdit(){
+
+sedangEdit=false;
+document.getElementById('rowNumber').value='';
+document.getElementById('judulForm').textContent='Isi Jurnal Pembelajaran';
+document.getElementById('editBanner').hidden=true;
+document.getElementById('btnBatalEdit').hidden=true;
+btnSimpan.textContent='💾 Simpan Jurnal';
+
+}
+
+document.getElementById('btnBatalEdit')
+.addEventListener('click',()=>{
+form.reset();
+akhiriEdit();
+tanggal.value=tanggalHariIni();
+setTanggalHari(tanggal.value);
+bersihkanStatus();
+});
+
+/* JSONP UNTUK MEMBACA RIWAYAT */
+
 function jsonp(url){
+
 return new Promise((resolve,reject)=>{
-const cb='jurnalCallback_'+Date.now()+'_'+Math.floor(Math.random()*10000);
-const s=document.createElement('script');
+
+const callbackName='jurnalCallback_'+Date.now()+'_'+
+Math.floor(Math.random()*10000);
+
+const script=document.createElement('script');
 
 const timer=setTimeout(()=>{
-cleanup();
+bersihkan();
 reject(new Error('Waktu tunggu habis. Periksa deployment Apps Script.'));
 },20000);
 
-function cleanup(){
+function bersihkan(){
 clearTimeout(timer);
-delete window[cb];
-s.remove();
+delete window[callbackName];
+script.remove();
 }
 
-window[cb]=data=>{
-cleanup();
+window[callbackName]=data=>{
+bersihkan();
 resolve(data);
 };
 
-s.onerror=()=>{
-cleanup();
+script.onerror=()=>{
+bersihkan();
 reject(new Error('Tidak dapat mengambil data dari Apps Script.'));
 };
 
-s.src=url+'&callback='+cb;
-document.body.appendChild(s);
+script.src=url+'&callback='+callbackName;
+document.body.appendChild(script);
+
 });
+
 }
 
+/* MEMUAT RIWAYAT */
+
 async function muatJurnal(){
+
 const info=document.getElementById('loadInfo');
 info.textContent='Sedang mengambil data jurnal...';
 
 try{
+
 const result=await jsonp(SCRIPT_URL+'?action=jurnal');
 
-if(result.status!=='success')throw new Error(result.message||'Data tidak dapat dimuat');
+if(result.status!=='success'){
+throw new Error(result.message||'Data tidak dapat dimuat');
+}
 
 semuaJurnal=result.data||[];
 tampilkanJurnal();
 
 info.textContent='Berhasil memuat '+semuaJurnal.length+' catatan jurnal.';
 
-}catch(e){
-info.textContent='Gagal memuat riwayat: '+e.message;
-}
+}catch(error){
+
+info.textContent='Gagal memuat riwayat: '+error.message;
+
 }
 
-function aman(v){
-return String(v??'').replace(/[&<>"']/g,c=>({
-'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-}[c]));
 }
+
+/* FILTER DAN REKAP */
 
 function tampilkanJurnal(){
+
 const bulan=document.getElementById('bulan').value;
-const kelas=document.getElementById('filterKelas').value.trim().toLowerCase();
+const kelas=document.getElementById('filterKelas').value
+.trim().toLowerCase();
 
 const data=semuaJurnal.filter(x=>{
-let t=String(x.tanggal||'');
-let cocokBulan=!bulan||t.startsWith(bulan)||formatBulan(t)===bulan;
-let cocokKelas=!kelas||String(x.kelas||'').toLowerCase().includes(kelas);
+
+const t=ubahTanggalInput(x.tanggal);
+const cocokBulan=!bulan||t.startsWith(bulan);
+
+const cocokKelas=!kelas||
+String(x.kelas||'').toLowerCase().includes(kelas);
+
 return cocokBulan&&cocokKelas;
+
 });
 
 document.getElementById('totalPertemuan').textContent=data.length;
-document.getElementById('totalJP').textContent=data.reduce((a,x)=>a+(Number(x.jumlahJP)||0),0);
-document.getElementById('totalHadir').textContent=data.reduce((a,x)=>a+(Number(x.hadir)||0),0);
-document.getElementById('totalTidak').textContent=data.reduce((a,x)=>a+(Number(x.tidakHadir)||0),0);
+
+document.getElementById('totalJP').textContent=
+data.reduce((a,x)=>a+(Number(x.jumlahJP)||0),0);
+
+document.getElementById('totalHadir').textContent=
+data.reduce((a,x)=>a+(Number(x.hadir)||0),0);
+
+document.getElementById('totalTidak').textContent=
+data.reduce((a,x)=>a+(Number(x.tidakHadir)||0),0);
 
 const tbody=document.getElementById('tabelRiwayat');
 
 if(!data.length){
-tbody.innerHTML='<tr><td colspan="9" class="empty">Belum ada jurnal pada filter ini.</td></tr>';
+tbody.innerHTML=
+'<tr><td colspan="10" class="empty">Belum ada jurnal pada filter ini.</td></tr>';
 return;
 }
 
-tbody.innerHTML=data.map(x=>'<tr><td>'+aman(x.tanggal)+'</td><td>'+aman(x.hari)+'</td><td>'+aman(x.kelas)+'</td><td>'+aman(x.mataPelajaran)+'</td><td>'+aman(x.materi)+'</td><td>'+aman(x.jamKe)+'</td><td>'+aman(x.jumlahJP)+'</td><td>'+aman(x.hadir)+'</td><td>'+aman(x.tidakHadir)+'</td></tr>').join('');
+tbody.innerHTML=data.map(x=>`
+
+<tr>
+<td>${aman(x.tanggal)}</td>
+<td>${aman(x.hari)}</td>
+<td>${aman(x.kelas)}</td>
+<td>${aman(x.mataPelajaran)}</td>
+<td>${aman(x.materi)}</td>
+<td>${aman(x.jamKe)}</td>
+<td>${aman(x.jumlahJP)}</td>
+<td>${aman(x.hadir)}</td>
+<td>${aman(x.tidakHadir)}</td>
+<td class="no-print">
+<div class="row-actions">
+<button class="edit-btn"
+onclick="mulaiEdit(${Number(x.rowNumber)})">
+✏️ Edit
+</button>
+<button class="danger"
+onclick="hapusJurnal(${Number(x.rowNumber)})">
+🗑️ Hapus
+</button>
+</div>
+</td>
+</tr>
+
+`).join('');
+
 }
 
-function formatBulan(t){
-const m=String(t).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-return m?m[3]+'-'+m[2].padStart(2,'0'):'';
+/* MENCEGAH KODE HTML DARI DATA SPREADSHEET */
+
+function aman(value){
+
+return String(value??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[c]));
+
 }
 
-document.getElementById('btnMuat').addEventListener('click',muatJurnal);
-document.getElementById('btnFilter').addEventListener('click',tampilkanJurnal);
+/* HAPUS JURNAL */
 
-document.getElementById('btnReset').addEventListener('click',()=>{
+async function hapusJurnal(rowNumber){
+
+const data=semuaJurnal.find(x=>
+Number(x.rowNumber)===Number(rowNumber)
+);
+
+if(!data){
+alert('Data jurnal tidak ditemukan.');
+return;
+}
+
+const yakin=confirm(
+'Apakah Ibu yakin ingin menghapus jurnal ini?\n\n'+
+'Tanggal: '+data.tanggal+
+'\nKelas: '+data.kelas+
+'\nMateri: '+data.materi+
+'\n\nData yang dihapus tidak dapat dikembalikan.'
+);
+
+if(!yakin)return;
+
+const tombol=event && event.target;
+if(tombol)tombol.disabled=true;
+
+try{
+
+await kirimData({
+jenisData:'HAPUS_JURNAL',
+rowNumber:Number(rowNumber)
+});
+
+alert(
+'Permintaan hapus telah dikirim. Klik Muat Ulang untuk memeriksa hasilnya.'
+);
+
+await new Promise(resolve=>setTimeout(resolve,1500));
+await muatJurnal();
+
+}catch(error){
+
+alert('Penghapusan gagal dikirim: '+error.message);
+if(tombol)tombol.disabled=false;
+
+}
+
+}
+
+/* TOMBOL FILTER */
+
+document.getElementById('btnMuat')
+.addEventListener('click',muatJurnal);
+
+document.getElementById('btnFilter')
+.addEventListener('click',tampilkanJurnal);
+
+document.getElementById('btnReset')
+.addEventListener('click',()=>{
 document.getElementById('bulan').value='';
 document.getElementById('filterKelas').value='';
 tampilkanJurnal();
 });
+
+document.getElementById('btnCetak')
+.addEventListener('click',()=>window.print());
+
 </script>
+
 </body>
 </html>
