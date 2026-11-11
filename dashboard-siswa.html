@@ -213,12 +213,14 @@
   background: #a83232;
 }
 
-/* PROGRES BELAJAR */
-.dashboard .progres {
+/* BAGIAN PROGRES BELAJAR */
+.dashboard .progres,
+.dashboard .presensi {
   margin-top: 30px;
 }
 
-.dashboard .progres-header {
+.dashboard .progres-header,
+.dashboard .presensi-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -227,7 +229,8 @@
   margin-bottom: 16px;
 }
 
-.dashboard .progres-header h2 {
+.dashboard .progres-header h2,
+.dashboard .presensi-header h2 {
   color: #123b5d;
   margin: 0;
   font-size: 25px;
@@ -252,6 +255,7 @@
   cursor: wait;
 }
 
+/* KARTU REKAP */
 .dashboard .ringkasan-grid {
   display: grid;
   grid-template-columns: repeat(5,minmax(0,1fr));
@@ -278,6 +282,54 @@
   font-size: 13px;
   color: #718096;
   line-height: 1.4;
+}
+
+/* KARTU PRESENSI */
+.dashboard .presensi-grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 14px;
+}
+
+.dashboard .presensi-card {
+  background: white;
+  border-radius: 13px;
+  padding: 20px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.05);
+  border-left: 4px solid #087f8c;
+  min-width: 0;
+}
+
+.dashboard .presensi-card .presensi-ikon {
+  font-size: 25px;
+}
+
+.dashboard .presensi-card strong {
+  display: block;
+  font-size: 30px;
+  margin: 8px 0;
+  color: #123b5d;
+}
+
+.dashboard .presensi-card span {
+  color: #718096;
+  font-size: 13px;
+}
+
+.dashboard .presensi-card.hadir {
+  border-left-color: #16845b;
+}
+
+.dashboard .presensi-card.izin {
+  border-left-color: #d69b27;
+}
+
+.dashboard .presensi-card.sakit {
+  border-left-color: #3287c8;
+}
+
+.dashboard .presensi-card.alpa {
+  border-left-color: #c94c4c;
 }
 
 .dashboard .riwayat-box {
@@ -322,6 +374,7 @@
 
 .dashboard .riwayat-detail {
   min-width: 0;
+  flex: 1;
 }
 
 .dashboard .riwayat-detail strong {
@@ -335,6 +388,36 @@
   color: #718096;
   margin-top: 4px;
   overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.dashboard .label-status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dashboard .label-hadir {
+  background: #dff5e9;
+  color: #16845b;
+}
+
+.dashboard .label-izin {
+  background: #fff2d6;
+  color: #986800;
+}
+
+.dashboard .label-sakit {
+  background: #e1f1ff;
+  color: #236da8;
+}
+
+.dashboard .label-alpa {
+  background: #fde5e5;
+  color: #b52f2f;
 }
 
 .dashboard .status-progres {
@@ -343,6 +426,13 @@
   padding: 15px;
   background: #f5f8fb;
   border-radius: 9px;
+  line-height: 1.6;
+}
+
+.dashboard .sumber-catatan {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #718096;
   line-height: 1.6;
 }
 
@@ -359,6 +449,10 @@
 @media(max-width: 1100px) {
   .dashboard .ringkasan-grid {
     grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+
+  .dashboard .presensi-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
   }
 }
 
@@ -410,6 +504,15 @@
 
   .dashboard .ringkasan-grid {
     grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .dashboard .presensi-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .dashboard .riwayat-item {
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 }
 </style>
@@ -509,11 +612,75 @@
 
     </section>
 
+    <!-- REKAP PRESENSI SISWA -->
+    <section class="presensi">
+
+      <div class="presensi-header">
+        <div>
+          <h2>📅 Rekap Presensi Saya</h2>
+          <p>Ringkasan kehadiran kegiatan pembelajaran.</p>
+        </div>
+
+        <button class="tombol-refresh" id="tombolRefreshPresensi" type="button">
+          ↻ Perbarui Presensi
+        </button>
+      </div>
+
+      <div id="statusPresensi" class="status-progres">
+        Menghubungkan ke data presensi...
+      </div>
+
+      <div class="presensi-grid">
+
+        <div class="presensi-card hadir">
+          <div class="presensi-ikon">✅</div>
+          <strong id="presHadir">0</strong>
+          <span>Hadir</span>
+        </div>
+
+        <div class="presensi-card izin">
+          <div class="presensi-ikon">📩</div>
+          <strong id="presIzin">0</strong>
+          <span>Izin</span>
+        </div>
+
+        <div class="presensi-card sakit">
+          <div class="presensi-ikon">🤒</div>
+          <strong id="presSakit">0</strong>
+          <span>Sakit</span>
+        </div>
+
+        <div class="presensi-card alpa">
+          <div class="presensi-ikon">❌</div>
+          <strong id="presAlpa">0</strong>
+          <span>Alpa</span>
+        </div>
+
+      </div>
+
+      <div class="riwayat-box">
+        <h3>🕒 Riwayat Kehadiran Saya</h3>
+
+        <div id="daftarPresensi" class="daftar-riwayat">
+          <div class="status-progres">
+            Memuat riwayat kehadiran...
+          </div>
+        </div>
+
+        <div class="sumber-catatan">
+          Data menampilkan catatan presensi yang sudah tersimpan.
+          Catatan yang belum tersedia tidak otomatis dianggap Alpa.
+        </div>
+      </div>
+
+    </section>
+
     <!-- PROGRES BELAJAR -->
     <section class="progres">
 
       <div class="progres-header">
         <h2>📊 Progres Belajar Saya</h2>
+
         <button class="tombol-refresh" id="tombolRefresh" type="button">
           ↻ Perbarui Progres
         </button>
@@ -555,8 +722,11 @@
 
       <div class="riwayat-box">
         <h3>🕒 Riwayat Aktivitas Terakhir</h3>
+
         <div id="daftarRiwayat" class="daftar-riwayat">
-          <div class="status-progres">Memuat progres belajar...</div>
+          <div class="status-progres">
+            Memuat progres belajar...
+          </div>
         </div>
       </div>
 
@@ -589,7 +759,9 @@ const token = sessionStorage.getItem("sigap_token");
 const nama = sessionStorage.getItem("sigap_nama");
 const kelas = sessionStorage.getItem("sigap_kelas");
 
+// =====================================
 // CEK LOGIN
+// =====================================
 if (!token || !nama) {
   alert("Silakan login terlebih dahulu.");
   window.location.replace("login.html");
@@ -599,7 +771,9 @@ if (!token || !nama) {
   document.getElementById("kelasSiswa").textContent = kelas || "-";
 }
 
+// =====================================
 // KELUAR
+// =====================================
 document.getElementById("tombolKeluar").addEventListener("click", function() {
   sessionStorage.removeItem("sigap_token");
   sessionStorage.removeItem("sigap_nama");
@@ -607,7 +781,29 @@ document.getElementById("tombolKeluar").addEventListener("click", function() {
   window.location.replace("login.html");
 });
 
-// IKON AKTIVITAS
+// =====================================
+// FUNGSI MENGIRIM PERMINTAAN KE API
+// =====================================
+async function kirimPermintaan(data) {
+  const respons = await fetch(URL_APPS_SCRIPT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(data),
+    redirect: "follow"
+  });
+
+  if (!respons.ok) {
+    throw new Error("Koneksi ke server gagal.");
+  }
+
+  return await respons.json();
+}
+
+// =====================================
+// IKON AKTIVITAS BELAJAR
+// =====================================
 function ikonAktivitas(aktivitas) {
   const ikon = {
     "Membuka materi": "📖",
@@ -619,7 +815,9 @@ function ikonAktivitas(aktivitas) {
   return ikon[aktivitas] || "📚";
 }
 
+// =====================================
 // MEMUAT PROGRES BELAJAR
+// =====================================
 async function muatProgres() {
   const daftar = document.getElementById("daftarRiwayat");
   const tombol = document.getElementById("tombolRefresh");
@@ -635,33 +833,22 @@ async function muatProgres() {
   tombol.textContent = "Memuat...";
 
   try {
-    const respons = await fetch(URL_APPS_SCRIPT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify({
-        aksi: "riwayat",
-        token: token
-      }),
-      redirect: "follow"
+    const hasil = await kirimPermintaan({
+      aksi: "riwayat",
+      token: token
     });
 
-    const hasil = await respons.json();
-
     if (!hasil.sukses) {
-      throw new Error(hasil.pesan || "Gagal mengambil data.");
+      throw new Error(hasil.pesan || "Gagal mengambil data progres.");
     }
 
     const riwayat = Array.isArray(hasil.riwayat)
       ? hasil.riwayat
       : [];
 
-    // TOTAL SELURUH AKTIVITAS
     document.getElementById("totalAktivitas").textContent =
       hasil.totalAktivitas || 0;
 
-    // REKAP SELURUH AKTIVITAS DARI SPREADSHEET
     const rekap = hasil.rekap || {};
 
     document.getElementById("jumlahMateri").textContent =
@@ -676,7 +863,6 @@ async function muatProgres() {
     document.getElementById("jumlahTugas").textContent =
       rekap.tugas || 0;
 
-    // TAMPILKAN 10 RIWAYAT TERAKHIR
     daftar.replaceChildren();
 
     if (riwayat.length === 0) {
@@ -688,7 +874,7 @@ async function muatProgres() {
       return;
     }
 
-    riwayat.forEach(function(item) {
+    riwayat.slice(0, 10).forEach(function(item) {
       const baris = document.createElement("div");
       baris.className = "riwayat-item";
 
@@ -735,15 +921,183 @@ async function muatProgres() {
   }
 }
 
+// =====================================
+// LABEL STATUS PRESENSI
+// =====================================
+function kelasStatus(status) {
+  const s = String(status || "").toLowerCase();
+
+  if (s === "hadir") return "label-hadir";
+  if (s === "izin") return "label-izin";
+  if (s === "sakit") return "label-sakit";
+  if (s === "alpa" || s === "tidak hadir") return "label-alpa";
+
+  return "";
+}
+
+function ikonStatus(status) {
+  const s = String(status || "").toLowerCase();
+
+  if (s === "hadir") return "✅";
+  if (s === "izin") return "📩";
+  if (s === "sakit") return "🤒";
+  if (s === "alpa" || s === "tidak hadir") return "❌";
+
+  return "📅";
+}
+
+// =====================================
+// MEMUAT PRESENSI SISWA
+// =====================================
+async function muatPresensi() {
+  const daftar = document.getElementById("daftarPresensi");
+  const status = document.getElementById("statusPresensi");
+  const tombol = document.getElementById("tombolRefreshPresensi");
+
+  tombol.disabled = true;
+  tombol.textContent = "Memuat...";
+
+  daftar.replaceChildren();
+
+  const pesan = document.createElement("div");
+  pesan.className = "status-progres";
+  pesan.textContent = "Sedang mengambil riwayat kehadiran...";
+  daftar.appendChild(pesan);
+
+  status.textContent = "Menghubungkan ke data presensi...";
+
+  try {
+    const hasil = await kirimPermintaan({
+      aksi: "presensi",
+      token: token
+    });
+
+    if (!hasil.sukses) {
+      throw new Error(hasil.pesan || "Data presensi belum dapat diambil.");
+    }
+
+    const rekap = hasil.rekap || {};
+
+    document.getElementById("presHadir").textContent =
+      rekap.hadir || 0;
+
+    document.getElementById("presIzin").textContent =
+      rekap.izin || 0;
+
+    document.getElementById("presSakit").textContent =
+      rekap.sakit || 0;
+
+    document.getElementById("presAlpa").textContent =
+      rekap.alpa || 0;
+
+    const riwayat = Array.isArray(hasil.riwayat)
+      ? hasil.riwayat
+      : [];
+
+    status.textContent =
+      "Presensi berhasil dimuat. Total catatan: " +
+      (hasil.totalPresensi || riwayat.length) +
+      " kegiatan.";
+
+    daftar.replaceChildren();
+
+    if (riwayat.length === 0) {
+      const kosong = document.createElement("div");
+      kosong.className = "status-progres";
+      kosong.textContent =
+        "Belum ada catatan presensi untuk akun ini.";
+      daftar.appendChild(kosong);
+      return;
+    }
+
+    riwayat.forEach(function(item) {
+      const baris = document.createElement("div");
+      baris.className = "riwayat-item";
+
+      const ikon = document.createElement("div");
+      ikon.className = "riwayat-ikon";
+      ikon.textContent = ikonStatus(item.status);
+
+      const detail = document.createElement("div");
+      detail.className = "riwayat-detail";
+
+      const judul = document.createElement("strong");
+      judul.textContent =
+        item.mataPelajaran || "Kegiatan pembelajaran";
+
+      const keterangan = document.createElement("small");
+      keterangan.textContent =
+        "Tanggal: " + (item.tanggal || "-") +
+        " • Kelas: " + (item.kelas || "-");
+
+      const materi = document.createElement("small");
+      materi.textContent =
+        "Materi: " + (item.materi || "-");
+
+      const sumber = document.createElement("small");
+      sumber.textContent =
+        "Sumber data: " + (item.sumber || "-") +
+        (item.jam ? " • Jam: " + item.jam : "") +
+        (item.keterangan ? " • Catatan: " + item.keterangan : "");
+
+      const label = document.createElement("span");
+      label.className =
+        "label-status " + kelasStatus(item.status);
+      label.textContent = item.status || "Belum ada status";
+
+      detail.appendChild(judul);
+      detail.appendChild(keterangan);
+      detail.appendChild(materi);
+      detail.appendChild(sumber);
+      detail.appendChild(label);
+
+      baris.appendChild(ikon);
+      baris.appendChild(detail);
+
+      daftar.appendChild(baris);
+    });
+
+  } catch (error) {
+    console.error("Kesalahan presensi:", error);
+
+    status.textContent =
+      "Presensi belum berhasil dimuat.";
+
+    daftar.replaceChildren();
+
+    const gagal = document.createElement("div");
+    gagal.className = "status-progres";
+    gagal.textContent =
+      "Data presensi belum dapat ditampilkan. Pastikan layanan aksi presensi sudah ditambahkan pada Apps Script login dan sudah di-deploy sebagai versi baru. Pesan: " +
+      error.message;
+
+    daftar.appendChild(gagal);
+
+  } finally {
+    tombol.disabled = false;
+    tombol.textContent = "↻ Perbarui Presensi";
+  }
+}
+
+// =====================================
 // TOMBOL PERBARUI
+// =====================================
 document.getElementById("tombolRefresh").addEventListener(
   "click",
   muatProgres
 );
 
-// MUAT PROGRES SAAT DASHBOARD DIBUKA
+document.getElementById("tombolRefreshPresensi").addEventListener(
+  "click",
+  muatPresensi
+);
+
+// =====================================
+// MUAT DATA SAAT DASHBOARD DIBUKA
+// =====================================
 if (token && nama) {
   muatProgres();
+  muatPresensi();
 }
 </script>
 
