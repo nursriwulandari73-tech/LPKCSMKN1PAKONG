@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jurnal Digital Guru | Web Learning SIGAP</title>
+<style>
+:root{--navy:#142b4a;--teal:#0d9488;--bg:#f1f5f9;--text:#26364a;--muted:#718096}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:linear-gradient(110deg,#142b4a,#176b78,#0d9488);color:white;padding:28px 20px}
+.head{max-width:1050px;margin:auto}
+.head a{color:#d9f5f1;text-decoration:none;font-size:13px}
+.head h1{margin:12px 0 4px;font-size:26px}
+.head p{margin:0;color:#e0f2f1;font-size:13px}
+main{max-width:1050px;margin:25px auto;padding:0 16px 35px}
+.card{background:white;border:1px solid #e5eaf0;border-radius:17px;padding:24px;box-shadow:0 5px 18px #14284608}
+.identity{background:#e9f7f5;border-left:4px solid var(--teal);padding:12px 15px;border-radius:9px;margin-bottom:20px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-weight:650;font-size:13px;color:#334155}
+input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:9px;padding:11px 12px;font:inherit;font-size:14px;background:#fff;color:#26364a}
+textarea{min-height:90px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid #99e6dc;border-color:var(--teal)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+button{border:0;border-radius:10px;padding:12px 20px;font-weight:700;cursor:pointer;font-size:14px}
+.primary{background:var(--teal);color:white}
+.secondary{background:#e2e8f0;color:#334155}
+button:disabled{opacity:.6;cursor:wait}
+#status{display:none;margin-top:18px;padding:13px 15px;border-radius:10px;font-size:13px}
+#status.show{display:block}
+#status.ok{background:#effaf5;color:#087b55;border:1px solid #bce7d3}
+#status.err{background:#fff5f4;color:#b42318;border:1px solid #f3c7c3}
+.note{font-size:12px;color:var(--muted);margin-top:15px}
+footer{text-align:center;color:#8996a7;font-size:11px;padding:22px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.card{padding:17px}.head h1{font-size:22px}}
+</style>
+</head>
+<body>
+<header><div class="head">
+<a href="dashboard-guru.html">← Kembali ke Dashboard Guru</a>
+<h1>📔 Jurnal Digital Guru</h1>
+<p>WEB LEARNING SIGAP · LPKC SMKN 1 Pakong</p>
+</div></header>
+<main>
+<section class="card">
+<div class="identity"><strong>Guru Pengajar:</strong> NUR SRI WULANDARI, S.S.T.Keb., Gr.</div>
+<form id="formJurnal">
+<div class="grid">
+<div class="field"><label for="tanggal">Tanggal *</label><input id="tanggal" name="tanggal" type="date" required></div>
+<div class="field"><label for="hari">Hari</label><input id="hari" name="hari" readonly></div>
+<div class="field"><label for="kelas">Kelas *</label><input id="kelas" name="kelas" placeholder="Contoh: XI Asisten Keperawatan" required></div>
+<div class="field"><label for="mapel">Mata Pelajaran *</label><input id="mapel" name="mataPelajaran" placeholder="Contoh: KDTK" required></div>
+<div class="field"><label for="jamKe">Jam ke-</label><input id="jamKe" name="jamKe" placeholder="Contoh: 1–4"></div>
+<div class="field"><label for="jumlahJP">Jumlah JP</label><input id="jumlahJP" name="jumlahJP" type="number" min="0" step="1" placeholder="Contoh: 4"></div>
+<div class="field full"><label for="materi">Materi yang Diajarkan *</label><textarea id="materi" name="materi" placeholder="Tuliskan materi pembelajaran..." required></textarea></div>
+<div class="field full"><label for="tujuan">Tujuan Pembelajaran</label><textarea id="tujuan" name="tujuan" placeholder="Tuliskan tujuan pembelajaran..."></textarea></div>
+<div class="field full"><label for="kegiatan">Kegiatan Pembelajaran</label><textarea id="kegiatan" name="kegiatan" placeholder="Pendahuluan, kegiatan inti, dan penutup..."></textarea></div>
+<div class="field"><label for="jumlahSiswa">Jumlah Siswa</label><input id="jumlahSiswa" name="jumlahSiswa" type="number" min="0" step="1" placeholder="0"></div>
+<div class="field"><label for="hadir">Hadir</label><input id="hadir" name="hadir" type="number" min="0" step="1" placeholder="0"></div>
+<div class="field"><label for="tidakHadir">Tidak Hadir</label><input id="tidakHadir" name="tidakHadir" type="number" min="0" step="1" placeholder="0"></div>
+<div class="field full"><label for="kendala">Kendala / Catatan</label><textarea id="kendala" name="kendala" placeholder="Tuliskan kendala jika ada..."></textarea></div>
+<div class="field full"><label for="tindakLanjut">Tindak Lanjut</label><textarea id="tindakLanjut" name="tindakLanjut" placeholder="Rencana tindak lanjut pembelajaran..."></textarea></div>
+</div>
+<div class="actions">
+<button class="primary" id="btnSimpan" type="submit">💾 Simpan Jurnal</button>
+<button class="secondary" type="reset">Kosongkan Form</button>
+</div>
+<div id="status" role="status" aria-live="polite"></div>
+<p class="note">Kolom bertanda * wajib diisi. Setelah menyimpan, periksa tab JURNAL GURU pada Google Spreadsheet untuk memastikan catatan sudah masuk.</p>
+</form>
+</section>
+</main>
+<footer>© 2026 Web Learning SIGAP | LPKC SMKN 1 Pakong<br>Ajhâr, Ngabdi, sareng Ngajhâga</footer>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzflUnK22qBe3D4r4ASi3L8MDpSKhsIUiiwncl8FNwV9zyDI-fl0Z67temO1hkaQVjn/exec";
+const form = document.getElementById("formJurnal");
+const tanggal = document.getElementById("tanggal");
+const hari = document.getElementById("hari");
+const statusBox = document.getElementById("status");
+const btn = document.getElementById("btnSimpan");
+
+function setTanggalHari(value){
+  if(!value){hari.value="";return;}
+  const d = new Date(value + "T00:00:00");
+  hari.value = new Intl.DateTimeFormat("id-ID",{weekday:"long"}).format(d);
+}
+tanggal.value = new Date().toLocaleDateString("en-CA");
+setTanggalHari(tanggal.value);
+tanggal.addEventListener("change",()=>setTanggalHari(tanggal.value));
+
+form.addEventListener("submit", async function(ev){
+  ev.preventDefault();
+  if(!form.reportValidity()) return;
+  const f = new FormData(form);
+  const payload = {
+    jenisData:"JURNAL_GURU",
+    tanggal:String(f.get("tanggal") || ""),
+    hari:String(f.get("hari") || ""),
+    namaGuru:"NUR SRI WULANDARI, S.S.T.Keb., Gr.",
+    kelas:String(f.get("kelas") || "").trim(),
+    mataPelajaran:String(f.get("mataPelajaran") || "").trim(),
+    materi:String(f.get("materi") || "").trim(),
+    jamKe:String(f.get("jamKe") || "").trim(),
+    jumlahJP:Number(f.get("jumlahJP") || 0),
+    tujuan:String(f.get("tujuan") || "").trim(),
+    kegiatan:String(f.get("kegiatan") || "").trim(),
+    jumlahSiswa:Number(f.get("jumlahSiswa") || 0),
+    hadir:Number(f.get("hadir") || 0),
+    tidakHadir:Number(f.get("tidakHadir") || 0),
+    kendala:String(f.get("kendala") || "").trim(),
+    tindakLanjut:String(f.get("tindakLanjut") || "").trim()
+  };
+  btn.disabled = true;
+  btn.textContent = "Mengirim...";
+  statusBox.className = "";
+  statusBox.style.display = "none";
+  try{
+    await fetch(SCRIPT_URL,{
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(payload)
+    });
+    statusBox.textContent = "Pengiriman jurnal sudah dilakukan. Silakan periksa tab JURNAL GURU di Google Spreadsheet untuk memastikan catatan masuk.";
+    statusBox.className = "show ok";
+    form.reset();
+    tanggal.value = new Date().toLocaleDateString("en-CA");
+    setTanggalHari(tanggal.value);
+  }catch(err){
+    statusBox.textContent = "Pengiriman belum berhasil: " + err.message + ". Periksa koneksi internet dan URL Web App.";
+    statusBox.className = "show err";
+  }finally{
+    btn.disabled = false;
+    btn.textContent = "💾 Simpan Jurnal";
+  }
+});
+</script>
+</body>
+</html>
