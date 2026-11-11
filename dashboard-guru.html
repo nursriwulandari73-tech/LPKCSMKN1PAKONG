@@ -205,6 +205,38 @@ button:hover{filter:brightness(1.05)}
 .info-box h3{font-size:13px;color:var(--navy);margin-bottom:7px}
 .info-box p{font-size:11px;color:#64748b;line-height:1.8}
 .footer{text-align:center;color:#8996a7;font-size:10px;padding:27px 10px 10px}
+
+/* FILTER PRESENSI */
+.presensi-filter{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  align-items:end;
+  margin-bottom:15px;
+}
+.presensi-filter label{
+  display:block;font-size:11px;font-weight:700;
+  color:#526277;margin-bottom:5px;
+}
+.presensi-filter select,.presensi-filter input{
+  width:100%;padding:10px;border:1px solid #dbe3ec;
+  border-radius:8px;background:white;font-size:12px;
+}
+.presensi-filter .filter-action{display:flex;gap:8px}
+.presensi-filter button{
+  flex:1;padding:10px;border:0;border-radius:8px;
+  cursor:pointer;font-size:11px;font-weight:650;
+  background:#142b4a;color:white;
+}
+.presensi-filter button.reset{background:#64748b}
+.presensi-detail{margin-top:15px}
+.presensi-detail h3{font-size:14px;color:#142b4a;margin-bottom:5px}
+.presensi-detail p{font-size:11px;color:#718096;margin-bottom:10px}
+.status-hadir{color:#087b55;font-weight:bold}
+.status-izin{color:#2563eb;font-weight:bold}
+.status-sakit{color:#b7791f;font-weight:bold}
+.status-alfa{color:#dc2626;font-weight:bold}
+
 @media(max-width:1000px){
   .main{padding:24px}
   .summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -231,6 +263,8 @@ button:hover{filter:brightness(1.05)}
   .form-grid{grid-template-columns:1fr}
   .section-heading{align-items:flex-start;flex-direction:column}
   .refresh-btn{width:100%}
+  .presensi-filter{grid-template-columns:1fr}
+  .presensi-filter .filter-action{width:100%}
 }
 @media(max-width:390px){
   .summary-grid{grid-template-columns:1fr}
@@ -245,10 +279,7 @@ button:hover{filter:brightness(1.05)}
 <aside class="sidebar">
   <div class="brand">
     <div class="brand-icon">📚</div>
-    <div>
-      <h2>WEB SIGAP</h2>
-      <p>Learning Management</p>
-    </div>
+    <div><h2>WEB SIGAP</h2><p>Learning Management</p></div>
   </div>
 
   <div class="menu-title">MENU UTAMA</div>
@@ -336,25 +367,61 @@ button:hover{filter:brightness(1.05)}
 </section>
 
 <!-- MONITORING PRESENSI -->
-<section class="section">
+<section class="section" id="monitoring-presensi">
   <div class="section-heading">
-    <div><h2>Monitoring Presensi Siswa</h2><p>Rekap kehadiran berdasarkan data presensi digital.</p></div>
+    <div><h2>Monitoring Presensi Siswa</h2><p>Rekap gabungan presensi digital dan manual.</p></div>
     <button class="refresh-btn" id="tombolPresensi" onclick="ambilPresensi()">↻ Perbarui Presensi</button>
   </div>
+
   <div id="statusPresensi" class="status">Menghubungkan ke data presensi...</div>
 
-  <div class="summary-grid">
-    <div class="summary-card"><div class="summary-icon">📅</div><h3>Total Catatan Presensi</h3><strong id="presTotal">-</strong><p>Seluruh catatan presensi</p></div>
-    <div class="summary-card"><div class="summary-icon">👩‍🎓</div><h3>Siswa Tercatat</h3><strong id="presSiswa">-</strong><p>Siswa unik yang mengisi presensi</p></div>
-    <div class="summary-card"><div class="summary-icon">✅</div><h3>Hadir</h3><strong id="presHadir">-</strong><p>Catatan berstatus hadir</p></div>
-    <div class="summary-card"><div class="summary-icon">📝</div><h3>Izin</h3><strong id="presIzin">-</strong><p>Catatan berstatus izin</p></div>
-    <div class="summary-card"><div class="summary-icon">🤒</div><h3>Sakit</h3><strong id="presSakit">-</strong><p>Catatan berstatus sakit</p></div>
-    <div class="summary-card"><div class="summary-icon">⚠️</div><h3>Tidak Hadir</h3><strong id="presTidakHadir">-</strong><p>Catatan berstatus alpa</p></div>
+  <div class="form-panel">
+    <h3 style="font-size:14px;color:#142b4a;margin-bottom:12px">🔎 Filter Rekap Kehadiran</h3>
+    <div class="presensi-filter">
+      <div>
+        <label for="filterPresensiKelas">Pilih Kelas</label>
+        <select id="filterPresensiKelas"><option value="">Semua Kelas</option></select>
+      </div>
+      <div>
+        <label for="filterPresensiTanggal">Pilih Tanggal</label>
+        <input type="date" id="filterPresensiTanggal">
+      </div>
+      <div class="filter-action">
+        <button type="button" onclick="terapkanFilterPresensi()">Tampilkan</button>
+        <button type="button" class="reset" onclick="resetFilterPresensi()">Reset</button>
+      </div>
+    </div>
+    <p class="form-note">Kosongkan filter untuk melihat seluruh data presensi.</p>
+  </div>
+
+  <div class="summary-grid" style="margin-top:15px">
+    <div class="summary-card"><div class="summary-icon">📅</div><h3>Total Catatan Presensi</h3><strong id="presTotal">0</strong><p>Jumlah seluruh catatan</p></div>
+    <div class="summary-card"><div class="summary-icon">👩‍🎓</div><h3>Siswa Tercatat</h3><strong id="presSiswa">0</strong><p>Siswa unik</p></div>
+    <div class="summary-card"><div class="summary-icon">✅</div><h3>Hadir</h3><strong id="presHadir">0</strong><p>Status hadir</p></div>
+    <div class="summary-card"><div class="summary-icon">📝</div><h3>Izin</h3><strong id="presIzin">0</strong><p>Status izin</p></div>
+    <div class="summary-card"><div class="summary-icon">🤒</div><h3>Sakit</h3><strong id="presSakit">0</strong><p>Status sakit</p></div>
+    <div class="summary-card"><div class="summary-icon">⚠️</div><h3>Alfa</h3><strong id="presTidakHadir">0</strong><p>Tanpa keterangan</p></div>
+    <div class="summary-card"><div class="summary-icon">📈</div><h3>Persentase Kehadiran</h3><strong id="presPersentase">0%</strong><p>Hadir dari seluruh status tercatat</p></div>
   </div>
 
   <div class="trend-grid" style="margin-top:15px">
     <div class="trend-card"><h3>Rekap Presensi Berdasarkan Kelas</h3><p>Jumlah catatan presensi setiap kelas.</p><div id="presensiKelas">Menunggu data...</div></div>
     <div class="trend-card"><h3>Presensi 7 Hari Terakhir</h3><p>Jumlah catatan presensi setiap hari.</p><div id="presensiHarian">Menunggu data...</div></div>
+  </div>
+
+  <div class="chart-card presensi-detail" style="margin-top:15px">
+    <h3>Rincian Kehadiran Siswa</h3>
+    <p>Daftar kehadiran sesuai filter kelas dan tanggal.</p>
+    <div class="table-wrap">
+      <table class="data-table" style="min-width:750px">
+        <thead>
+          <tr><th>No.</th><th>Tanggal</th><th>Kelas</th><th>Nama Siswa</th><th>Mata Pelajaran</th><th>Status</th><th>Sumber</th></tr>
+        </thead>
+        <tbody id="presensiDetail">
+          <tr><td colspan="7">Menunggu data presensi...</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -448,23 +515,20 @@ button:hover{filter:brightness(1.05)}
 
 <script>
 /**************************************************
- * URL APPS SCRIPT
+ * URL APPS SCRIPT - TETAP DIPERTAHANKAN
  **************************************************/
 
-// URL monitoring aktivitas siswa yang lama
 const URL_APPS_SCRIPT =
 "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
 
-// URL presensi digital yang lama
 const URL_APPS_SCRIPT_PRESENSI =
 "https://script.google.com/macros/s/AKfycbzYZSnnqp52UJfoJ3rqFDzdoP8ckadVpRzNcbaXwbU2mYnJX-wnQ2C9qnMXma8wLWNR/exec";
 
-// URL Code.gs untuk siswa, jurnal, kehadiran, dan nilai TP
-// Jika URL deployment berubah, ganti alamat ini.
 const URL_APPS_SCRIPT_DATA =
 "https://script.google.com/macros/s/AKfycbweu1wCHMLXEKTae1T1NuaI_YG3heq8lKu_HK8OPloai2KTqFT1xtofiIXzuLtpiZI4/exec";
 
 let daftarSiswaSIGAP = [];
+let dataPresensiGabungan = [];
 
 /**************************************************
  * TAMPILAN DASAR
@@ -494,7 +558,7 @@ function escapeHTML(v){
 }
 
 /**************************************************
- * JSONP UNTUK MEMBACA DATA APPS SCRIPT
+ * JSONP
  **************************************************/
 
 function panggilJSONP(url,callback){
@@ -507,7 +571,7 @@ function panggilJSONP(url,callback){
     selesai=true;
     bersihkan();
     callback({status:"error",message:"Waktu koneksi habis. Periksa URL dan akses Web App."});
-  },15000);
+  },20000);
 
   function bersihkan(){
     clearTimeout(timer);
@@ -599,7 +663,7 @@ function tampilkanTren(data,id,kolomLabel){
 }
 
 /**************************************************
- * AMBIL MONITORING AKTIVITAS
+ * MONITORING AKTIVITAS
  **************************************************/
 
 async function ambilData(){
@@ -651,91 +715,193 @@ async function ambilData(){
 }
 
 /**************************************************
- * MONITORING PRESENSI GABUNGAN MANUAL + DIGITAL
+ * MONITORING PRESENSI GABUNGAN
  **************************************************/
+
+function normalisasiStatusDashboard(value){
+  const status=String(value||"").trim().toUpperCase()
+    .replace(/\s+/g," ");
+
+  if(["ALPA","ALFA","ALPHA","TIDAK HADIR","TIDAK_HADIR","ABSEN"].includes(status)){
+    return "ALFA";
+  }
+
+  return status;
+}
+
+function tanggalPresensiISO(value){
+  const s=String(value||"").trim();
+
+  if(!s)return "";
+
+  let m=s.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})/);
+
+  if(m){
+    return m[1]+"-"+String(m[2]).padStart(2,"0")+"-"+
+      String(m[3]).padStart(2,"0");
+  }
+
+  m=s.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})/);
+
+  if(m){
+    return m[3]+"-"+String(m[2]).padStart(2,"0")+"-"+
+      String(m[1]).padStart(2,"0");
+  }
+
+  return "";
+}
 
 function ambilPresensi(){
   const tombol=document.getElementById("tombolPresensi");
   tombol.disabled=true;
   tombol.textContent="Memuat...";
-  tampilStatus("Sedang menggabungkan presensi manual dan digital...","","statusPresensi");
 
-  // Mengambil data dari endpoint gabungan Code.gs yang sudah diuji berhasil.
-  panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=rekapgabungan",hasil=>{
-    tombol.disabled=false;
-    tombol.textContent="↻ Perbarui Presensi";
+  tampilStatus(
+    "Mengambil data presensi digital dan manual...",
+    "",
+    "statusPresensi"
+  );
 
-    if(!hasil||hasil.status!=="success"){
+  panggilJSONP(
+    URL_APPS_SCRIPT_DATA+"?action=rekapgabungan",
+    hasil=>{
+
+      tombol.disabled=false;
+      tombol.textContent="↻ Perbarui Presensi";
+
+      if(!hasil||hasil.status!=="success"){
+        tampilStatus(
+          "Presensi gagal dimuat. "+
+          (hasil&&hasil.message?hasil.message:"Periksa URL Apps Script."),
+          "error",
+          "statusPresensi"
+        );
+        return;
+      }
+
+      dataPresensiGabungan=Array.isArray(hasil.data)?hasil.data:[];
+
+      muatFilterKelasPresensi();
+      terapkanFilterPresensi();
+
+      document.getElementById("waktuUpdatePresensi").textContent=
+        new Date().toLocaleString("id-ID");
+
       tampilStatus(
-        "Data presensi gabungan gagal dibaca. "+(hasil&&hasil.message?hasil.message:"Periksa akses Web App."),
-        "error","statusPresensi"
+        "✓ "+dataPresensiGabungan.length+
+        " catatan presensi berhasil dibaca.",
+        "success",
+        "statusPresensi"
       );
-      return;
     }
+  );
+}
 
-    const data=Array.isArray(hasil.data)?hasil.data:[];
-    const hitung={hadir:0,izin:0,sakit:0,tidakHadir:0};
-    const siswaUnik=new Set();
-    const kelasMap={};
-    const tanggalMap={};
+function muatFilterKelasPresensi(){
+  const select=document.getElementById("filterPresensiKelas");
+  const lama=select.value;
 
-    data.forEach(r=>{
-      const st=String(r.status||"").trim().toUpperCase();
-      if(st==="HADIR")hitung.hadir++;
-      else if(st==="IZIN")hitung.izin++;
-      else if(st==="SAKIT")hitung.sakit++;
-      else if(st==="ALPA"||st==="TIDAK HADIR"||st==="TIDAK_HADIR")hitung.tidakHadir++;
+  const kelas=[
+    ...new Set(dataPresensiGabungan
+      .map(r=>String(r.kelas||"").trim())
+      .filter(Boolean))
+  ].sort();
 
-      const identitas=String(r.nis||r.nisn||r.nama||"").trim();
-      if(identitas)siswaUnik.add(identitas);
+  select.innerHTML='<option value="">Semua Kelas</option>'+
+    kelas.map(k=>`<option value="${escapeHTML(k)}">${escapeHTML(k)}</option>`).join("");
 
-      const namaKelas=String(r.kelas||"Belum diketahui").trim();
-      kelasMap[namaKelas]=(kelasMap[namaKelas]||0)+1;
+  if(kelas.includes(lama))select.value=lama;
+}
 
-      const tanggal=String(r.tanggal||"").trim();
-      if(tanggal)tanggalMap[tanggal]=(tanggalMap[tanggal]||0)+1;
-    });
+function terapkanFilterPresensi(){
 
-    const rekap=hasil.rekapStatus||{};
-    tampilAngka("presTotal",hasil.totalPresensi??data.length);
-    tampilAngka("presSiswa",hasil.jumlahSiswa??siswaUnik.size);
-    tampilAngka("presHadir",rekap.hadir??hitung.hadir);
-    tampilAngka("presIzin",rekap.izin??hitung.izin);
-    tampilAngka("presSakit",rekap.sakit??hitung.sakit);
-    tampilAngka("presTidakHadir",rekap.tidakHadir??hitung.tidakHadir);
+  const kelas=document.getElementById("filterPresensiKelas").value;
+  const tanggal=document.getElementById("filterPresensiTanggal").value;
 
-    const rekapKelas=Object.entries(kelasMap).map(([kelas,totalPresensi])=>({kelas,totalPresensi}));
-    const trenHarian=Object.entries(tanggalMap)
-      .sort((a,b)=>a[0].localeCompare(b[0]))
-      .slice(-7)
-      .map(([tanggal,total])=>({tanggal,total}));
-
-    tampilkanTren(trenHarian,"presensiHarian","tanggal");
-    tampilkanRekapKelas(rekapKelas);
-
-    document.getElementById("waktuUpdatePresensi").textContent=
-      new Date().toLocaleString("id-ID");
-
-    tampilStatus(
-      "✓ Presensi manual dan digital berhasil digabungkan. Total "+
-      (hasil.totalPresensi??data.length)+" catatan kehadiran.",
-      "success","statusPresensi"
-    );
+  const data=dataPresensiGabungan.filter(r=>{
+    const cocokKelas=!kelas||String(r.kelas||"").trim()===kelas;
+    const cocokTanggal=!tanggal||tanggalPresensiISO(r.tanggal)===tanggal;
+    return cocokKelas&&cocokTanggal;
   });
+
+  const hitung={hadir:0,izin:0,sakit:0,alfa:0};
+  const siswaUnik=new Set();
+  const kelasMap={};
+  const tanggalMap={};
+
+  data.forEach(r=>{
+    const status=normalisasiStatusDashboard(r.status);
+
+    if(status==="HADIR")hitung.hadir++;
+    else if(status==="IZIN")hitung.izin++;
+    else if(status==="SAKIT")hitung.sakit++;
+    else if(status==="ALFA")hitung.alfa++;
+
+    const identitas=String(r.nis||r.nisn||r.nama||"").trim();
+    if(identitas)siswaUnik.add(identitas);
+
+    const k=String(r.kelas||"Belum diketahui").trim();
+    kelasMap[k]=(kelasMap[k]||0)+1;
+
+    const t=tanggalPresensiISO(r.tanggal);
+    if(t)tanggalMap[t]=(tanggalMap[t]||0)+1;
+  });
+
+  const totalStatus=hitung.hadir+hitung.izin+hitung.sakit+hitung.alfa;
+  const persen=totalStatus?(hitung.hadir/totalStatus*100):0;
+
+  tampilAngka("presTotal",data.length);
+  tampilAngka("presSiswa",siswaUnik.size);
+  tampilAngka("presHadir",hitung.hadir);
+  tampilAngka("presIzin",hitung.izin);
+  tampilAngka("presSakit",hitung.sakit);
+  tampilAngka("presTidakHadir",hitung.alfa);
+
+  document.getElementById("presPersentase").textContent=
+    persen.toLocaleString("id-ID",{
+      minimumFractionDigits:1,
+      maximumFractionDigits:1
+    })+"%";
+
+  const rekapKelas=Object.entries(kelasMap).map(([kelas,totalPresensi])=>({
+    kelas,totalPresensi
+  }));
+
+  tampilkanRekapKelas(rekapKelas);
+
+  const tren=Object.entries(tanggalMap)
+    .sort((a,b)=>a[0].localeCompare(b[0]))
+    .slice(-7)
+    .map(([tanggal,total])=>({tanggal,total}));
+
+  tampilkanTren(tren,"presensiHarian","tanggal");
+  tampilkanDetailPresensi(data);
+
+  let pesan="Menampilkan "+data.length+" catatan presensi.";
+
+  if(kelas)pesan+=" Kelas "+kelas+".";
+  if(tanggal)pesan+=" Tanggal "+tanggal+".";
+  if(!data.length)pesan="Tidak ditemukan data sesuai filter.";
+
+  tampilStatus(pesan,data.length?"success":"","statusPresensi");
+}
+
+function resetFilterPresensi(){
+  document.getElementById("filterPresensiKelas").value="";
+  document.getElementById("filterPresensiTanggal").value="";
+  terapkanFilterPresensi();
 }
 
 function tampilkanRekapKelas(data){
   const wadah=document.getElementById("presensiKelas");
   wadah.innerHTML="";
 
-  if(!Array.isArray(data)||data.length===0){
+  if(!data.length){
     wadah.textContent="Belum ada data presensi.";
     return;
   }
 
-  const maksimum=Math.max(
-    ...data.map(item=>Number(item.totalPresensi||0)),1
-  );
+  const maksimum=Math.max(...data.map(x=>Number(x.totalPresensi||0)),1);
 
   data.forEach(item=>{
     const jumlah=Number(item.totalPresensi||0);
@@ -744,7 +910,7 @@ function tampilkanRekapKelas(data){
 
     const label=document.createElement("div");
     label.className="trend-label";
-    label.textContent=item.kelas||"-";
+    label.textContent=item.kelas;
 
     const latar=document.createElement("div");
     latar.className="trend-bar-bg";
@@ -763,8 +929,37 @@ function tampilkanRekapKelas(data){
   });
 }
 
+function tampilkanDetailPresensi(data){
+  const tbody=document.getElementById("presensiDetail");
+
+  if(!data.length){
+    tbody.innerHTML="<tr><td colspan='7'>Belum ada data sesuai filter.</td></tr>";
+    return;
+  }
+
+  tbody.innerHTML=data.map((r,i)=>{
+    const status=normalisasiStatusDashboard(r.status);
+    let css="";
+
+    if(status==="HADIR")css="status-hadir";
+    else if(status==="IZIN")css="status-izin";
+    else if(status==="SAKIT")css="status-sakit";
+    else if(status==="ALFA")css="status-alfa";
+
+    return `<tr>
+      <td>${i+1}</td>
+      <td>${escapeHTML(r.tanggal||"-")}</td>
+      <td>${escapeHTML(r.kelas||"-")}</td>
+      <td>${escapeHTML(r.nama||"-")}</td>
+      <td>${escapeHTML(r.mataPelajaran||"-")}</td>
+      <td class="${css}">${escapeHTML(status||"-")}</td>
+      <td>${escapeHTML(r.sumber||"-")}</td>
+    </tr>`;
+  }).join("");
+}
+
 /**************************************************
- * MEMUAT DATA SISWA DARI CODE.GS
+ * MEMUAT DATA SISWA
  **************************************************/
 
 function muatSiswaSIGAP(){
@@ -785,9 +980,7 @@ function muatSiswaSIGAP(){
     ["khKelas","tpKelas"].forEach(id=>{
       const el=document.getElementById(id);
       el.innerHTML='<option value="">Pilih kelas</option>'+
-        kelas.map(k=>
-          `<option value="${escapeHTML(k)}">${escapeHTML(k)}</option>`
-        ).join("");
+        kelas.map(k=>`<option value="${escapeHTML(k)}">${escapeHTML(k)}</option>`).join("");
     });
 
     document.getElementById("khStatus").textContent=
@@ -799,7 +992,7 @@ function muatSiswaSIGAP(){
 }
 
 /**************************************************
- * FORM REKAP KEHADIRAN
+ * FORM KEHADIRAN MANUAL
  **************************************************/
 
 function tampilkanFormKehadiran(){
@@ -847,19 +1040,19 @@ async function simpanKehadiran(){
     keterangan:tr.querySelector(".kh-ket").value
   }));
 
-  await kirimDataSIGAP({
+  const berhasil=await kirimDataSIGAP({
     jenisData:"SIMPAN_KEHADIRAN",
-    tanggal: tanggal,
-    kelas: kelas,
-    mataPelajaran: mataPelajaran,
-    siswa: siswa
+    tanggal,kelas,mataPelajaran,siswa
   },"khStatus");
 
-  muatRekapKehadiran();
+  if(berhasil){
+    muatRekapKehadiran();
+    ambilPresensi();
+  }
 }
 
 /**************************************************
- * FORM NILAI PER TUJUAN PEMBELAJARAN
+ * FORM NILAI TP
  **************************************************/
 
 function tampilkanFormNilaiTP(){
@@ -901,43 +1094,26 @@ async function simpanNilaiTP(){
     keterangan:tr.querySelector(".tp-ket").value
   }));
 
-  if(siswa.some(s=>
-    s.nilai===""||!Number.isFinite(Number(s.nilai))||
-    Number(s.nilai)<0||Number(s.nilai)>100
-  )){
+  if(siswa.some(s=>s.nilai===""||!Number.isFinite(Number(s.nilai))||
+    Number(s.nilai)<0||Number(s.nilai)>100)){
     alert("Isi semua nilai siswa dengan angka 0 sampai 100.");
     return;
   }
 
   const berhasil=await kirimDataSIGAP({
     jenisData:"SIMPAN_NILAI_TP",
-    tanggal: tanggal,
-    kelas: kelas,
-    mataPelajaran: mataPelajaran,
-    tujuanPembelajaran: tujuanPembelajaran,
-    siswa: siswa
+    tanggal,kelas,mataPelajaran,tujuanPembelajaran,siswa
   },"tpStatus");
 
-  if(berhasil){
-    muatRiwayatNilaiTP();
-  }
+  if(berhasil)muatRiwayatNilaiTP();
 }
 
 /**************************************************
- * PENGIRIMAN DATA KE CODE.GS
+ * KIRIM DATA KE CODE.GS
  **************************************************/
 
 async function kirimDataSIGAP(payload,pesanId){
-  if(!URL_APPS_SCRIPT_DATA||
-     URL_APPS_SCRIPT_DATA.includes("GANTI_DENGAN")){
-    alert("URL Apps Script data belum dipasang.");
-    return false;
-  }
-
   try{
-    // mode no-cors membuat browser tidak dapat membaca
-    // respons server. Karena itu, setelah pengiriman,
-    // kita periksa hasilnya melalui riwayat Google Sheets.
     await fetch(URL_APPS_SCRIPT_DATA,{
       method:"POST",
       mode:"no-cors",
@@ -946,7 +1122,7 @@ async function kirimDataSIGAP(payload,pesanId){
     });
 
     tampilStatus(
-      "Permintaan telah dikirim. Memeriksa data pada Google Sheets...",
+      "Permintaan dikirim. Memeriksa data Google Sheets...",
       "",
       pesanId
     );
@@ -961,7 +1137,6 @@ async function kirimDataSIGAP(payload,pesanId){
       return await cekKehadiranTersimpan(payload);
     }
 
-    alert("Permintaan pengiriman telah dilakukan.");
     return true;
 
   }catch(error){
@@ -970,10 +1145,6 @@ async function kirimDataSIGAP(payload,pesanId){
     return false;
   }
 }
-
-/**************************************************
- * VERIFIKASI PENYIMPANAN NILAI TP
- **************************************************/
 
 function cekNilaiTPTersimpan(payload){
   return new Promise(resolve=>{
@@ -988,21 +1159,17 @@ function cekNilaiTPTersimpan(payload){
       );
 
       if(cocok){
-        tampilStatus("✓ Data nilai TP sudah ditemukan pada riwayat Google Sheets.","success","tpStatus");
-        alert("Nilai TP berhasil tersimpan dan sudah terbaca pada riwayat.");
+        tampilStatus("✓ Nilai TP ditemukan pada riwayat Google Sheets.","success","tpStatus");
+        alert("Nilai TP berhasil tersimpan dan terbaca pada riwayat.");
         resolve(true);
       }else{
-        tampilStatus("Data belum ditemukan pada riwayat. Periksa deployment Code.gs dan sheet NILAI TP XI.","error","tpStatus");
-        alert("Data belum terverifikasi. Periksa sheet NILAI TP XI dan pastikan URL Web App sudah benar.");
+        tampilStatus("Data belum ditemukan. Periksa sheet NILAI TP XI dan deployment.","error","tpStatus");
+        alert("Data belum terverifikasi. Periksa sheet NILAI TP XI.");
         resolve(false);
       }
     });
   });
 }
-
-/**************************************************
- * VERIFIKASI PENYIMPANAN KEHADIRAN
- **************************************************/
 
 function cekKehadiranTersimpan(payload){
   return new Promise(resolve=>{
@@ -1016,12 +1183,12 @@ function cekKehadiranTersimpan(payload){
       );
 
       if(cocok){
-        tampilStatus("✓ Data kehadiran sudah ditemukan pada riwayat Google Sheets.","success","khStatus");
-        alert("Rekap kehadiran berhasil tersimpan dan sudah terbaca pada riwayat.");
+        tampilStatus("✓ Data kehadiran ditemukan pada riwayat Google Sheets.","success","khStatus");
+        alert("Rekap kehadiran berhasil tersimpan dan terbaca.");
         resolve(true);
       }else{
-        tampilStatus("Data belum ditemukan pada riwayat. Periksa deployment Code.gs dan sheet REKAP KEHADIRAN XI.","error","khStatus");
-        alert("Data belum terverifikasi. Periksa sheet REKAP KEHADIRAN XI dan URL Web App.");
+        tampilStatus("Data belum ditemukan. Periksa sheet REKAP KEHADIRAN XI.","error","khStatus");
+        alert("Data belum terverifikasi. Periksa sheet REKAP KEHADIRAN XI.");
         resolve(false);
       }
     });
@@ -1029,7 +1196,7 @@ function cekKehadiranTersimpan(payload){
 }
 
 /**************************************************
- * MEMUAT RIWAYAT KEHADIRAN
+ * RIWAYAT KEHADIRAN
  **************************************************/
 
 function muatRekapKehadiran(){
@@ -1051,13 +1218,12 @@ function muatRekapKehadiran(){
         <td>${escapeHTML(r.nama)}</td>
         <td>${escapeHTML(r.status)}</td>
       </tr>
-    `).join("")||
-    "<tr><td colspan='5'>Belum ada data kehadiran.</td></tr>";
+    `).join("")||"<tr><td colspan='5'>Belum ada data kehadiran.</td></tr>";
   });
 }
 
 /**************************************************
- * MEMUAT RIWAYAT NILAI TP
+ * RIWAYAT NILAI TP
  **************************************************/
 
 function muatRiwayatNilaiTP(){
@@ -1080,13 +1246,12 @@ function muatRiwayatNilaiTP(){
         <td>${escapeHTML(r.nilai)}</td>
         <td>${escapeHTML(r.tanggal)}</td>
       </tr>
-    `).join("")||
-    "<tr><td colspan='6'>Belum ada data nilai TP.</td></tr>";
+    `).join("")||"<tr><td colspan='6'>Belum ada data nilai TP.</td></tr>";
   });
 }
 
 /**************************************************
- * TANGGAL OTOMATIS DAN PEMUATAN AWAL
+ * PEMUATAN AWAL
  **************************************************/
 
 const hariIni=new Date();
@@ -1097,7 +1262,6 @@ const tanggalLokal=new Date(
 document.getElementById("khTanggal").value=tanggalLokal;
 document.getElementById("tpTanggal").value=tanggalLokal;
 
-// Event kelas
 document.getElementById("khKelas").addEventListener(
   "change",tampilkanFormKehadiran
 );
@@ -1106,7 +1270,14 @@ document.getElementById("tpKelas").addEventListener(
   "change",tampilkanFormNilaiTP
 );
 
-// Muat semua data saat dashboard dibuka
+document.getElementById("filterPresensiKelas").addEventListener(
+  "change",terapkanFilterPresensi
+);
+
+document.getElementById("filterPresensiTanggal").addEventListener(
+  "change",terapkanFilterPresensi
+);
+
 ambilData();
 ambilPresensi();
 muatSiswaSIGAP();
