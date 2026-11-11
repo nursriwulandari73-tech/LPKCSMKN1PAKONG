@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,163 +7,235 @@
 <title>Dashboard Guru | Web Learning SIGAP</title>
 
 <style>
-:root{--navy:#142b4a;--teal:#0d9488;--bg:#f1f5f9;--text:#26364a;--muted:#718096;--white:#fff}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-.layout{display:flex;min-height:100vh}
-.sidebar{width:260px;background:linear-gradient(180deg,#142b4a,#0c4656);color:white;padding:25px 18px;position:fixed;top:0;bottom:0;left:0;overflow-y:auto;box-shadow:5px 0 25px #142b4a15;z-index:10}
-.brand{display:flex;align-items:center;gap:13px;padding:5px 8px 27px;border-bottom:1px solid #ffffff25}
-.brand-icon{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,#13b8a6,#0d9488);display:grid;place-items:center;font-size:25px;box-shadow:0 5px 15px #00000025}
-.brand h2{font-size:18px;letter-spacing:1px}.brand p{font-size:11px;color:#bdcedd;margin-top:3px}
-.menu-title{color:#9bb2c8;font-size:10px;font-weight:bold;letter-spacing:1.5px;margin:30px 10px 13px}
-.menu a{display:flex;align-items:center;gap:12px;color:#d8e5ef;text-decoration:none;padding:13px;border-radius:12px;margin-bottom:7px;font-size:13px;transition:.25s}
-.menu a:hover,.menu a.active{background:linear-gradient(100deg,#0d9488,#16b6a5);color:white;transform:translateX(3px);box-shadow:0 5px 15px #00000020}
-.menu a span{width:23px;text-align:center;font-size:18px}
-.sidebar-footer{border-top:1px solid #ffffff25;margin-top:30px;padding:18px 8px;color:#b7c8d8;font-size:11px;line-height:1.8}
-.main{margin-left:260px;width:calc(100% - 260px);padding:32px 38px}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}
-.topbar h1{font-size:27px;color:var(--navy);font-weight:750}.topbar p{color:var(--muted);font-size:13px;margin-top:5px}
-.date-box{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:12px 17px;font-size:12px;color:var(--navy);box-shadow:0 4px 15px #14284608}
-.welcome{background:linear-gradient(115deg,#142b4a 0%,#176b78 65%,#0d9488 100%);border-radius:22px;padding:35px;color:white;display:flex;justify-content:space-between;align-items:center;gap:20px;box-shadow:0 12px 30px #176b7825;position:relative;overflow:hidden}
-.welcome:after{content:"";position:absolute;width:230px;height:230px;border:35px solid #ffffff12;border-radius:50%;right:75px;top:-115px}
-.welcome h2{font-size:25px;margin-bottom:10px}.welcome p{color:#d8e8ed;font-size:13px;line-height:1.8;max-width:650px}.welcome-icon{font-size:78px;z-index:1}
-.section{margin-top:34px}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
-.section-heading h2{color:var(--navy);font-size:19px;font-weight:750}.section-heading p{font-size:12px;color:var(--muted);margin-top:5px}
-.refresh-btn{border:0;background:linear-gradient(100deg,#0d9488,#16b6a5);color:white;padding:12px 18px;border-radius:10px;cursor:pointer;font-weight:600;font-size:12px;box-shadow:0 4px 12px #0d948825;transition:.2s}
-.refresh-btn:hover{transform:translateY(-2px);box-shadow:0 7px 17px #0d948835}.refresh-btn:disabled{opacity:.6;cursor:wait}
-.status{background:white;border:1px solid #e5eaf0;border-radius:12px;padding:14px 17px;font-size:12px;color:#526277;margin-bottom:18px}
-.status.error{color:#b42318;background:#fff5f4;border-color:#f3c7c3}.status.success{color:#087b55;background:#effaf5;border-color:#bce7d3}
-.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.summary-card{background:white;padding:23px;border-radius:17px;border:1px solid #e8edf3;box-shadow:0 5px 18px #14284608;transition:.25s;position:relative;overflow:hidden}
-.summary-card:after{content:"";position:absolute;height:4px;bottom:0;left:0;right:0;background:linear-gradient(90deg,#0d9488,#54d6c4);opacity:.8}
-.summary-card:hover{transform:translateY(-5px);box-shadow:0 12px 25px #14284615}
-.summary-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:#e7f6f5;margin-bottom:17px}
-.summary-card h3{font-size:13px;color:#526277;margin-bottom:8px}.summary-card strong{font-size:29px;color:var(--navy);font-weight:750}.summary-card p{font-size:11px;color:var(--muted);margin-top:7px}
-.chart-card,.trend-card{background:white;padding:26px;border-radius:17px;border:1px solid #e8edf3;box-shadow:0 5px 18px #14284608}
-.chart-row{display:grid;grid-template-columns:130px 1fr 45px;align-items:center;gap:13px;margin:24px 0;font-size:12px}
-.chart-label{color:#526277;font-weight:650}.bar-bg,.trend-bar-bg{height:14px;background:#edf1f5;border-radius:20px;overflow:hidden}
-.bar,.trend-bar-fill{height:100%;width:0%;border-radius:20px;background:linear-gradient(90deg,#0d9488,#45cbb8);transition:width .8s ease}
-.chart-value{font-weight:bold;text-align:right;color:var(--navy)}
-.trend-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.trend-card h3{font-size:15px;color:var(--navy);margin-bottom:3px}.trend-card>p{font-size:11px;color:var(--muted);margin-top:6px}
-.trend-item{display:grid;grid-template-columns:75px 1fr 35px;align-items:center;gap:10px;margin:19px 0;font-size:11px}
-.trend-label{font-weight:650;color:#526277}.trend-number{text-align:right;font-weight:bold;color:var(--navy)}
-.trend-bar-bg{height:12px}.trend-bar-fill{background:linear-gradient(90deg,#176b78,#13b8a6)}
-.info-box{background:white;border:1px solid #e8edf3;border-left:5px solid var(--teal);border-radius:14px;padding:22px;margin-top:30px;box-shadow:0 5px 18px #14284608}
-.info-box h3{font-size:14px;color:var(--navy);margin-bottom:9px}.info-box p{font-size:12px;line-height:1.8;color:#64748b}
-.footer{text-align:center;color:#8996a7;font-size:11px;padding:32px 10px 12px;line-height:1.8}
-@media(max-width:1000px){.summary-grid{grid-template-columns:repeat(2,1fr)}.main{padding:25px}}
-@media(max-width:700px){.layout{display:block}.sidebar{width:100%;height:auto;position:relative;padding:15px}.brand{padding-bottom:15px}.menu-title,.sidebar-footer{display:none}.menu{display:flex;gap:5px;overflow-x:auto;padding-top:12px;padding-bottom:4px}.menu a{white-space:nowrap;margin:0;padding:10px 12px;font-size:11px}.menu a span{display:none}.main{margin-left:0;width:100%;padding:22px 15px}.topbar{align-items:flex-start;flex-direction:column;margin-bottom:22px}.topbar h1{font-size:23px}.welcome{padding:25px 20px;border-radius:17px}.welcome h2{font-size:20px}.welcome p{font-size:12px}.welcome-icon{font-size:43px}.summary-grid{grid-template-columns:1fr 1fr;gap:11px}.summary-card{padding:16px}.summary-card strong{font-size:24px}.summary-card h3{font-size:12px}.summary-card p{font-size:10px}.summary-icon{width:40px;height:40px;font-size:20px;margin-bottom:12px}.trend-grid{grid-template-columns:1fr}.chart-card,.trend-card{padding:18px 14px}.chart-row{grid-template-columns:65px 1fr 30px;gap:8px}.section-heading{align-items:flex-start;flex-direction:column}.refresh-btn{width:100%}}
-@media(max-width:390px){.summary-grid{grid-template-columns:1fr}.welcome-icon{display:none}}
-
-.form-panel{background:#fff;border:1px solid #e8edf3;border-radius:17px;padding:22px;margin-top:18px;box-shadow:0 5px 18px #14284608}
-.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.form-panel label{display:block;font-size:12px;font-weight:700;color:#526277;margin-bottom:5px}
-.form-panel input,.form-panel select,.form-panel textarea{width:100%;padding:10px;border:1px solid #dbe3ec;border-radius:9px;font:inherit;font-size:13px;background:#fff}
-.form-panel button{border:0;background:linear-gradient(100deg,#0d9488,#16b6a5);color:#fff;padding:11px 16px;border-radius:9px;cursor:pointer;font-weight:700;margin-top:12px}
-.table-wrap{overflow-x:auto;margin-top:16px}
-.data-table{width:100%;border-collapse:collapse;font-size:12px;min-width:620px}
-.data-table th,.data-table td{padding:10px;border-bottom:1px solid #e8edf3;text-align:left}
-.data-table th{background:#f1f7f8;color:#142b4a}
-.form-note{font-size:11px;color:#718096;margin-top:8px}
-@media(max-width:700px){.form-grid{grid-template-columns:1fr}}
-
-
-
-/* ===== PENYEGARAN DASHBOARD SIGAP ===== */
 :root{
-  --navy:#142b4a;--teal:#0d9488;--bg:#f4f7fb;--text:#26364a;--muted:#718096;
-  --line:#e7edf4;--shadow:0 10px 28px rgba(20,43,74,.065)
+  --navy:#142b4a;
+  --teal:#0d9488;
+  --mint:#e7f6f5;
+  --bg:#f1f5f9;
+  --text:#26364a;
+  --muted:#718096;
+  --white:#fff;
+  --border:#e5eaf0;
 }
-body{background:radial-gradient(circle at 90% 0%,#e4f5f3 0,transparent 25%),#f4f7fb}
-.main{max-width:1600px;padding:30px 38px 38px}
-.topbar{margin-bottom:24px}
-.topbar h1{font-size:29px;letter-spacing:-.7px}
-.date-box{border-radius:14px;padding:11px 16px;font-weight:650}
-.welcome{min-height:176px;padding:32px 38px;border-radius:24px;box-shadow:0 16px 36px rgba(20,80,90,.15)}
-.welcome h2{font-size:26px;letter-spacing:-.4px}
-.welcome p{font-size:13px;max-width:580px}
-.welcome-icon{font-size:68px;filter:drop-shadow(0 8px 12px #001b2a30)}
-.section{margin-top:28px}
-.section-heading{margin-bottom:14px}
-.section-heading h2{font-size:18px;letter-spacing:-.25px}
-.section-heading p{font-size:12px}
-.status{border-radius:12px;padding:11px 15px;margin-bottom:14px;box-shadow:0 3px 12px #14284606}
-.summary-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.summary-card{min-height:132px;padding:17px 18px 16px 78px;border-radius:16px;box-shadow:var(--shadow);border:1px solid #e9eef5}
-.summary-card:after{height:3px}
-.summary-icon{position:absolute;left:17px;top:18px;width:46px;height:46px;border-radius:13px;margin:0;background:#e7f6f5;font-size:21px}
-.summary-card:nth-child(3n+2) .summary-icon{background:#edf2ff}
-.summary-card:nth-child(3n) .summary-icon{background:#fff3e8}
-.summary-card h3{font-size:12px;margin:2px 0 5px;line-height:1.35}
-.summary-card strong{font-size:27px;line-height:1.2;display:block}
-.summary-card p{font-size:10px;margin-top:5px;line-height:1.4}
-.summary-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(20,43,74,.10)}
-.chart-card,.trend-card{padding:20px 22px;border-radius:18px;box-shadow:var(--shadow);border:1px solid #e9eef5}
-/* Grafik aktivitas dibuat menjadi empat panel ringkas */
-.chart-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
-.chart-row{margin:0;grid-template-columns:75px minmax(60px,1fr) 42px;gap:10px;padding:13px 14px;border:1px solid #edf1f6;border-radius:13px;background:#fbfcfe}
-.chart-label{font-size:12px}
-.bar-bg{height:10px;background:#e9eef5}
-.bar{background:linear-gradient(90deg,#0d9488,#55c9b8)}
-.chart-row:nth-child(2) .bar{background:linear-gradient(90deg,#5478d8,#8ca7ff)}
-.chart-row:nth-child(3) .bar{background:linear-gradient(90deg,#e59a42,#f5c16c)}
-.chart-row:nth-child(4) .bar{background:linear-gradient(90deg,#8b69c7,#b59ae8)}
-.chart-value{font-size:12px}
-.chart-card>p{grid-column:1/-1;margin:0!important;padding:4px 2px 0;line-height:1.5}
-.trend-grid{gap:15px}
-.trend-card h3{font-size:14px;display:flex;align-items:center;gap:8px}
-.trend-card h3:before{content:"";display:inline-block;width:7px;height:20px;border-radius:8px;background:linear-gradient(#0d9488,#59cdbb)}
-.trend-card>p{margin:3px 0 14px}
-.trend-item{grid-template-columns:72px minmax(50px,1fr) 36px;gap:9px;margin:12px 0;font-size:11px}
-.trend-label{font-size:10px}
-.trend-bar-bg{height:9px;background:#edf1f6}
-.trend-bar-fill{background:linear-gradient(90deg,#176b78,#39bfae)}
-.trend-number{font-size:11px}
-/* Area rekap presensi lebih terstruktur */
-#statusPresensi{margin-bottom:14px}
-#presensiKelas .trend-item,#presensiHarian .trend-item{margin:13px 0}
-#presensiKelas .trend-bar-fill{background:linear-gradient(90deg,#5478d8,#8ca7ff)}
-#presensiHarian .trend-bar-fill{background:linear-gradient(90deg,#0d9488,#59cdbb)}
-.info-box{border-left-width:4px;border-radius:15px;box-shadow:var(--shadow)}
-.footer{padding-top:26px}
-.refresh-btn{border-radius:11px;padding:11px 16px}
-.form-panel{border-radius:17px;box-shadow:var(--shadow)}
-@media(min-width:1200px){
-  .summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .trend-card{min-height:230px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
 }
+.layout{display:flex;min-height:100vh}
+.sidebar{
+  width:255px;
+  background:linear-gradient(180deg,#142b4a,#0c4656);
+  color:white;
+  padding:23px 17px;
+  position:fixed;
+  inset:0 auto 0 0;
+  overflow-y:auto;
+  z-index:10;
+}
+.brand{
+  display:flex;align-items:center;gap:12px;
+  padding:5px 8px 24px;
+  border-bottom:1px solid #ffffff25;
+}
+.brand-icon{
+  width:47px;height:47px;border-radius:14px;
+  background:linear-gradient(135deg,#13b8a6,#0d9488);
+  display:grid;place-items:center;font-size:24px;
+}
+.brand h2{font-size:18px;letter-spacing:1px}
+.brand p{font-size:11px;color:#bdcedd}
+.menu-title{
+  color:#9bb2c8;font-size:10px;font-weight:bold;
+  letter-spacing:1.5px;margin:27px 10px 12px;
+}
+.menu a{
+  display:flex;align-items:center;gap:11px;
+  color:#d8e5ef;text-decoration:none;
+  padding:11px 12px;border-radius:11px;
+  margin-bottom:6px;font-size:12px;transition:.2s;
+}
+.menu a:hover,.menu a.active{
+  background:linear-gradient(100deg,#0d9488,#16b6a5);
+  color:white;transform:translateX(2px);
+}
+.menu a span{width:22px;text-align:center;font-size:17px}
+.sidebar-footer{
+  border-top:1px solid #ffffff25;
+  margin-top:25px;padding:17px 8px;
+  color:#b7c8d8;font-size:11px;line-height:1.8;
+}
+.main{
+  margin-left:255px;width:calc(100% - 255px);
+  padding:30px 35px;max-width:1600px;
+}
+.topbar{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;margin-bottom:25px;
+}
+.topbar h1{font-size:26px;color:var(--navy)}
+.topbar p{color:var(--muted);font-size:12px}
+.date-box{
+  background:white;border:1px solid var(--border);
+  border-radius:11px;padding:10px 15px;
+  font-size:12px;color:var(--navy);
+}
+.welcome{
+  background:linear-gradient(115deg,#142b4a,#176b78 65%,#0d9488);
+  border-radius:20px;padding:30px;color:white;
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;overflow:hidden;
+  box-shadow:0 10px 25px #176b7820;
+}
+.welcome h2{font-size:23px;margin-bottom:8px}
+.welcome p{font-size:12px;color:#d8e8ed;max-width:650px}
+.welcome-icon{font-size:65px}
+.section{margin-top:30px;scroll-margin-top:20px}
+.section-heading{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:12px;margin-bottom:15px;
+}
+.section-heading h2{font-size:18px;color:var(--navy)}
+.section-heading p{font-size:11px;color:var(--muted);margin-top:3px}
+.refresh-btn,.primary-btn,.secondary-btn{
+  border:0;color:white;padding:10px 15px;
+  border-radius:9px;cursor:pointer;font-weight:650;
+  font-size:12px;transition:.2s;
+}
+.refresh-btn,.primary-btn{
+  background:linear-gradient(100deg,#0d9488,#16b6a5);
+}
+.secondary-btn{background:var(--navy)}
+button:disabled{opacity:.55;cursor:wait}
+button:hover{filter:brightness(1.05)}
+.status{
+  background:white;border:1px solid var(--border);
+  border-radius:10px;padding:12px 15px;
+  font-size:12px;color:#526277;margin-bottom:15px;
+}
+.status.error{color:#b42318;background:#fff5f4;border-color:#f3c7c3}
+.status.success{color:#087b55;background:#effaf5;border-color:#bce7d3}
+.summary-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.summary-card{
+  background:white;padding:19px;border-radius:15px;
+  border:1px solid var(--border);
+  box-shadow:0 4px 14px #14284608;
+  position:relative;overflow:hidden;
+}
+.summary-card:after{
+  content:"";position:absolute;height:3px;bottom:0;
+  left:0;right:0;background:linear-gradient(90deg,#0d9488,#54d6c4);
+}
+.summary-icon{
+  width:42px;height:42px;border-radius:12px;
+  display:grid;place-items:center;font-size:21px;
+  background:var(--mint);margin-bottom:12px;
+}
+.summary-card h3{font-size:12px;color:#526277;margin-bottom:5px}
+.summary-card strong{font-size:27px;color:var(--navy)}
+.summary-card p{font-size:10px;color:var(--muted);margin-top:4px}
+.chart-card,.trend-card,.form-panel,.info-box{
+  background:white;padding:21px;border-radius:15px;
+  border:1px solid var(--border);
+  box-shadow:0 4px 14px #14284608;
+}
+.chart-row{
+  display:grid;grid-template-columns:100px 1fr 42px;
+  align-items:center;gap:12px;margin:19px 0;font-size:12px;
+}
+.chart-label,.trend-label{color:#526277;font-weight:650}
+.bar-bg,.trend-bar-bg{
+  height:13px;background:#edf1f5;border-radius:20px;overflow:hidden;
+}
+.bar,.trend-bar-fill{
+  height:100%;width:0%;border-radius:20px;
+  background:linear-gradient(90deg,#0d9488,#45cbb8);
+  transition:width .7s ease;
+}
+.chart-value,.trend-number{
+  font-weight:bold;text-align:right;color:var(--navy);
+}
+.trend-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+.trend-card h3{font-size:14px;color:var(--navy)}
+.trend-card>p{font-size:10px;color:var(--muted);margin-top:3px}
+.trend-item{
+  display:grid;grid-template-columns:75px 1fr 35px;
+  align-items:center;gap:9px;margin:15px 0;font-size:11px;
+}
+.trend-bar-bg{height:11px}
+.trend-bar-fill{background:linear-gradient(90deg,#176b78,#13b8a6)}
+.form-panel{padding:20px}
+.form-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.form-panel label{
+  display:block;font-size:11px;font-weight:700;
+  color:#526277;margin-bottom:5px;
+}
+.form-panel input,.form-panel select{
+  width:100%;padding:10px;border:1px solid #dbe3ec;
+  border-radius:8px;font:inherit;font-size:12px;background:#fff;
+}
+.form-note{font-size:11px;color:var(--muted);margin-top:10px}
+.table-wrap{overflow-x:auto;margin-top:14px}
+.data-table{
+  width:100%;border-collapse:collapse;
+  font-size:11px;min-width:620px;
+}
+.data-table th,.data-table td{
+  padding:10px;border-bottom:1px solid #e8edf3;text-align:left;
+}
+.data-table th{background:#f1f7f8;color:#142b4a;white-space:nowrap}
+.data-table input,.data-table select{
+  min-width:90px;padding:7px;border:1px solid #dbe3ec;
+  border-radius:7px;font-size:11px;
+}
+.button-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.info-box{margin-top:27px;border-left:4px solid var(--teal)}
+.info-box h3{font-size:13px;color:var(--navy);margin-bottom:7px}
+.info-box p{font-size:11px;color:#64748b;line-height:1.8}
+.footer{text-align:center;color:#8996a7;font-size:10px;padding:27px 10px 10px}
 @media(max-width:1000px){
-  .main{padding:24px 22px}
+  .main{padding:24px}
   .summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:700px){
-  .main{padding:20px 14px 28px}
-  .topbar h1{font-size:23px}
-  .welcome{min-height:145px;padding:23px 20px;border-radius:18px}
+  .layout{display:block}
+  .sidebar{width:100%;height:auto;position:relative;padding:13px}
+  .brand{padding-bottom:12px}
+  .menu-title,.sidebar-footer{display:none}
+  .menu{display:flex;gap:4px;overflow-x:auto;padding-top:10px}
+  .menu a{white-space:nowrap;margin:0;padding:9px 11px;font-size:10px}
+  .menu a span{display:none}
+  .main{margin:0;width:100%;padding:20px 13px}
+  .topbar{align-items:flex-start;flex-direction:column}
+  .topbar h1{font-size:22px}
+  .welcome{padding:22px 17px}
   .welcome h2{font-size:19px}
   .welcome-icon{font-size:42px}
-  .section{margin-top:23px}
-  .summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .summary-card{min-height:118px;padding:61px 12px 13px;border-radius:14px}
-  .summary-icon{left:12px;top:11px;width:39px;height:39px;font-size:18px;border-radius:11px}
-  .summary-card h3{font-size:11px}
+  .summary-grid{gap:9px}
+  .summary-card{padding:14px}
   .summary-card strong{font-size:23px}
-  .summary-card p{font-size:9px}
-  .chart-card{grid-template-columns:1fr;padding:13px;gap:9px}
-  .chart-row{grid-template-columns:65px minmax(50px,1fr) 34px;padding:11px 10px}
-  .chart-card>p{font-size:10px!important}
-  .trend-grid{grid-template-columns:1fr;gap:12px}
-  .trend-card{padding:17px 14px}
-  .trend-item{grid-template-columns:66px minmax(45px,1fr) 32px;gap:7px}
-  .section-heading{gap:10px}
+  .summary-card h3{font-size:11px}
+  .trend-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .section-heading{align-items:flex-start;flex-direction:column}
+  .refresh-btn{width:100%}
 }
-@media(max-width:360px){
-  .summary-card{padding-left:10px;padding-right:9px}
-  .summary-card strong{font-size:21px}
-  .chart-row{grid-template-columns:54px minmax(40px,1fr) 30px;gap:6px}
+@media(max-width:390px){
+  .summary-grid{grid-template-columns:1fr}
+  .welcome-icon{display:none}
 }
-
 </style>
 </head>
 
@@ -170,281 +243,163 @@ body{background:radial-gradient(circle at 90% 0%,#e4f5f3 0,transparent 25%),#f4f
 <div class="layout">
 
 <aside class="sidebar">
-    <div class="brand">
-        <div class="brand-icon">📚</div>
-        <div>
-            <h2>WEB SIGAP</h2>
-            <p>Learning Management</p>
-        </div>
+  <div class="brand">
+    <div class="brand-icon">📚</div>
+    <div>
+      <h2>WEB SIGAP</h2>
+      <p>Learning Management</p>
     </div>
+  </div>
 
-    <div class="menu-title">MENU UTAMA</div>
+  <div class="menu-title">MENU UTAMA</div>
+  <nav class="menu">
+    <a href="dashboard-guru.html" class="active"><span>▦</span>Dashboard Guru</a>
+    <a href="index.html"><span>⌂</span>Beranda</a>
+    <a href="media.html"><span>▶</span>Media Pembelajaran</a>
+    <a href="bahan.html"><span>📖</span>Bahan Pembelajaran</a>
+    <a href="penilaian.html"><span>✎</span>Penilaian / CBT</a>
+    <a href="sumber-belajar.html"><span>🌐</span>Sumber Belajar</a>
+    <a href="presensi.html"><span>📅</span>Presensi</a>
+    <a href="jurnal-guru.html"><span>📔</span>Jurnal Digital Guru</a>
+    <a href="#rekap-kehadiran"><span>✅</span>Rekap Kehadiran</a>
+    <a href="#daftar-nilai-tp"><span>📝</span>Daftar Nilai per TP</a>
+  </nav>
 
-    <nav class="menu">
-        <a href="dashboard-guru.html" class="active"><span>▦</span> Dashboard Guru</a>
-        <a href="index.html"><span>⌂</span> Beranda</a>
-        <a href="media.html"><span>▶</span> Media Pembelajaran</a>
-        <a href="bahan.html"><span>📖</span> Bahan Pembelajaran</a>
-        <a href="penilaian.html"><span>✎</span> Penilaian / CBT</a>
-        <a href="sumber-belajar.html"><span>🌐</span> Sumber Belajar</a>
-        <a href="presensi.html"><span>📅</span> Presensi</a>
-        <a href="jurnal-guru.html"><span>📔</span> Jurnal Digital Guru</a>
-        <a href="#rekap-kehadiran"><span>✅</span> Rekap Kehadiran</a>
-        <a href="#daftar-nilai-tp"><span>📝</span> Daftar Nilai per TP</a>
-    </nav>
-
-    <div class="sidebar-footer">
-        <strong>WEB LEARNING SIGAP</strong><br>
-        SMKN 1 Pakong<br>
-        Ajhâr, Ngabdi, sareng Ngajhâga
-    </div>
+  <div class="sidebar-footer">
+    <strong>WEB LEARNING SIGAP</strong><br>
+    SMKN 1 Pakong<br>
+    Ajhâr, Ngabdi, sareng Ngajhâga
+  </div>
 </aside>
 
 <main class="main">
 
 <header class="topbar">
-    <div>
-        <h1>Dashboard Guru</h1>
-        <p>Pusat informasi dan pemantauan pembelajaran digital SIGAP</p>
-    </div>
-    <div class="date-box" id="tanggal"></div>
+  <div>
+    <h1>Dashboard Guru</h1>
+    <p>Pusat informasi dan pemantauan pembelajaran digital SIGAP</p>
+  </div>
+  <div class="date-box" id="tanggal"></div>
 </header>
 
 <section class="welcome">
+  <div>
+    <h2>Selamat Datang di Dashboard Guru 👋</h2>
+    <p>Dashboard pemantauan aktivitas belajar, presensi, dan penilaian siswa Web Learning SIGAP SMKN 1 Pakong.</p>
+  </div>
+  <div class="welcome-icon">🎓</div>
+</section>
+
+<!-- MONITORING AKTIVITAS -->
+<section class="section">
+  <div class="section-heading">
     <div>
-        <h2>Selamat Datang di Dashboard Guru 👋</h2>
-        <p>
-            Dashboard pemantauan aktivitas belajar dan presensi siswa
-            Web Learning SIGAP SMKN 1 Pakong.
-        </p>
+      <h2>Monitoring Aktivitas Siswa</h2>
+      <p>Ringkasan aktivitas pembelajaran yang tercatat dalam sistem.</p>
     </div>
-    <div class="welcome-icon">🎓</div>
-</section>
+    <button class="refresh-btn" id="tombolRefresh" onclick="ambilData()">↻ Perbarui Aktivitas</button>
+  </div>
 
-<!-- AKTIVITAS BELAJAR -->
-<section class="section">
-    <div class="section-heading">
-        <div>
-            <h2>Monitoring Aktivitas Siswa</h2>
-            <p>Ringkasan aktivitas pembelajaran yang tercatat dalam sistem.</p>
-        </div>
-        <button class="refresh-btn" id="tombolRefresh" onclick="ambilData()">
-            ↻ Perbarui Aktivitas
-        </button>
-    </div>
+  <div id="status" class="status">Menghubungkan ke sistem SIGAP...</div>
 
-    <div id="status" class="status">
-        Menghubungkan ke sistem SIGAP...
-    </div>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <div class="summary-icon">📊</div>
-            <h3>Total Aktivitas Belajar</h3>
-            <strong id="totalAktivitas">-</strong>
-            <p>Seluruh aktivitas yang tercatat</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">👩‍🎓</div>
-                        <h3>Siswa Aktif</h3>
-            <strong id="jumlahSiswa">-</strong>
-            <p>Siswa unik yang memiliki aktivitas</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">📚</div>
-            <h3>Membuka Materi</h3>
-            <strong id="totalMateri">-</strong>
-            <p>Aktivitas akses bahan pembelajaran</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">🎬</div>
-            <h3>Membuka Video</h3>
-            <strong id="totalVideo">-</strong>
-            <p>Aktivitas akses media video</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">📝</div>
-            <h3>Membuka Kuis</h3>
-            <strong id="totalKuis">-</strong>
-            <p>Aktivitas akses kuis</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">📋</div>
-            <h3>Membuka Tugas</h3>
-            <strong id="totalTugas">-</strong>
-            <p>Aktivitas akses tugas</p>
-        </div>
-    </div>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-icon">📊</div><h3>Total Aktivitas Belajar</h3><strong id="totalAktivitas">-</strong><p>Seluruh aktivitas tercatat</p></div>
+    <div class="summary-card"><div class="summary-icon">👩‍🎓</div><h3>Siswa Aktif</h3><strong id="jumlahSiswa">-</strong><p>Siswa unik yang memiliki aktivitas</p></div>
+    <div class="summary-card"><div class="summary-icon">📚</div><h3>Membuka Materi</h3><strong id="totalMateri">-</strong><p>Akses bahan pembelajaran</p></div>
+    <div class="summary-card"><div class="summary-icon">🎬</div><h3>Membuka Video</h3><strong id="totalVideo">-</strong><p>Akses media video</p></div>
+    <div class="summary-card"><div class="summary-icon">📝</div><h3>Membuka Kuis</h3><strong id="totalKuis">-</strong><p>Akses kuis pembelajaran</p></div>
+    <div class="summary-card"><div class="summary-icon">📋</div><h3>Membuka Tugas</h3><strong id="totalTugas">-</strong><p>Akses tugas pembelajaran</p></div>
+  </div>
 </section>
 
 <section class="section">
-    <div class="section-heading">
-        <div>
-            <h2>Grafik Aktivitas Pembelajaran</h2>
-            <p>Perbandingan jumlah aktivitas berdasarkan jenis kegiatan.</p>
-        </div>
-    </div>
-
-    <div class="chart-card">
-        <div class="chart-row">
-            <div class="chart-label">Materi</div>
-            <div class="bar-bg"><div class="bar" id="barMateri"></div></div>
-            <div class="chart-value" id="angkaMateri">0</div>
-        </div>
-
-        <div class="chart-row">
-            <div class="chart-label">Video</div>
-            <div class="bar-bg"><div class="bar" id="barVideo"></div></div>
-            <div class="chart-value" id="angkaVideo">0</div>
-        </div>
-
-        <div class="chart-row">
-            <div class="chart-label">Kuis</div>
-            <div class="bar-bg"><div class="bar" id="barKuis"></div></div>
-            <div class="chart-value" id="angkaKuis">0</div>
-        </div>
-
-        <div class="chart-row">
-            <div class="chart-label">Tugas</div>
-            <div class="bar-bg"><div class="bar" id="barTugas"></div></div>
-            <div class="chart-value" id="angkaTugas">0</div>
-        </div>
-
-        <p style="font-size:11px;color:#8996a7;margin-top:18px">
-            Grafik menunjukkan jumlah aktivitas yang tercatat,
-            bukan jumlah siswa yang menyelesaikan penilaian.
-        </p>
-    </div>
+  <div class="section-heading">
+    <div><h2>Grafik Aktivitas Pembelajaran</h2><p>Perbandingan jumlah aktivitas berdasarkan jenis kegiatan.</p></div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-row"><div class="chart-label">Materi</div><div class="bar-bg"><div class="bar" id="barMateri"></div></div><div class="chart-value" id="angkaMateri">0</div></div>
+    <div class="chart-row"><div class="chart-label">Video</div><div class="bar-bg"><div class="bar" id="barVideo"></div></div><div class="chart-value" id="angkaVideo">0</div></div>
+    <div class="chart-row"><div class="chart-label">Kuis</div><div class="bar-bg"><div class="bar" id="barKuis"></div></div><div class="chart-value" id="angkaKuis">0</div></div>
+    <div class="chart-row"><div class="chart-label">Tugas</div><div class="bar-bg"><div class="bar" id="barTugas"></div></div><div class="chart-value" id="angkaTugas">0</div></div>
+    <p class="form-note">Grafik menunjukkan jumlah aktivitas yang tercatat, bukan jumlah siswa yang menyelesaikan penilaian.</p>
+  </div>
 </section>
 
-<!-- TREN AKTIVITAS -->
 <section class="section">
-    <div class="section-heading">
-        <div>
-            <h2>Tren Aktivitas Pembelajaran</h2>
-            <p>Perkembangan aktivitas siswa dari waktu ke waktu.</p>
-        </div>
-    </div>
-
-    <div class="trend-grid">
-        <div class="trend-card">
-            <h3>Aktivitas 7 Hari Terakhir</h3>
-            <p>Jumlah aktivitas belajar per hari.</p>
-            <div id="grafikHarian">Menunggu data...</div>
-        </div>
-
-        <div class="trend-card">
-            <h3>Aktivitas 6 Bulan Terakhir</h3>
-            <p>Jumlah aktivitas belajar per bulan.</p>
-            <div id="grafikBulanan">Menunggu data...</div>
-        </div>
-    </div>
+  <div class="section-heading">
+    <div><h2>Tren Aktivitas Pembelajaran</h2><p>Perkembangan aktivitas siswa dari waktu ke waktu.</p></div>
+  </div>
+  <div class="trend-grid">
+    <div class="trend-card"><h3>Aktivitas 7 Hari Terakhir</h3><p>Jumlah aktivitas belajar per hari.</p><div id="grafikHarian">Menunggu data...</div></div>
+    <div class="trend-card"><h3>Aktivitas 6 Bulan Terakhir</h3><p>Jumlah aktivitas belajar per bulan.</p><div id="grafikBulanan">Menunggu data...</div></div>
+  </div>
 </section>
 
-<!-- PRESENSI -->
+<!-- MONITORING PRESENSI -->
 <section class="section">
-    <div class="section-heading">
-        <div>
-            <h2>Monitoring Presensi Siswa</h2>
-            <p>Rekap kehadiran berdasarkan data presensi digital.</p>
-        </div>
+  <div class="section-heading">
+    <div><h2>Monitoring Presensi Siswa</h2><p>Rekap kehadiran berdasarkan data presensi digital.</p></div>
+    <button class="refresh-btn" id="tombolPresensi" onclick="ambilPresensi()">↻ Perbarui Presensi</button>
+  </div>
+  <div id="statusPresensi" class="status">Menghubungkan ke data presensi...</div>
 
-        <button class="refresh-btn" id="tombolPresensi" onclick="ambilPresensi()">
-            ↻ Perbarui Presensi
-        </button>
-    </div>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-icon">📅</div><h3>Total Catatan Presensi</h3><strong id="presTotal">-</strong><p>Seluruh catatan presensi</p></div>
+    <div class="summary-card"><div class="summary-icon">👩‍🎓</div><h3>Siswa Tercatat</h3><strong id="presSiswa">-</strong><p>Siswa unik yang mengisi presensi</p></div>
+    <div class="summary-card"><div class="summary-icon">✅</div><h3>Hadir</h3><strong id="presHadir">-</strong><p>Catatan berstatus hadir</p></div>
+    <div class="summary-card"><div class="summary-icon">📝</div><h3>Izin</h3><strong id="presIzin">-</strong><p>Catatan berstatus izin</p></div>
+    <div class="summary-card"><div class="summary-icon">🤒</div><h3>Sakit</h3><strong id="presSakit">-</strong><p>Catatan berstatus sakit</p></div>
+    <div class="summary-card"><div class="summary-icon">⚠️</div><h3>Tidak Hadir</h3><strong id="presTidakHadir">-</strong><p>Catatan berstatus alpa</p></div>
+  </div>
 
-    <div id="statusPresensi" class="status">
-        Menghubungkan ke data presensi...
-    </div>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <div class="summary-icon">📅</div>
-            <h3>Total Catatan Presensi</h3>
-            <strong id="presTotal">-</strong>
-            <p>Seluruh catatan presensi</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">👩‍🎓</div>
-            <h3>Siswa Tercatat</h3>
-            <strong id="presSiswa">-</strong>
-            <p>Siswa unik yang pernah mengisi presensi</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">✅</div>
-            <h3>Hadir</h3>
-            <strong id="presHadir">-</strong>
-            <p>Jumlah catatan berstatus hadir</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">📝</div>
-            <h3>Izin</h3>
-            <strong id="presIzin">-</strong>
-            <p>Jumlah catatan berstatus izin</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">🤒</div>
-            <h3>Sakit</h3>
-            <strong id="presSakit">-</strong>
-            <p>Jumlah catatan berstatus sakit</p>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-icon">⚠️</div>
-            <h3>Tidak Hadir</h3>
-            <strong id="presTidakHadir">-</strong>
-            <p>Jumlah catatan tidak hadir</p>
-        </div>
-    </div>
-
-    <div class="trend-grid" style="margin-top:20px">
-        <div class="trend-card">
-            <h3>Rekap Presensi Berdasarkan Kelas</h3>
-            <p>Jumlah siswa dan catatan presensi setiap kelas.</p>
-            <div id="presensiKelas">Menunggu data...</div>
-        </div>
-
-        <div class="trend-card">
-            <h3>Presensi 7 Hari Terakhir</h3>
-            <p>Jumlah catatan presensi setiap hari.</p>
-            <div id="presensiHarian">Menunggu data...</div>
-        </div>
-    </div>
+  <div class="trend-grid" style="margin-top:15px">
+    <div class="trend-card"><h3>Rekap Presensi Berdasarkan Kelas</h3><p>Jumlah catatan presensi setiap kelas.</p><div id="presensiKelas">Menunggu data...</div></div>
+    <div class="trend-card"><h3>Presensi 7 Hari Terakhir</h3><p>Jumlah catatan presensi setiap hari.</p><div id="presensiHarian">Menunggu data...</div></div>
+  </div>
 </section>
 
-
-<!-- REKAP KEHADIRAN PER PERTEMUAN -->
+<!-- REKAP KEHADIRAN -->
 <section class="section" id="rekap-kehadiran">
-  <div class="section-heading"><div><h2>Rekap Kehadiran per Pertemuan</h2>
-    <p>Catat kehadiran siswa berdasarkan tanggal, kelas, dan mata pelajaran.</p></div></div>
+  <div class="section-heading">
+    <div><h2>Rekap Kehadiran per Pertemuan</h2><p>Catat kehadiran siswa berdasarkan tanggal, kelas, dan mata pelajaran.</p></div>
+  </div>
+
   <div class="form-panel">
     <div class="form-grid">
       <div><label for="khTanggal">Tanggal</label><input type="date" id="khTanggal"></div>
       <div><label for="khKelas">Kelas</label><select id="khKelas"><option value="">Pilih kelas</option></select></div>
       <div><label for="khMapel">Mata Pelajaran</label><input id="khMapel" placeholder="Contoh: KDTK"></div>
     </div>
+
     <div id="khStatus" class="form-note">Memuat daftar siswa...</div>
-    <div class="table-wrap"><table class="data-table"><thead><tr><th>No.</th><th>Nama Siswa</th><th>NIS</th><th>Status</th><th>Keterangan</th></tr></thead><tbody id="khTbody"></tbody></table></div>
-    <button type="button" onclick="simpanKehadiran()">Simpan Kehadiran</button>
-    <button type="button" onclick="muatRekapKehadiran()" style="background:#142b4a">Tampilkan Riwayat</button>
-    <div class="table-wrap"><table class="data-table"><thead><tr><th>Tanggal</th><th>Kelas</th><th>Mata Pelajaran</th><th>Nama</th><th>Status</th></tr></thead><tbody id="khRiwayat"></tbody></table></div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>No.</th><th>Nama Siswa</th><th>NIS</th><th>Status</th><th>Keterangan</th></tr></thead>
+        <tbody id="khTbody"><tr><td colspan="5">Pilih kelas terlebih dahulu.</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="button-row">
+      <button type="button" class="primary-btn" onclick="simpanKehadiran()">Simpan Kehadiran</button>
+      <button type="button" class="secondary-btn" onclick="muatRekapKehadiran()">Tampilkan Riwayat</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Tanggal</th><th>Kelas</th><th>Mata Pelajaran</th><th>Nama</th><th>Status</th></tr></thead>
+        <tbody id="khRiwayat"><tr><td colspan="5">Klik Tampilkan Riwayat untuk melihat data.</td></tr></tbody>
+      </table>
+    </div>
   </div>
 </section>
 
-<!-- DAFTAR NILAI PER TP -->
+<!-- NILAI TP -->
 <section class="section" id="daftar-nilai-tp">
-  <div class="section-heading"><div><h2>Daftar Nilai per TP</h2>
-    <p>Masukkan nilai 0–100 untuk setiap Tujuan Pembelajaran.</p></div></div>
+  <div class="section-heading">
+    <div><h2>Daftar Nilai per TP</h2><p>Masukkan nilai siswa berdasarkan Tujuan Pembelajaran.</p></div>
+  </div>
+
   <div class="form-panel">
     <div class="form-grid">
       <div><label for="tpTanggal">Tanggal</label><input type="date" id="tpTanggal"></div>
@@ -452,532 +407,710 @@ body{background:radial-gradient(circle at 90% 0%,#e4f5f3 0,transparent 25%),#f4f
       <div><label for="tpMapel">Mata Pelajaran</label><input id="tpMapel" placeholder="Contoh: KDTK"></div>
       <div><label for="tpNama">Tujuan Pembelajaran</label><input id="tpNama" placeholder="Contoh: TP 1 - Menerapkan..."></div>
     </div>
+
     <div id="tpStatus" class="form-note">Memuat daftar siswa...</div>
-    <div class="table-wrap"><table class="data-table"><thead><tr><th>No.</th><th>Nama Siswa</th><th>NIS</th><th>Nilai (0–100)</th><th>Keterangan</th></tr></thead><tbody id="tpTbody"></tbody></table></div>
-    <button type="button" onclick="simpanNilaiTP()">Simpan Nilai TP</button>
-    <button type="button" onclick="muatRiwayatNilaiTP()" style="background:#142b4a">Tampilkan Riwayat Nilai</button>
-    <div class="table-wrap"><table class="data-table"><thead><tr><th>Kelas</th><th>Mapel</th><th>TP</th><th>Nama</th><th>Nilai</th><th>Tanggal</th></tr></thead><tbody id="tpRiwayat"></tbody></table></div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>No.</th><th>Nama Siswa</th><th>NIS</th><th>Nilai (0–100)</th><th>Keterangan</th></tr></thead>
+        <tbody id="tpTbody"><tr><td colspan="5">Pilih kelas terlebih dahulu.</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="button-row">
+      <button type="button" class="primary-btn" onclick="simpanNilaiTP()">Simpan Nilai TP</button>
+      <button type="button" class="secondary-btn" onclick="muatRiwayatNilaiTP()">Tampilkan Riwayat Nilai</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Kelas</th><th>Mapel</th><th>TP</th><th>Nama</th><th>Nilai</th><th>Tanggal</th></tr></thead>
+        <tbody id="tpRiwayat"><tr><td colspan="6">Klik Tampilkan Riwayat Nilai untuk melihat data.</td></tr></tbody>
+      </table>
+    </div>
   </div>
 </section>
 
 <div class="info-box">
-    <h3>ℹ️ Informasi Dashboard Guru</h3>
-    <p>
-        Dashboard ini menampilkan rekap aktivitas pembelajaran dan
-        presensi siswa secara agregat. Identitas pribadi siswa tidak
-        ditampilkan. Data berasal dari Google Sheets yang terhubung
-        dengan Web Learning SIGAP.
-    </p>
-    <p style="margin-top:8px">
-        <strong>Aktivitas terakhir diperbarui:</strong>
-        <span id="waktuUpdate">Belum tersedia</span>
-    </p>
-    <p style="margin-top:5px">
-        <strong>Presensi terakhir diperbarui:</strong>
-        <span id="waktuUpdatePresensi">Belum tersedia</span>
-    </p>
+  <h3>ℹ️ Informasi Dashboard Guru</h3>
+  <p>Dashboard ini menampilkan rekap aktivitas pembelajaran, presensi, dan penilaian siswa. Data berasal dari Google Sheets yang terhubung dengan Web Learning SIGAP.</p>
+  <p style="margin-top:7px"><strong>Aktivitas terakhir diperbarui:</strong> <span id="waktuUpdate">Belum tersedia</span></p>
+  <p><strong>Presensi terakhir diperbarui:</strong> <span id="waktuUpdatePresensi">Belum tersedia</span></p>
 </div>
 
 <footer class="footer">
-    © 2026 Web Learning SIGAP | LPKC SMKN 1 Pakong
-    <br>
-    Ajhâr, Ngabdi, sareng Ngajhâga
+  © 2026 Web Learning SIGAP | LPKC SMKN 1 Pakong<br>
+  Ajhâr, Ngabdi, sareng Ngajhâga
 </footer>
 
 </main>
 </div>
 
 <script>
+/**************************************************
+ * URL APPS SCRIPT
+ **************************************************/
+
+// URL monitoring aktivitas siswa yang lama
 const URL_APPS_SCRIPT =
 "https://script.google.com/macros/s/AKfycbwYgnZe0zx8QL0KniAZxJGxh6Eiihfo1ntcwtrdkwyxAahLd74Mbhjam-pRyJ1xlA2u2g/exec";
 
+// URL presensi digital yang lama
 const URL_APPS_SCRIPT_PRESENSI =
 "https://script.google.com/macros/s/AKfycbzYZSnnqp52UJfoJ3rqFDzdoP8ckadVpRzNcbaXwbU2mYnJX-wnQ2C9qnMXma8wLWNR/exec";
 
-document.getElementById("tanggal").textContent =
-    new Date().toLocaleDateString("id-ID", {
-        weekday:"long",
-                day:"numeric",
-        month:"long",
-        year:"numeric"
-    });
-
-function tampilStatus(pesan, jenis, id="status") {
-    const elemen = document.getElementById(id);
-    elemen.textContent = pesan;
-    elemen.className = "status " + (jenis || "");
-}
-
-function tampilAngka(id, nilai) {
-    document.getElementById(id).textContent =
-        Number(nilai || 0).toLocaleString("id-ID");
-}
-
-function aturGrafik(rekap) {
-    const nilai = {
-        materi:Number(rekap.materi || 0),
-        video:Number(rekap.video || 0),
-        kuis:Number(rekap.kuis || 0),
-        tugas:Number(rekap.tugas || 0)
-    };
-
-    const maksimum = Math.max(
-        nilai.materi,nilai.video,nilai.kuis,nilai.tugas,1
-    );
-
-    ["materi","video","kuis","tugas"].forEach(function(item) {
-        const kapital = item.charAt(0).toUpperCase() + item.slice(1);
-
-        document.getElementById("bar" + kapital).style.width =
-            (nilai[item] / maksimum * 100) + "%";
-
-        document.getElementById("angka" + kapital).textContent =
-            nilai[item].toLocaleString("id-ID");
-    });
-}
-
-function tampilkanTren(data, id, kolomLabel) {
-    const wadah = document.getElementById(id);
-    wadah.innerHTML = "";
-
-    if (!Array.isArray(data) || data.length === 0) {
-        wadah.textContent = "Belum ada data.";
-        return;
-    }
-
-    const maksimum = Math.max(
-        ...data.map(item => Number(item.total || 0)),
-        1
-    );
-
-    data.forEach(function(item) {
-        const jumlah = Number(item.total || 0);
-
-        const baris = document.createElement("div");
-        baris.className = "trend-item";
-
-        const label = document.createElement("div");
-        label.className = "trend-label";
-        label.textContent = item[kolomLabel] || "-";
-
-        const latar = document.createElement("div");
-        latar.className = "trend-bar-bg";
-
-        const isi = document.createElement("div");
-        isi.className = "trend-bar-fill";
-        isi.style.width = (jumlah / maksimum * 100) + "%";
-
-        latar.appendChild(isi);
-
-        const angka = document.createElement("div");
-        angka.className = "trend-number";
-        angka.textContent = jumlah.toLocaleString("id-ID");
-
-        baris.append(label,latar,angka);
-        wadah.appendChild(baris);
-    });
-}
-
-async function ambilData() {
-    const tombol = document.getElementById("tombolRefresh");
-
-    tombol.disabled = true;
-    tombol.textContent = "Memuat...";
-    tampilStatus("Sedang mengambil data aktivitas dari Google Sheets...");
-
-    try {
-        const respons = await fetch(URL_APPS_SCRIPT, {
-            method:"POST",
-            headers:{
-                "Content-Type":"text/plain;charset=utf-8"
-            },
-            body:JSON.stringify({aksi:"rekapGuru"})
-        });
-
-        if (!respons.ok) {
-            throw new Error("Server tidak merespons dengan baik.");
-        }
-
-        const hasil = await respons.json();
-
-        if (!hasil.sukses) {
-            throw new Error(hasil.pesan || "Data tidak berhasil dimuat.");
-        }
-
-        const rekap = hasil.rekap || {};
-
-        tampilAngka("totalAktivitas",hasil.totalAktivitas);
-        tampilAngka("jumlahSiswa",hasil.jumlahSiswaAktif);
-        tampilAngka("totalMateri",rekap.materi);
-        tampilAngka("totalVideo",rekap.video);
-        tampilAngka("totalKuis",rekap.kuis);
-        tampilAngka("totalTugas",rekap.tugas);
-
-        aturGrafik(rekap);
-
-        tampilkanTren(hasil.trenHarian,"grafikHarian","tanggal");
-        tampilkanTren(hasil.trenBulanan,"grafikBulanan","bulan");
-
-        document.getElementById("waktuUpdate").textContent =
-            hasil.diperbarui || new Date().toLocaleString("id-ID");
-
-        tampilStatus(
-            "✓ Data aktivitas berhasil diperbarui dari sistem SIGAP.",
-            "success"
-        );
-
-    } catch (error) {
-        tampilStatus(
-            "Data aktivitas belum berhasil dimuat. " + error.message,
-            "error"
-        );
-    } finally {
-        tombol.disabled = false;
-        tombol.textContent = "↻ Perbarui Aktivitas";
-    }
-}
-
-// MENGAMBIL DATA PRESENSI DENGAN JSONP
-function ambilPresensi() {
-    const tombol = document.getElementById("tombolPresensi");
-
-    tombol.disabled = true;
-    tombol.textContent = "Memuat...";
-
-    tampilStatus(
-        "Sedang mengambil data presensi...",
-        "",
-        "statusPresensi"
-    );
-
-    const namaCallback = "callbackPresensi" +
-        Date.now() + Math.floor(Math.random() * 1000);
-
-    const script = document.createElement("script");
-    let selesai = false;
-
-    function bersihkan() {
-        if (script.parentNode) {
-            script.parentNode.removeChild(script);
-        }
-        delete window[namaCallback];
-        tombol.disabled = false;
-        tombol.textContent = "↻ Perbarui Presensi";
-    }
-
-    const batasWaktu = setTimeout(function() {
-        if (selesai) return;
-
-        selesai = true;
-        bersihkan();
-
-        tampilStatus(
-            "Data presensi belum berhasil dimuat. Periksa akses Web App dan deployment.",
-            "error",
-            "statusPresensi"
-        );
-    },15000);
-
-    window[namaCallback] = function(hasil) {
-        if (selesai) return;
-
-        selesai = true;
-        clearTimeout(batasWaktu);
-        bersihkan();
-
-        if (!hasil || hasil.status !== "success") {
-            tampilStatus(
-                "Data presensi gagal dibaca: " +
-                (hasil && hasil.message ? hasil.message : "Respons tidak valid."),
-                "error",
-                "statusPresensi"
-            );
-            return;
-        }
-
-        const status = hasil.rekapStatus || {};
-
-        tampilAngka("presTotal",hasil.totalPresensi);
-        tampilAngka("presSiswa",hasil.jumlahSiswa);
-        tampilAngka("presHadir",status.hadir);
-        tampilAngka("presIzin",status.izin);
-        tampilAngka("presSakit",status.sakit);
-        tampilAngka("presTidakHadir",status.tidakHadir);
-
-        tampilkanTren(
-            hasil.trenHarian,
-            "presensiHarian",
-            "tanggal"
-        );
-
-        tampilkanRekapKelas(hasil.rekapKelas);
-
-        document.getElementById("waktuUpdatePresensi").textContent =
-            hasil.diperbarui || new Date().toLocaleString("id-ID");
-
-        tampilStatus(
-            "✓ Data presensi berhasil diperbarui.",
-            "success",
-            "statusPresensi"
-        );
-    };
-
-    script.onerror = function() {
-        if (selesai) return;
-
-        selesai = true;
-        clearTimeout(batasWaktu);
-        bersihkan();
-
-        tampilStatus(
-            "Koneksi presensi gagal. Periksa URL dan akses Web App.",
-            "error",
-            "statusPresensi"
-        );
-    };
-
-    script.src = URL_APPS_SCRIPT_PRESENSI +
-        "?callback=" + encodeURIComponent(namaCallback) +
-        "&waktu=" + Date.now();
-
-    document.body.appendChild(script);
-}
-
-// MENAMPILKAN REKAP PRESENSI BERDASARKAN KELAS
-function tampilkanRekapKelas(data) {
-    const wadah = document.getElementById("presensiKelas");
-    wadah.innerHTML = "";
-
-    if (!Array.isArray(data) || data.length === 0) {
-        wadah.textContent = "Belum ada data presensi.";
-        return;
-    }
-
-    const maksimum = Math.max(
-        ...data.map(item => Number(item.totalPresensi || 0)),
-        1
-    );
-        data.forEach(function(item) {
-        const jumlah = Number(item.totalPresensi || 0);
-
-        const baris = document.createElement("div");
-        baris.className = "trend-item";
-
-        const label = document.createElement("div");
-        label.className = "trend-label";
-        label.textContent = item.kelas;
-
-        const latar = document.createElement("div");
-        latar.className = "trend-bar-bg";
-
-        const isi = document.createElement("div");
-        isi.className = "trend-bar-fill";
-        isi.style.width = (jumlah / maksimum * 100) + "%";
-
-        latar.appendChild(isi);
-
-        const angka = document.createElement("div");
-        angka.className = "trend-number";
-        angka.textContent = jumlah.toLocaleString("id-ID");
-
-        baris.append(label,latar,angka);
-        wadah.appendChild(baris);
-
-        const keterangan = document.createElement("p");
-        keterangan.style.cssText =
-            "font-size:10px;color:#8996a7;margin-top:-8px";
-
-        keterangan.textContent =
-            item.jumlahSiswa + " siswa tercatat";
-
-        wadah.appendChild(keterangan);
-    });
-}
-
-// MEMUAT DATA SAAT HALAMAN DIBUKA
-ambilData();
-ambilPresensi();
-
-// ===== FITUR KEHADIRAN DAN NILAI TP =====
-// Setelah deployment Code.gs baru, tempel URL Web App-nya di bawah ini.
-// URL monitoring aktivitas dan URL presensi digital lama TIDAK diubah.
-const URL_APPS_SCRIPT_DATA = "https://script.google.com/macros/s/AKfycbzflUnK22qBe3D4r4ASi3L8MDpSKhsIUiiwncl8FNwV9zyDI-fl0Z67temO1hkaQVjn/exec";
+// URL Code.gs untuk siswa, jurnal, kehadiran, dan nilai TP
+// Jika URL deployment berubah, ganti alamat ini.
+const URL_APPS_SCRIPT_DATA =
+"https://script.google.com/macros/s/AKfycbzflUnK22qBe3D4r4ASi3L8MDpSKhsIUiiwncl8FNwV9zyDI-fl0Z67temO1hkaQVjn/exec";
 
 let daftarSiswaSIGAP = [];
 
-function panggilJSONP(url, callback) {
-  const nama = "sigapCallback" + Date.now() + Math.floor(Math.random()*1000);
-  const script = document.createElement("script");
-  let selesai = false;
-  const timer = setTimeout(() => {
-    if (selesai) return;
-    selesai = true; bersihkan();
-    callback({status:"error",message:"Waktu koneksi habis. Periksa URL dan akses Web App."});
-  },15000);
-  function bersihkan() {
-    clearTimeout(timer);
-    if (script.parentNode) script.parentNode.removeChild(script);
-    delete window[nama];
-  }
-  window[nama] = hasil => {
-    if (selesai) return;
-    selesai = true; bersihkan(); callback(hasil);
-  };
-  script.onerror = () => {
-    if (selesai) return;
-    selesai = true; bersihkan();
-    callback({status:"error",message:"Gagal menghubungi Apps Script."});
-  };
-  script.src = url + (url.includes("?") ? "&" : "?") +
-    "callback=" + encodeURIComponent(nama) + "&_=" + Date.now();
-  document.body.appendChild(script);
+/**************************************************
+ * TAMPILAN DASAR
+ **************************************************/
+
+document.getElementById("tanggal").textContent =
+  new Date().toLocaleDateString("id-ID",{
+    weekday:"long",day:"numeric",month:"long",year:"numeric"
+  });
+
+function tampilStatus(pesan,jenis,id="status"){
+  const elemen=document.getElementById(id);
+  if(!elemen)return;
+  elemen.textContent=pesan;
+  elemen.className="status "+(jenis||"");
 }
 
-function escapeHTML(v) {
-  return String(v ?? "").replace(/[&<>"']/g, c => ({
+function tampilAngka(id,nilai){
+  const elemen=document.getElementById(id);
+  if(elemen)elemen.textContent=Number(nilai||0).toLocaleString("id-ID");
+}
+
+function escapeHTML(v){
+  return String(v??"").replace(/[&<>"']/g,c=>({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   }[c]));
 }
 
-function muatSiswaSIGAP() {
-  const url = URL_APPS_SCRIPT_DATA;
-  if (!url || url.includes("GANTI_DENGAN")) {
-    document.getElementById("khStatus").textContent = "URL Apps Script baru belum dipasang.";
-    document.getElementById("tpStatus").textContent = "URL Apps Script baru belum dipasang.";
-    return;
+/**************************************************
+ * JSONP UNTUK MEMBACA DATA APPS SCRIPT
+ **************************************************/
+
+function panggilJSONP(url,callback){
+  const nama="sigapCallback"+Date.now()+Math.floor(Math.random()*1000);
+  const script=document.createElement("script");
+  let selesai=false;
+
+  const timer=setTimeout(()=>{
+    if(selesai)return;
+    selesai=true;
+    bersihkan();
+    callback({status:"error",message:"Waktu koneksi habis. Periksa URL dan akses Web App."});
+  },15000);
+
+  function bersihkan(){
+    clearTimeout(timer);
+    if(script.parentNode)script.parentNode.removeChild(script);
+    delete window[nama];
   }
-  panggilJSONP(url + "?action=siswa", hasil => {
-    if (!hasil || hasil.status !== "success") {
-      const msg = hasil?.message || "Daftar siswa gagal dimuat.";
-      document.getElementById("khStatus").textContent = msg;
-      document.getElementById("tpStatus").textContent = msg;
-      return;
-    }
-    daftarSiswaSIGAP = hasil.data || [];
-    const kelas = [...new Set(daftarSiswaSIGAP.map(s => s.kelas).filter(Boolean))].sort();
-    ["khKelas","tpKelas"].forEach(id => {
-      const el = document.getElementById(id);
-      el.innerHTML = '<option value="">Pilih kelas</option>' +
-        kelas.map(k => `<option value="${escapeHTML(k)}">${escapeHTML(k)}</option>`).join("");
-    });
-    document.getElementById("khStatus").textContent = daftarSiswaSIGAP.length + " siswa ditemukan dari Sheet1.";
-    document.getElementById("tpStatus").textContent = daftarSiswaSIGAP.length + " siswa ditemukan dari Sheet1.";
-    document.getElementById("khKelas").addEventListener("change", tampilkanFormKehadiran);
-    document.getElementById("tpKelas").addEventListener("change", tampilkanFormNilaiTP);
+
+  window[nama]=hasil=>{
+    if(selesai)return;
+    selesai=true;
+    bersihkan();
+    callback(hasil);
+  };
+
+  script.onerror=()=>{
+    if(selesai)return;
+    selesai=true;
+    bersihkan();
+    callback({status:"error",message:"Gagal menghubungi Apps Script."});
+  };
+
+  script.src=url+(url.includes("?")?"&":"?")+
+    "callback="+encodeURIComponent(nama)+"&_="+Date.now();
+
+  document.body.appendChild(script);
+}
+
+/**************************************************
+ * GRAFIK AKTIVITAS
+ **************************************************/
+
+function aturGrafik(rekap){
+  const nilai={
+    materi:Number(rekap.materi||0),
+    video:Number(rekap.video||0),
+    kuis:Number(rekap.kuis||0),
+    tugas:Number(rekap.tugas||0)
+  };
+
+  const maksimum=Math.max(
+    nilai.materi,nilai.video,nilai.kuis,nilai.tugas,1
+  );
+
+  ["materi","video","kuis","tugas"].forEach(item=>{
+    const kapital=item.charAt(0).toUpperCase()+item.slice(1);
+    document.getElementById("bar"+kapital).style.width=
+      (nilai[item]/maksimum*100)+"%";
+    tampilAngka("angka"+kapital,nilai[item]);
   });
 }
 
-function tampilkanFormKehadiran() {
-  const kelas = document.getElementById("khKelas").value;
-  const siswa = daftarSiswaSIGAP.filter(s => s.kelas === kelas);
-  document.getElementById("khTbody").innerHTML = siswa.map((s,i) => `
-    <tr><td>${i+1}</td><td>${escapeHTML(s.nama)}</td><td>${escapeHTML(s.nis)}</td>
-    <td><select class="kh-status"><option>HADIR</option><option>IZIN</option><option>SAKIT</option><option>ALPA</option></select></td>
-    <td><input class="kh-ket" placeholder="Opsional"></td>
-    <td style="display:none"><input class="kh-nis" value="${escapeHTML(s.nis)}"><input class="kh-nama" value="${escapeHTML(s.nama)}"></td></tr>`).join("");
-}
+function tampilkanTren(data,id,kolomLabel){
+  const wadah=document.getElementById(id);
+  wadah.innerHTML="";
 
-function tampilkanFormNilaiTP() {
-  const kelas = document.getElementById("tpKelas").value;
-  const siswa = daftarSiswaSIGAP.filter(s => s.kelas === kelas);
-  document.getElementById("tpTbody").innerHTML = siswa.map((s,i) => `
-    <tr><td>${i+1}</td><td>${escapeHTML(s.nama)}</td><td>${escapeHTML(s.nis)}</td>
-    <td><input class="tp-nilai" type="number" min="0" max="100" step="0.01" placeholder="0–100"></td>
-    <td><input class="tp-ket" placeholder="Opsional"></td>
-    <td style="display:none"><input class="tp-nis" value="${escapeHTML(s.nis)}"><input class="tp-nama" value="${escapeHTML(s.nama)}"></td></tr>`).join("");
-}
-
-async function kirimDataSIGAP(payload, pesanId) {
-  if (!URL_APPS_SCRIPT_DATA || URL_APPS_SCRIPT_DATA.includes("GANTI_DENGAN")) {
-    alert("URL Apps Script baru belum dipasang pada dashboard-guru.html.");
-    return false;
-  }
-  try {
-    await fetch(URL_APPS_SCRIPT_DATA, {
-      method:"POST", mode:"no-cors",
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body:JSON.stringify(payload)
-    });
-    alert("Permintaan penyimpanan sudah dikirim. Silakan tampilkan riwayat beberapa saat lagi untuk memastikan data tersimpan.");
-    return true;
-  } catch (err) {
-    alert("Pengiriman gagal: " + err.message);
-    return false;
-  }
-}
-
-function simpanKehadiran() {
-  const tanggal = document.getElementById("khTanggal").value;
-  const kelas = document.getElementById("khKelas").value;
-  const mataPelajaran = document.getElementById("khMapel").value.trim();
-  const baris = [...document.querySelectorAll("#khTbody tr")];
-  if (!tanggal || !kelas || !mataPelajaran || !baris.length) {
-    alert("Lengkapi tanggal, kelas, mata pelajaran, dan pilih kelas yang memiliki siswa.");
+  if(!Array.isArray(data)||data.length===0){
+    wadah.textContent="Belum ada data.";
     return;
   }
-  const siswa = baris.map(tr => ({
+
+  const maksimum=Math.max(
+    ...data.map(item=>Number(item.total||0)),1
+  );
+
+  data.forEach(item=>{
+    const jumlah=Number(item.total||0);
+    const baris=document.createElement("div");
+    baris.className="trend-item";
+
+    const label=document.createElement("div");
+    label.className="trend-label";
+    label.textContent=item[kolomLabel]||"-";
+
+    const latar=document.createElement("div");
+    latar.className="trend-bar-bg";
+
+    const isi=document.createElement("div");
+    isi.className="trend-bar-fill";
+    isi.style.width=(jumlah/maksimum*100)+"%";
+    latar.appendChild(isi);
+
+    const angka=document.createElement("div");
+    angka.className="trend-number";
+    angka.textContent=jumlah.toLocaleString("id-ID");
+
+    baris.append(label,latar,angka);
+    wadah.appendChild(baris);
+  });
+}
+
+/**************************************************
+ * AMBIL MONITORING AKTIVITAS
+ **************************************************/
+
+async function ambilData(){
+  const tombol=document.getElementById("tombolRefresh");
+  tombol.disabled=true;
+  tombol.textContent="Memuat...";
+
+  tampilStatus("Sedang mengambil data aktivitas dari Google Sheets...");
+
+  try{
+    const respons=await fetch(URL_APPS_SCRIPT,{
+      method:"POST",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify({aksi:"rekapGuru"})
+    });
+
+    if(!respons.ok)throw new Error("Server tidak merespons dengan baik.");
+
+    const hasil=await respons.json();
+
+    if(!hasil.sukses){
+      throw new Error(hasil.pesan||"Data tidak berhasil dimuat.");
+    }
+
+    const rekap=hasil.rekap||{};
+
+    tampilAngka("totalAktivitas",hasil.totalAktivitas);
+    tampilAngka("jumlahSiswa",hasil.jumlahSiswaAktif);
+    tampilAngka("totalMateri",rekap.materi);
+    tampilAngka("totalVideo",rekap.video);
+    tampilAngka("totalKuis",rekap.kuis);
+    tampilAngka("totalTugas",rekap.tugas);
+
+    aturGrafik(rekap);
+    tampilkanTren(hasil.trenHarian,"grafikHarian","tanggal");
+    tampilkanTren(hasil.trenBulanan,"grafikBulanan","bulan");
+
+    document.getElementById("waktuUpdate").textContent=
+      hasil.diperbarui||new Date().toLocaleString("id-ID");
+
+    tampilStatus("✓ Data aktivitas berhasil diperbarui.","success");
+
+  }catch(error){
+    tampilStatus("Aktivitas belum berhasil dimuat. "+error.message,"error");
+  }finally{
+    tombol.disabled=false;
+    tombol.textContent="↻ Perbarui Aktivitas";
+  }
+}
+
+/**************************************************
+ * MONITORING PRESENSI DIGITAL LAMA
+ **************************************************/
+
+function ambilPresensi(){
+  const tombol=document.getElementById("tombolPresensi");
+  tombol.disabled=true;
+  tombol.textContent="Memuat...";
+
+  tampilStatus("Sedang mengambil data presensi...","","statusPresensi");
+
+  const namaCallback="callbackPresensi"+Date.now()+Math.floor(Math.random()*1000);
+  const script=document.createElement("script");
+  let selesai=false;
+
+  function bersihkan(){
+    if(script.parentNode)script.parentNode.removeChild(script);
+    delete window[namaCallback];
+    tombol.disabled=false;
+    tombol.textContent="↻ Perbarui Presensi";
+  }
+
+  const batasWaktu=setTimeout(()=>{
+    if(selesai)return;
+    selesai=true;
+    bersihkan();
+    tampilStatus(
+      "Data presensi belum berhasil dimuat. Periksa akses Web App dan deployment.",
+      "error","statusPresensi"
+    );
+  },15000);
+
+  window[namaCallback]=hasil=>{
+    if(selesai)return;
+    selesai=true;
+    clearTimeout(batasWaktu);
+    bersihkan();
+
+    if(!hasil||hasil.status!=="success"){
+      tampilStatus("Data presensi gagal dibaca.","error","statusPresensi");
+      return;
+    }
+
+    const status=hasil.rekapStatus||{};
+    tampilAngka("presTotal",hasil.totalPresensi);
+    tampilAngka("presSiswa",hasil.jumlahSiswa);
+    tampilAngka("presHadir",status.hadir);
+    tampilAngka("presIzin",status.izin);
+    tampilAngka("presSakit",status.sakit);
+    tampilAngka("presTidakHadir",status.tidakHadir);
+
+    tampilkanTren(hasil.trenHarian,"presensiHarian","tanggal");
+    tampilkanRekapKelas(hasil.rekapKelas);
+
+    document.getElementById("waktuUpdatePresensi").textContent=
+      hasil.diperbarui||new Date().toLocaleString("id-ID");
+
+    tampilStatus("✓ Data presensi berhasil diperbarui.","success","statusPresensi");
+  };
+
+  script.onerror=()=>{
+    if(selesai)return;
+    selesai=true;
+    clearTimeout(batasWaktu);
+    bersihkan();
+    tampilStatus("Koneksi presensi gagal. Periksa URL Web App.","error","statusPresensi");
+  };
+
+  script.src=URL_APPS_SCRIPT_PRESENSI+
+    "?callback="+encodeURIComponent(namaCallback)+"&waktu="+Date.now();
+
+  document.body.appendChild(script);
+}
+
+function tampilkanRekapKelas(data){
+  const wadah=document.getElementById("presensiKelas");
+  wadah.innerHTML="";
+
+  if(!Array.isArray(data)||data.length===0){
+    wadah.textContent="Belum ada data presensi.";
+    return;
+  }
+
+  const maksimum=Math.max(
+    ...data.map(item=>Number(item.totalPresensi||0)),1
+  );
+
+  data.forEach(item=>{
+    const jumlah=Number(item.totalPresensi||0);
+    const baris=document.createElement("div");
+    baris.className="trend-item";
+
+    const label=document.createElement("div");
+    label.className="trend-label";
+    label.textContent=item.kelas||"-";
+
+    const latar=document.createElement("div");
+    latar.className="trend-bar-bg";
+
+    const isi=document.createElement("div");
+    isi.className="trend-bar-fill";
+    isi.style.width=(jumlah/maksimum*100)+"%";
+    latar.appendChild(isi);
+
+    const angka=document.createElement("div");
+    angka.className="trend-number";
+    angka.textContent=jumlah.toLocaleString("id-ID");
+
+    baris.append(label,latar,angka);
+    wadah.appendChild(baris);
+  });
+}
+
+/**************************************************
+ * MEMUAT DATA SISWA DARI CODE.GS
+ **************************************************/
+
+function muatSiswaSIGAP(){
+  panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=siswa",hasil=>{
+    if(!hasil||hasil.status!=="success"){
+      const pesan=hasil?.message||"Daftar siswa gagal dimuat.";
+      document.getElementById("khStatus").textContent=pesan;
+      document.getElementById("tpStatus").textContent=pesan;
+      return;
+    }
+
+    daftarSiswaSIGAP=hasil.data||[];
+
+    const kelas=[
+      ...new Set(daftarSiswaSIGAP.map(s=>s.kelas).filter(Boolean))
+    ].sort();
+
+    ["khKelas","tpKelas"].forEach(id=>{
+      const el=document.getElementById(id);
+      el.innerHTML='<option value="">Pilih kelas</option>'+
+        kelas.map(k=>
+          `<option value="${escapeHTML(k)}">${escapeHTML(k)}</option>`
+        ).join("");
+    });
+
+    document.getElementById("khStatus").textContent=
+      daftarSiswaSIGAP.length+" siswa ditemukan dari Sheet1.";
+
+    document.getElementById("tpStatus").textContent=
+      daftarSiswaSIGAP.length+" siswa ditemukan dari Sheet1.";
+  });
+}
+
+/**************************************************
+ * FORM REKAP KEHADIRAN
+ **************************************************/
+
+function tampilkanFormKehadiran(){
+  const kelas=document.getElementById("khKelas").value;
+  const siswa=daftarSiswaSIGAP.filter(s=>s.kelas===kelas);
+
+  document.getElementById("khTbody").innerHTML=siswa.map((s,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHTML(s.nama)}</td>
+      <td>${escapeHTML(s.nis)}</td>
+      <td>
+        <select class="kh-status">
+          <option value="HADIR">HADIR</option>
+          <option value="IZIN">IZIN</option>
+          <option value="SAKIT">SAKIT</option>
+          <option value="ALPA">ALPA</option>
+        </select>
+      </td>
+      <td><input class="kh-ket" placeholder="Opsional"></td>
+      <td style="display:none">
+        <input class="kh-nis" value="${escapeHTML(s.nis)}">
+        <input class="kh-nama" value="${escapeHTML(s.nama)}">
+      </td>
+    </tr>
+  `).join("")||"<tr><td colspan='5'>Tidak ada siswa pada kelas ini.</td></tr>";
+}
+
+async function simpanKehadiran(){
+  const tanggal=document.getElementById("khTanggal").value;
+  const kelas=document.getElementById("khKelas").value;
+  const mataPelajaran=document.getElementById("khMapel").value.trim();
+  const baris=[...document.querySelectorAll("#khTbody tr")];
+
+  if(!tanggal||!kelas||!mataPelajaran||!baris.length||
+     !baris[0].querySelector(".kh-nis")){
+    alert("Lengkapi tanggal, kelas, mata pelajaran, dan pilih kelas.");
+    return;
+  }
+
+  const siswa=baris.map(tr=>({
     nis:tr.querySelector(".kh-nis").value,
     nama:tr.querySelector(".kh-nama").value,
     status:tr.querySelector(".kh-status").value,
     keterangan:tr.querySelector(".kh-ket").value
   }));
-  kirimDataSIGAP({jenisData:"SIMPAN_KEHADIRAN",tanggal,kelas,mataPelajaran,siswa});
+
+  await kirimDataSIGAP({
+    jenisData:"SIMPAN_KEHADIRAN",
+    tanggal: tanggal,
+    kelas: kelas,
+    mataPelajaran: mataPelajaran,
+    siswa: siswa
+  },"khStatus");
+
+  muatRekapKehadiran();
 }
 
-function simpanNilaiTP() {
-  const tanggal = document.getElementById("tpTanggal").value;
-  const kelas = document.getElementById("tpKelas").value;
-  const mataPelajaran = document.getElementById("tpMapel").value.trim();
-  const tp = document.getElementById("tpNama").value.trim();
-  const baris = [...document.querySelectorAll("#tpTbody tr")];
-  if (!tanggal || !kelas || !mataPelajaran || !tp || !baris.length) {
+/**************************************************
+ * FORM NILAI PER TUJUAN PEMBELAJARAN
+ **************************************************/
+
+function tampilkanFormNilaiTP(){
+  const kelas=document.getElementById("tpKelas").value;
+  const siswa=daftarSiswaSIGAP.filter(s=>s.kelas===kelas);
+
+  document.getElementById("tpTbody").innerHTML=siswa.map((s,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHTML(s.nama)}</td>
+      <td>${escapeHTML(s.nis)}</td>
+      <td><input class="tp-nilai" type="number" min="0" max="100" step="0.01" placeholder="0–100"></td>
+      <td><input class="tp-ket" placeholder="Opsional"></td>
+      <td style="display:none">
+        <input class="tp-nis" value="${escapeHTML(s.nis)}">
+        <input class="tp-nama" value="${escapeHTML(s.nama)}">
+      </td>
+    </tr>
+  `).join("")||"<tr><td colspan='5'>Tidak ada siswa pada kelas ini.</td></tr>";
+}
+
+async function simpanNilaiTP(){
+  const tanggal=document.getElementById("tpTanggal").value;
+  const kelas=document.getElementById("tpKelas").value;
+  const mataPelajaran=document.getElementById("tpMapel").value.trim();
+  const tujuanPembelajaran=document.getElementById("tpNama").value.trim();
+  const baris=[...document.querySelectorAll("#tpTbody tr")];
+
+  if(!tanggal||!kelas||!mataPelajaran||!tujuanPembelajaran||
+     !baris.length||!baris[0].querySelector(".tp-nis")){
     alert("Lengkapi tanggal, kelas, mata pelajaran, TP, dan pilih kelas.");
     return;
   }
-  const siswa = baris.map(tr => ({
+
+  const siswa=baris.map(tr=>({
     nis:tr.querySelector(".tp-nis").value,
     nama:tr.querySelector(".tp-nama").value,
     nilai:tr.querySelector(".tp-nilai").value,
     keterangan:tr.querySelector(".tp-ket").value
   }));
-  if (siswa.some(s => s.nilai === "" || Number(s.nilai)<0 || Number(s.nilai)>100)) {
+
+  if(siswa.some(s=>
+    s.nilai===""||!Number.isFinite(Number(s.nilai))||
+    Number(s.nilai)<0||Number(s.nilai)>100
+  )){
     alert("Isi semua nilai siswa dengan angka 0 sampai 100.");
     return;
   }
-  kirimDataSIGAP({jenisData:"SIMPAN_NILAI_TP",tanggal,kelas,mataPelajaran,tp,siswa});
+
+  const berhasil=await kirimDataSIGAP({
+    jenisData:"SIMPAN_NILAI_TP",
+    tanggal: tanggal,
+    kelas: kelas,
+    mataPelajaran: mataPelajaran,
+    tujuanPembelajaran: tujuanPembelajaran,
+    siswa: siswa
+  },"tpStatus");
+
+  if(berhasil){
+    muatRiwayatNilaiTP();
+  }
 }
 
-function muatRekapKehadiran() {
-  if (!URL_APPS_SCRIPT_DATA || URL_APPS_SCRIPT_DATA.includes("GANTI_DENGAN")) {
-    alert("URL Apps Script baru belum dipasang."); return;
+/**************************************************
+ * PENGIRIMAN DATA KE CODE.GS
+ **************************************************/
+
+async function kirimDataSIGAP(payload,pesanId){
+  if(!URL_APPS_SCRIPT_DATA||
+     URL_APPS_SCRIPT_DATA.includes("GANTI_DENGAN")){
+    alert("URL Apps Script data belum dipasang.");
+    return false;
   }
-  panggilJSONP(URL_APPS_SCRIPT_DATA + "?action=rekapKehadiran", hasil => {
-    const tb = document.getElementById("khRiwayat");
-    if (!hasil || hasil.status !== "success") { tb.innerHTML = "<tr><td colspan='5'>Gagal memuat riwayat.</td></tr>"; return; }
-    tb.innerHTML = (hasil.data || []).slice().reverse().map(r =>
-      `<tr><td>${escapeHTML(r.tanggal)}</td><td>${escapeHTML(r.kelas)}</td><td>${escapeHTML(r.mataPelajaran)}</td><td>${escapeHTML(r.nama)}</td><td>${escapeHTML(r.status)}</td></tr>`
-    ).join("") || "<tr><td colspan='5'>Belum ada data.</td></tr>";
+
+  try{
+    // mode no-cors membuat browser tidak dapat membaca
+    // respons server. Karena itu, setelah pengiriman,
+    // kita periksa hasilnya melalui riwayat Google Sheets.
+    await fetch(URL_APPS_SCRIPT_DATA,{
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(payload)
+    });
+
+    tampilStatus(
+      "Permintaan telah dikirim. Memeriksa data pada Google Sheets...",
+      "",
+      pesanId
+    );
+
+    await new Promise(resolve=>setTimeout(resolve,1800));
+
+    if(payload.jenisData==="SIMPAN_NILAI_TP"){
+      return await cekNilaiTPTersimpan(payload);
+    }
+
+    if(payload.jenisData==="SIMPAN_KEHADIRAN"){
+      return await cekKehadiranTersimpan(payload);
+    }
+
+    alert("Permintaan pengiriman telah dilakukan.");
+    return true;
+
+  }catch(error){
+    tampilStatus("Pengiriman gagal: "+error.message,"error",pesanId);
+    alert("Pengiriman gagal: "+error.message);
+    return false;
+  }
+}
+
+/**************************************************
+ * VERIFIKASI PENYIMPANAN NILAI TP
+ **************************************************/
+
+function cekNilaiTPTersimpan(payload){
+  return new Promise(resolve=>{
+    panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=nilaitp",hasil=>{
+      const data=hasil&&hasil.status==="success"?hasil.data||[]:[];
+      const cocok=data.some(r=>
+        String(r.tanggal)===String(payload.tanggal)&&
+        String(r.kelas)===String(payload.kelas)&&
+        String(r.mataPelajaran)===String(payload.mataPelajaran)&&
+        String(r.tujuanPembelajaran)===String(payload.tujuanPembelajaran)&&
+        payload.siswa.some(s=>String(s.nis)===String(r.nis))
+      );
+
+      if(cocok){
+        tampilStatus("✓ Data nilai TP sudah ditemukan pada riwayat Google Sheets.","success","tpStatus");
+        alert("Nilai TP berhasil tersimpan dan sudah terbaca pada riwayat.");
+        resolve(true);
+      }else{
+        tampilStatus("Data belum ditemukan pada riwayat. Periksa deployment Code.gs dan sheet NILAI TP XI.","error","tpStatus");
+        alert("Data belum terverifikasi. Periksa sheet NILAI TP XI dan pastikan URL Web App sudah benar.");
+        resolve(false);
+      }
+    });
   });
 }
 
-function muatRiwayatNilaiTP() {
-  if (!URL_APPS_SCRIPT_DATA || URL_APPS_SCRIPT_DATA.includes("GANTI_DENGAN")) {
-    alert("URL Apps Script baru belum dipasang."); return;
-  }
-  panggilJSONP(URL_APPS_SCRIPT_DATA + "?action=nilaiTP", hasil => {
-    const tb = document.getElementById("tpRiwayat");
-    if (!hasil || hasil.status !== "success") { tb.innerHTML = "<tr><td colspan='6'>Gagal memuat riwayat.</td></tr>"; return; }
-    tb.innerHTML = (hasil.data || []).slice().reverse().map(r =>
-      `<tr><td>${escapeHTML(r.kelas)}</td><td>${escapeHTML(r.mataPelajaran)}</td><td>${escapeHTML(r.tp)}</td><td>${escapeHTML(r.nama)}</td><td>${escapeHTML(r.nilai)}</td><td>${escapeHTML(r.tanggal)}</td></tr>`
-    ).join("") || "<tr><td colspan='6'>Belum ada data.</td></tr>";
+/**************************************************
+ * VERIFIKASI PENYIMPANAN KEHADIRAN
+ **************************************************/
+
+function cekKehadiranTersimpan(payload){
+  return new Promise(resolve=>{
+    panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=rekapkehadiran",hasil=>{
+      const data=hasil&&hasil.status==="success"?hasil.data||[]:[];
+      const cocok=data.some(r=>
+        String(r.tanggal)===String(payload.tanggal)&&
+        String(r.kelas)===String(payload.kelas)&&
+        String(r.mataPelajaran)===String(payload.mataPelajaran)&&
+        payload.siswa.some(s=>String(s.nis)===String(r.nis))
+      );
+
+      if(cocok){
+        tampilStatus("✓ Data kehadiran sudah ditemukan pada riwayat Google Sheets.","success","khStatus");
+        alert("Rekap kehadiran berhasil tersimpan dan sudah terbaca pada riwayat.");
+        resolve(true);
+      }else{
+        tampilStatus("Data belum ditemukan pada riwayat. Periksa deployment Code.gs dan sheet REKAP KEHADIRAN XI.","error","khStatus");
+        alert("Data belum terverifikasi. Periksa sheet REKAP KEHADIRAN XI dan URL Web App.");
+        resolve(false);
+      }
+    });
   });
 }
 
-document.getElementById("khTanggal").value = new Date().toISOString().slice(0,10);
-document.getElementById("tpTanggal").value = new Date().toISOString().slice(0,10);
+/**************************************************
+ * MEMUAT RIWAYAT KEHADIRAN
+ **************************************************/
+
+function muatRekapKehadiran(){
+  panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=rekapkehadiran",hasil=>{
+    const tb=document.getElementById("khRiwayat");
+
+    if(!hasil||hasil.status!=="success"){
+      tb.innerHTML="<tr><td colspan='5'>Gagal memuat riwayat kehadiran.</td></tr>";
+      return;
+    }
+
+    const data=hasil.data||[];
+
+    tb.innerHTML=data.map(r=>`
+      <tr>
+        <td>${escapeHTML(r.tanggal)}</td>
+        <td>${escapeHTML(r.kelas)}</td>
+        <td>${escapeHTML(r.mataPelajaran)}</td>
+        <td>${escapeHTML(r.nama)}</td>
+        <td>${escapeHTML(r.status)}</td>
+      </tr>
+    `).join("")||
+    "<tr><td colspan='5'>Belum ada data kehadiran.</td></tr>";
+  });
+}
+
+/**************************************************
+ * MEMUAT RIWAYAT NILAI TP
+ **************************************************/
+
+function muatRiwayatNilaiTP(){
+  panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=nilaitp",hasil=>{
+    const tb=document.getElementById("tpRiwayat");
+
+    if(!hasil||hasil.status!=="success"){
+      tb.innerHTML="<tr><td colspan='6'>Gagal memuat riwayat nilai TP.</td></tr>";
+      return;
+    }
+
+    const data=hasil.data||[];
+
+    tb.innerHTML=data.map(r=>`
+      <tr>
+        <td>${escapeHTML(r.kelas)}</td>
+        <td>${escapeHTML(r.mataPelajaran)}</td>
+        <td>${escapeHTML(r.tujuanPembelajaran)}</td>
+        <td>${escapeHTML(r.nama)}</td>
+        <td>${escapeHTML(r.nilai)}</td>
+        <td>${escapeHTML(r.tanggal)}</td>
+      </tr>
+    `).join("")||
+    "<tr><td colspan='6'>Belum ada data nilai TP.</td></tr>";
+  });
+}
+
+/**************************************************
+ * TANGGAL OTOMATIS DAN PEMUATAN AWAL
+ **************************************************/
+
+const hariIni=new Date();
+const tanggalLokal=new Date(
+  hariIni.getTime()-hariIni.getTimezoneOffset()*60000
+).toISOString().slice(0,10);
+
+document.getElementById("khTanggal").value=tanggalLokal;
+document.getElementById("tpTanggal").value=tanggalLokal;
+
+// Event kelas
+document.getElementById("khKelas").addEventListener(
+  "change",tampilkanFormKehadiran
+);
+
+document.getElementById("tpKelas").addEventListener(
+  "change",tampilkanFormNilaiTP
+);
+
+// Muat semua data saat dashboard dibuka
+ambilData();
+ambilPresensi();
 muatSiswaSIGAP();
 
 </script>
-
 </body>
 </html>
