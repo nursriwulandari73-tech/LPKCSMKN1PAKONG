@@ -338,7 +338,7 @@ button:hover{filter:brightness(1.05)}
 <!-- MONITORING PRESENSI -->
 <section class="section">
   <div class="section-heading">
-    <div><h2>Monitoring Presensi Siswa</h2><p>Rekap gabungan dari presensi digital dan kehadiran manual.</p></div>
+    <div><h2>Monitoring Presensi Siswa</h2><p>Rekap kehadiran berdasarkan data presensi digital.</p></div>
     <button class="refresh-btn" id="tombolPresensi" onclick="ambilPresensi()">↻ Perbarui Presensi</button>
   </div>
   <div id="statusPresensi" class="status">Menghubungkan ke data presensi...</div>
@@ -462,7 +462,7 @@ const URL_APPS_SCRIPT_PRESENSI =
 // URL Code.gs untuk siswa, jurnal, kehadiran, dan nilai TP
 // Jika URL deployment berubah, ganti alamat ini.
 const URL_APPS_SCRIPT_DATA =
-"https://script.google.com/macros/s/AKfycbzflUnK22qBe3D4r4ASi3L8MDpSKhsIUwncl8FNwV9zyDI-fl0Z67temO1hkaQVjn/exec";
+"https://script.google.com/macros/s/AKfycbweu1wCHMLXEKTae1T1NuaI_YG3heq8lKu_HK8OPloai2KTqFT1xtofiIXzuLtpiZI4/exec";
 
 let daftarSiswaSIGAP = [];
 
@@ -651,78 +651,74 @@ async function ambilData(){
 }
 
 /**************************************************
- * MONITORING PRESENSI GABUNGAN DIGITAL + MANUAL
+ * MONITORING PRESENSI GABUNGAN MANUAL + DIGITAL
  **************************************************/
 
 function ambilPresensi(){
   const tombol=document.getElementById("tombolPresensi");
   tombol.disabled=true;
   tombol.textContent="Memuat...";
-  tampilStatus("Sedang mengambil presensi digital dan manual...","","statusPresensi");
+  tampilStatus("Sedang menggabungkan presensi manual dan digital...","","statusPresensi");
 
+  // Mengambil data dari endpoint gabungan Code.gs yang sudah diuji berhasil.
   panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=rekapgabungan",hasil=>{
     tombol.disabled=false;
     tombol.textContent="↻ Perbarui Presensi";
 
-    if(!hasil||hasil.status!=="success"||!Array.isArray(hasil.data)){
+    if(!hasil||hasil.status!=="success"){
       tampilStatus(
-        "Data presensi gabungan gagal dibaca. Periksa deployment Code.gs dan akses Web App.",
+        "Data presensi gabungan gagal dibaca. "+(hasil&&hasil.message?hasil.message:"Periksa akses Web App."),
         "error","statusPresensi"
       );
       return;
     }
 
-    const data=hasil.data;
-    const ringkas={hadir:0,izin:0,sakit:0,tidakHadir:0};
+    const data=Array.isArray(hasil.data)?hasil.data:[];
+    const hitung={hadir:0,izin:0,sakit:0,tidakHadir:0};
     const siswaUnik=new Set();
     const kelasMap={};
     const tanggalMap={};
 
     data.forEach(r=>{
-      const status=String(r.status||"").trim().toLowerCase();
-      const nis=String(r.nis||"").trim();
-      if(nis)siswaUnik.add(nis);
+      const st=String(r.status||"").trim().toUpperCase();
+      if(st==="HADIR")hitung.hadir++;
+      else if(st==="IZIN")hitung.izin++;
+      else if(st==="SAKIT")hitung.sakit++;
+      else if(st==="ALPA"||st==="TIDAK HADIR"||st==="TIDAK_HADIR")hitung.tidakHadir++;
 
-      if(status==="hadir") ringkas.hadir++;
-      else if(status==="izin") ringkas.izin++;
-      else if(status==="sakit") ringkas.sakit++;
-      else if(status==="alpa"||status==="alpha"||status==="tidak hadir"||status==="tidakhadir") ringkas.tidakHadir++;
+      const identitas=String(r.nis||r.nisn||r.nama||"").trim();
+      if(identitas)siswaUnik.add(identitas);
 
-      const namaKelas=String(r.kelas||"Tidak diketahui");
+      const namaKelas=String(r.kelas||"Belum diketahui").trim();
       kelasMap[namaKelas]=(kelasMap[namaKelas]||0)+1;
 
-      const tgl=String(r.tanggal||"Tidak diketahui");
-      tanggalMap[tgl]=(tanggalMap[tgl]||0)+1;
+      const tanggal=String(r.tanggal||"").trim();
+      if(tanggal)tanggalMap[tanggal]=(tanggalMap[tanggal]||0)+1;
     });
 
+    const rekap=hasil.rekapStatus||{};
     tampilAngka("presTotal",hasil.totalPresensi??data.length);
-    tampilAngka("presSiswa",siswaUnik.size);
-    tampilAngka("presHadir",ringkas.hadir);
-    tampilAngka("presIzin",ringkas.izin);
-    tampilAngka("presSakit",ringkas.sakit);
-    tampilAngka("presTidakHadir",ringkas.tidakHadir);
+    tampilAngka("presSiswa",hasil.jumlahSiswa??siswaUnik.size);
+    tampilAngka("presHadir",rekap.hadir??hitung.hadir);
+    tampilAngka("presIzin",rekap.izin??hitung.izin);
+    tampilAngka("presSakit",rekap.sakit??hitung.sakit);
+    tampilAngka("presTidakHadir",rekap.tidakHadir??hitung.tidakHadir);
 
-    const rekapKelas=Object.entries(kelasMap)
-      .map(([kelas,totalPresensi])=>({kelas,totalPresensi}))
-      .sort((a,b)=>a.kelas.localeCompare(b.kelas,"id"));
-    tampilkanRekapKelas(rekapKelas);
-
+    const rekapKelas=Object.entries(kelasMap).map(([kelas,totalPresensi])=>({kelas,totalPresensi}));
     const trenHarian=Object.entries(tanggalMap)
-      .map(([tanggal,total])=>({tanggal,total}))
-      .sort((a,b)=>{
-        const da=new Date(a.tanggal).getTime();
-        const db=new Date(b.tanggal).getTime();
-        if(Number.isFinite(db-da)&&db!==da)return db-da;
-        return b.tanggal.localeCompare(a.tanggal);
-      })
-      .slice(0,7)
-      .reverse();
+      .sort((a,b)=>a[0].localeCompare(b[0]))
+      .slice(-7)
+      .map(([tanggal,total])=>({tanggal,total}));
+
     tampilkanTren(trenHarian,"presensiHarian","tanggal");
+    tampilkanRekapKelas(rekapKelas);
 
     document.getElementById("waktuUpdatePresensi").textContent=
       new Date().toLocaleString("id-ID");
+
     tampilStatus(
-      "✓ Rekap presensi digital dan manual berhasil diperbarui. Data yang tidak memiliki catatan tidak otomatis dihitung ALPA.",
+      "✓ Presensi manual dan digital berhasil digabungkan. Total "+
+      (hasil.totalPresensi??data.length)+" catatan kehadiran.",
       "success","statusPresensi"
     );
   });
@@ -737,23 +733,31 @@ function tampilkanRekapKelas(data){
     return;
   }
 
-  const maksimum=Math.max(...data.map(item=>Number(item.totalPresensi||0)),1);
+  const maksimum=Math.max(
+    ...data.map(item=>Number(item.totalPresensi||0)),1
+  );
+
   data.forEach(item=>{
     const jumlah=Number(item.totalPresensi||0);
     const baris=document.createElement("div");
     baris.className="trend-item";
+
     const label=document.createElement("div");
     label.className="trend-label";
     label.textContent=item.kelas||"-";
+
     const latar=document.createElement("div");
     latar.className="trend-bar-bg";
+
     const isi=document.createElement("div");
     isi.className="trend-bar-fill";
     isi.style.width=(jumlah/maksimum*100)+"%";
     latar.appendChild(isi);
+
     const angka=document.createElement("div");
     angka.className="trend-number";
     angka.textContent=jumlah.toLocaleString("id-ID");
+
     baris.append(label,latar,angka);
     wadah.appendChild(baris);
   });
@@ -1029,14 +1033,16 @@ function cekKehadiranTersimpan(payload){
  **************************************************/
 
 function muatRekapKehadiran(){
-  panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=rekapgabungan",hasil=>{
+  panggilJSONP(URL_APPS_SCRIPT_DATA+"?action=rekapkehadiran",hasil=>{
     const tb=document.getElementById("khRiwayat");
-    if(!hasil||hasil.status!=="success"||!Array.isArray(hasil.data)){
-      tb.innerHTML="<tr><td colspan='5'>Gagal memuat rekap gabungan kehadiran.</td></tr>";
+
+    if(!hasil||hasil.status!=="success"){
+      tb.innerHTML="<tr><td colspan='5'>Gagal memuat riwayat kehadiran.</td></tr>";
       return;
     }
 
-    const data=hasil.data;
+    const data=hasil.data||[];
+
     tb.innerHTML=data.map(r=>`
       <tr>
         <td>${escapeHTML(r.tanggal)}</td>
