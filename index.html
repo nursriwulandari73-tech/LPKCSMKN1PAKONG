@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -12,6 +13,44 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
+        /* TOMBOL KEMBALI KE DASHBOARD GURU */
+
+        .kembali-dashboard-wrap {
+            width: 100%;
+            padding: 15px 25px;
+            background: #f5f8fc;
+            box-sizing: border-box;
+        }
+
+        .tombol-kembali-dashboard {
+            display: inline-block;
+            padding: 11px 20px;
+            background: #173f73;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+            transition: 0.3s ease;
+        }
+
+        .tombol-kembali-dashboard:hover {
+            background: #0d2d55;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .kembali-dashboard-wrap {
+                padding: 12px 15px;
+            }
+
+            .tombol-kembali-dashboard {
+                font-size: 13px;
+                padding: 10px 15px;
+            }
+        }
+
         /* BAGIAN EVALUASI SIGAP */
 
         .evaluasi-sigap {
@@ -118,6 +157,20 @@
         </nav>
 
     </header>
+
+
+    <!-- TOMBOL KEMBALI KE DASHBOARD GURU -->
+
+    <div class="kembali-dashboard-wrap">
+
+        <a href="dashboard-guru.html"
+           class="tombol-kembali-dashboard">
+
+            ← Kembali ke Dashboard Guru
+
+        </a>
+
+    </div>
 
 
     <!-- HERO -->
